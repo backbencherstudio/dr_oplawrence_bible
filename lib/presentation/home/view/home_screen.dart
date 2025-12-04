@@ -1,33 +1,39 @@
-import 'package:dr_oplawrence_bible/core/resource/utils.dart';
-import 'package:dr_oplawrence_bible/core/resource/values_manager.dart';
+import 'package:dr_oplawrence_bible/data/sources/services/book_repository.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final booksAsync = ref.watch(booksProvider);
+
     return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: AppPadding.p16),
-          child: SizedBox(
-            height: Utils.fullHeight(context)*0.80,
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  SizedBox(height: 16),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text("Hello")
-                    ]
-                    ),
-                ],
-              ),
-            ),
-          ),
+      appBar: AppBar(title: const Text("Bible Books")),
+
+      body: booksAsync.when(
+        loading: () => const Center(child: CircularProgressIndicator()),
+        
+        error: (err, stack) => Center(
+          child: Text("Error: $err"),
         ),
+        
+        data: (data) {
+          final books = data["books"] as List;
+
+          return ListView.builder(
+            itemCount: books.length,
+            itemBuilder: (context, index) {
+              final book = books[index];
+
+              return ListTile(
+                title: Text(book["name"]),
+                trailing: Text("${book['chapters'].length} chapters"),
+              );
+            },
+          );
+        },
       ),
     );
   }
