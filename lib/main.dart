@@ -24,8 +24,7 @@ class MyApp extends StatelessWidget {
           title: 'Dr Oplawrence Bible',
           theme: getApplicationTheme(),
           themeMode: ThemeMode.system,
-          onGenerateRoute: AppRouter.generateRoute,
-          initialRoute: RouteNames.splashScreen,
+          initialRoute: AppRoutes.initialRoute,
 
           // home: child,
         );
