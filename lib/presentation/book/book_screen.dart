@@ -35,7 +35,7 @@ class Chapter {
 class BibleViewModel {
   Future<List<BibleBook>> loadBooks() async {
     try {
-      final jsonString = await rootBundle.loadString('assets/data/books.json');
+      final jsonString = await rootBundle.loadString('assets/book/books.json');
       final jsonMap = json.decode(jsonString);
       final books = (jsonMap["books"] as List)
           .map((b) => BibleBook.fromJson(b))
