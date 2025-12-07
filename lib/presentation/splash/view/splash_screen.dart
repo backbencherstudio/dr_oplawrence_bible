@@ -27,7 +27,7 @@ class _SplashScreenState extends State<SplashScreen> {
     //   );}
     Navigator.pushReplacementNamed(
         context,
-        RouteNames.navbar,
+        RouteNames.onboardingScreen,
       );
     });
   }
@@ -35,10 +35,17 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      body: Stack(
+        children: [
+          Image.asset('assets/images/splash_background.png'),
+          Positioned(
+            top: 250,
+              left: 30,
+              right: 30,
+              child: Image.asset('assets/icons/splash_icon.png',scale: 5,)),
 
-      backgroundColor: ColorsManager.splashBgColor,
-      body: Center(child: Image.asset(ImageManager.logo)),
-
+        ],
+      ),
     );
   }
 }
