@@ -26,16 +26,22 @@ import 'package:dr_oplawrence_bible/core/route/route_name.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../presentation/auth/login_screen.dart';
 import '../../presentation/book/book_screen.dart';
+import '../../presentation/onboarding/onboarding_screen.dart';
+import '../../presentation/onboarding/second_onboarding.dart';
 import '../../presentation/splash/view/splash_screen.dart';
  // contains BibleViewModel
 
 class AppRoutes {
   static final BibleViewModel bibleVM = BibleViewModel();
-  static final String initialRoute = RouteNames.bookListScreen;
+  static final String initialRoute = RouteNames.splashScreen;
 
   static late final Map<String, WidgetBuilder> routes = {
     RouteNames.splashScreen: (context) => const SplashScreen(),
+    RouteNames.onboardingScreen: (context) => const OnboardingScreen(),
+    RouteNames.secondOnboarding: (context) => const SecondOnboarding(),
+    RouteNames.loginScreen: (context) => const LoginScreen(),
 
 
     // Show list of all books
