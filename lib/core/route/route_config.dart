@@ -26,7 +26,11 @@ import 'package:dr_oplawrence_bible/core/route/route_name.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../presentation/auth/create_pass.dart';
+import '../../presentation/auth/forgot_pass.dart';
 import '../../presentation/auth/login_screen.dart';
+import '../../presentation/auth/otp_screen.dart';
+import '../../presentation/auth/sign_up_screen.dart';
 import '../../presentation/book/book_screen.dart';
 import '../../presentation/onboarding/onboarding_screen.dart';
 import '../../presentation/onboarding/second_onboarding.dart';
@@ -42,6 +46,10 @@ class AppRoutes {
     RouteNames.onboardingScreen: (context) => const OnboardingScreen(),
     RouteNames.secondOnboarding: (context) => const SecondOnboarding(),
     RouteNames.loginScreen: (context) => const LoginScreen(),
+    RouteNames.signUpScreen: (context) => const SignUpScreen(),
+    RouteNames.createPass: (context) => const CreatePass(),
+    RouteNames.forgotPass: (context) => const ForgotPass(),
+    RouteNames.otpScreen: (context) => const OtpScreen(),
 
 
     // Show list of all books

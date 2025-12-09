@@ -5,6 +5,10 @@ class RouteNames {
   static const String onboardingScreen = "/onboardingScreen";
   static const String secondOnboarding = "/secondOnboarding";
   static const String loginScreen = "/loginScreen";
+  static const String signUpScreen = "/signUpScreen";
+  static const String createPass = "/createPass";
+  static const String forgotPass = "/forgotPass";
+  static const String otpScreen = "/otpScreen";
   // static const String careBottomNavBarScreen = "/careBottomNavBarScreen";
   // static const String onboardingScreen = "/onboardingScreen";
 }
