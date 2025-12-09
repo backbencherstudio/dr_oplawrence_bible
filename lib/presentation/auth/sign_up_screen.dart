@@ -1,14 +1,15 @@
-import 'package:dr_oplawrence_bible/core/route/route_name.dart';
 import 'package:flutter/material.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+import '../../core/route/route_name.dart';
+
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _SignUpScreenState extends State<SignUpScreen> {
   bool _rememberMe = false;
   bool _isPasswordVisible = false;
 
@@ -22,34 +23,15 @@ class _LoginScreenState extends State<LoginScreen> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const SizedBox(height: 90),
-              Image.asset('assets/icons/login_icons.png',scale: 3,),
+              const SizedBox(height: 60),
+              Image.asset('assets/images/sign_up_icon.png',scale: 4,),
               const SizedBox(height: 25),
-              const Text(
-                'Hi, Welcome Back!',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 28,
-                  fontWeight: FontWeight.w700,
-                  color: Color(0xff1A1A1A),
-                ),
-              ),
-              const SizedBox(height: 40),
-              Align(
-                alignment: AlignmentGeometry.topLeft,
-                child: const Text(
-                  'Email',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.black,
-                  ),
-                ),
-              ),
+
               const SizedBox(height: 8),
               TextFormField(
                 decoration: InputDecoration(
-                  hintText: 'example@gmail.com',
+                  hintText: 'enter your name',
+                  hintStyle: TextStyle(fontSize: 15,color: Colors.grey.shade500),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8.0),
                     borderSide: const BorderSide(color: Colors.grey),
@@ -64,23 +46,51 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 keyboardType: TextInputType.emailAddress,
               ),
-              const SizedBox(height: 20),
-              Align(
-                alignment: AlignmentGeometry.topLeft,
-                child: const Text(
-                  'Password',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.black,
+              const SizedBox(height: 12),
+              TextFormField(
+                decoration: InputDecoration(
+                  hintText: 'example@gmail.com',
+                  hintStyle: TextStyle(fontSize: 15,color: Colors.grey.shade500),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                    borderSide: const BorderSide(color: Colors.grey),
                   ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                    borderSide: const BorderSide(color: Colors.blue, width: 2.0),
+                  ),
+                  contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  fillColor: Colors.white,
+                  filled: true,
                 ),
+                keyboardType: TextInputType.emailAddress,
               ),
-              const SizedBox(height: 8),
+              const SizedBox(height: 12),
+              TextFormField(
+                decoration: InputDecoration(
+                  hintText: 'enter your phone number',
+                  hintStyle: TextStyle(fontSize: 15,color: Colors.grey.shade500),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                    borderSide: const BorderSide(color: Colors.grey),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                    borderSide: const BorderSide(color: Colors.blue, width: 2.0),
+                  ),
+                  contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  fillColor: Colors.white,
+                  filled: true,
+                ),
+                keyboardType: TextInputType.emailAddress,
+              ),
+
+              const SizedBox(height: 12),
               TextFormField(
                 obscureText: !_isPasswordVisible,
                 decoration: InputDecoration(
                   hintText: 'enter your password',
+                  hintStyle: TextStyle(fontSize: 15,color: Colors.grey.shade500),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8.0),
                     borderSide: const BorderSide(color: Colors.grey),
@@ -105,57 +115,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
               ),
-              const SizedBox(height: 16),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children:[
-                  Row(
-                    children: [
-                      SizedBox(
-                        height: 24.0,
-                        width: 24.0,
-                        child: Checkbox(
-                          value: _rememberMe,
-                          onChanged: (bool? value) {
-                            setState(() {
-                              _rememberMe = value!;
-                            });
-                          },
-                          activeColor: const Color(0xFF1E3A8A),
-                          checkColor: Colors.white,
-                        ),
-                      ),
-                      const SizedBox(width: 8),
-                      const Text(
-                        'Remember Me',
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.black,
-                          fontWeight: FontWeight.w700
-                        ),
-                      ),
-                    ],
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, RouteNames.forgotPass);
-                    },
-                    child: const Text(
-                      'Forgot Password?',
-                      style: TextStyle(
-                        color: Colors.red,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
               const SizedBox(height: 30),
+
               ElevatedButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, RouteNames.createPass);
-                },
+                onPressed: () {},
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF1E3A8A),
                   shape: RoundedRectangleBorder(
@@ -165,7 +128,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   minimumSize: const Size(double.infinity, 50),
                 ),
                 child: const Text(
-                  'Login',
+                  'Sign Up',
                   style: TextStyle(
                     fontSize: 18,
                     color: Colors.white,
@@ -178,7 +141,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text(
-                    "Don't have an account?",
+                    "Already have an account?",
                     style: TextStyle(
                       fontSize: 16,
                       color: Colors.black54,
@@ -186,10 +149,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   TextButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, RouteNames.signUpScreen);
+                      Navigator.pushNamed(context, RouteNames.loginScreen);
                     },
                     child: const Text(
-                      'Sign Up',
+                      'Login',
                       style: TextStyle(
                         color: Color(0xff0D5593),
                         fontSize: 16,
