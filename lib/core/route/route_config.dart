@@ -32,6 +32,8 @@ import '../../presentation/auth/login_screen.dart';
 import '../../presentation/auth/otp_screen.dart';
 import '../../presentation/auth/sign_up_screen.dart';
 import '../../presentation/book/book_screen.dart';
+import '../../presentation/bottom_nav/view/bottom_nav.dart';
+import '../../presentation/home/view/home_screen.dart';
 import '../../presentation/onboarding/onboarding_screen.dart';
 import '../../presentation/onboarding/second_onboarding.dart';
 import '../../presentation/splash/view/splash_screen.dart';
@@ -50,6 +52,8 @@ class AppRoutes {
     RouteNames.createPass: (context) => const CreatePass(),
     RouteNames.forgotPass: (context) => const ForgotPass(),
     RouteNames.otpScreen: (context) => const OtpScreen(),
+    RouteNames.homeScreen: (context) => const HomeScreen(),
+    RouteNames.parentScreen: (context) => const ParentScreen(),
 
 
     // Show list of all books
