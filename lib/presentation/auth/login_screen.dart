@@ -154,7 +154,7 @@ class _LoginScreenState extends State<LoginScreen> {
               const SizedBox(height: 30),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, RouteNames.createPass);
+                  Navigator.pushNamed(context, RouteNames.parentScreen);
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF1E3A8A),
