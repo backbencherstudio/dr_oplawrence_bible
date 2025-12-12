@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:dr_oplawrence_bible/core/resource/utils.dart';
 import 'package:dr_oplawrence_bible/core/resource/values_manager.dart';
+import 'package:dr_oplawrence_bible/core/route/route_name.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -199,7 +200,9 @@ class HomeScreen extends StatelessWidget {
                               ),
 
                               ElevatedButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.pushNamed(context, RouteNames.morningPrayerScreen);
+                                },
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: Color(0xff1F3B96),
                                 ),
@@ -252,7 +255,9 @@ class HomeScreen extends StatelessWidget {
                               ),
 
                               ElevatedButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.pushNamed(context, RouteNames.gospelPsalmScreen);
+                                },
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: Color(0xff1F3B96),
                                 ),
@@ -290,33 +295,38 @@ class HomeScreen extends StatelessWidget {
                               ),
                             ),
                           ),
-                          Container(
-                            width: 100.w,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(10.r),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(16.0),
-                              child: Column(
-                                spacing: 5,
-                                children: [
-                                  SizedBox(
-                                    width: 43,
-                                    height: 43,
-                                    child: Image.asset(
-                                      'assets/icons/login_icons.png',
+                          GestureDetector(
+                            onTap: (){
+                              Navigator.pushNamed(context, RouteNames.bookListScreen);
+                            },
+                            child: Container(
+                              width: 100.w,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(10.r),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(16.0),
+                                child: Column(
+                                  spacing: 5,
+                                  children: [
+                                    SizedBox(
+                                      width: 43,
+                                      height: 43,
+                                      child: Image.asset(
+                                        'assets/icons/login_icons.png',
+                                      ),
                                     ),
-                                  ),
-                                  Text(
-                                    'Bible',
-                                    style: GoogleFonts.merriweather(
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 18,
-                                      color: Color(0xff1A1A1A),
+                                    Text(
+                                      'Bible',
+                                      style: GoogleFonts.merriweather(
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 18,
+                                        color: Color(0xff1A1A1A),
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ),
                           ),
@@ -353,27 +363,32 @@ class HomeScreen extends StatelessWidget {
                         ],
                       ),
 
-                      Container(
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(10.r),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: Row(spacing: 10,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              SvgPicture.asset('assets/icons/greetings.svg'),
-                              Text(
-                                'Archived Daily Devotionals',
-                                style: GoogleFonts.merriweather(
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 18,
-                                  color: Color(0xff1A1A1A),
+                      GestureDetector(
+                        onTap: (){
+                          Navigator.pushNamed(context, RouteNames.archievedDailyDevotionalsScreen);
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10.r),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: Row(spacing: 10,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                SvgPicture.asset('assets/icons/greetings.svg'),
+                                Text(
+                                  'Archived Daily Devotionals',
+                                  style: GoogleFonts.merriweather(
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 18,
+                                    color: Color(0xff1A1A1A),
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       ),

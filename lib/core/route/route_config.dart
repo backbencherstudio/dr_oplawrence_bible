@@ -34,6 +34,9 @@ import '../../presentation/auth/sign_up_screen.dart';
 import '../../presentation/book/book_screen.dart';
 import '../../presentation/bottom_nav/view/bottom_nav.dart';
 import '../../presentation/home/view/home_screen.dart';
+import '../../presentation/home/view/screens/archieved_daily_devotionals/archieved_daily_devotionals_Screen.dart';
+import '../../presentation/home/view/screens/gospel_psalm/gospel_psalm_screen.dart';
+import '../../presentation/home/view/screens/morning_prayer/morning_prayer_screen.dart';
 import '../../presentation/onboarding/onboarding_screen.dart';
 import '../../presentation/onboarding/second_onboarding.dart';
 import '../../presentation/splash/view/splash_screen.dart';
@@ -54,6 +57,9 @@ class AppRoutes {
     RouteNames.otpScreen: (context) => const OtpScreen(),
     RouteNames.homeScreen: (context) => const HomeScreen(),
     RouteNames.parentScreen: (context) => const ParentScreen(),
+    RouteNames.morningPrayerScreen: (context) => const MorningPrayerScreen(),
+    RouteNames.gospelPsalmScreen: (context) => const GospelPsalmScreen(),
+    RouteNames.archievedDailyDevotionalsScreen: (context) => const ArchievedDailyDevotionalsScreen(),
 
 
     // Show list of all books
