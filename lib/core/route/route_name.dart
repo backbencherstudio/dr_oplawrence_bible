@@ -11,6 +11,10 @@ class RouteNames {
   static const String otpScreen = "/otpScreen";
   static const String homeScreen = "/homeScreen";
   static const String parentScreen = "/parentScreen";
+  static const String morningPrayerScreen = "/morningPrayerScreen";
+  static const String gospelPsalmScreen = "/gospelPsalmScreen";
+  static const String dottedDivider = "/dottedDivider";
+  static const String archievedDailyDevotionalsScreen = "/archievedDailyDevotionalsScreen";
   // static const String careBottomNavBarScreen = "/careBottomNavBarScreen";
   // static const String onboardingScreen = "/onboardingScreen";
 }
