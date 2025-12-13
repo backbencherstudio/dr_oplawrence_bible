@@ -104,9 +104,27 @@ class HomeScreen extends StatelessWidget {
                                     color: Colors.white,
                                   ),
                                 ),
-                                SvgPicture.asset(
-                                  'assets/icons/calender_type.svg',
+                                GestureDetector(
+                                  onTap: () async {
+                                    DateTime? selectedDate = await showDatePicker(
+                                      context: context,
+                                      initialDate: DateTime.now(),
+                                      firstDate: DateTime(2000),
+                                      lastDate: DateTime(2100),
+                                    );
+
+                                    if (selectedDate != null) {
+
+                                      print(selectedDate);
+                                    }
+                                  },
+                                  child: SvgPicture.asset(
+                                    'assets/icons/calender_type.svg',
+                                    width: 24,
+                                    height: 24,
+                                  ),
                                 ),
+
                               ],
                             ),
 
@@ -271,27 +289,32 @@ class HomeScreen extends StatelessWidget {
                       Row(
                         spacing: 20,
                         children: [
-                          Container(
-                            width: 100.w,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(10.r),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(16.0),
-                              child: Column(
-                                spacing: 5,
-                                children: [
-                                  SvgPicture.asset('assets/icons/quiz.svg'),
-                                  Text(
-                                    'Quiz',
-                                    style: GoogleFonts.merriweather(
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 18,
-                                      color: Color(0xff1A1A1A),
+                          GestureDetector(
+                            onTap: (){
+                              Navigator.pushNamed(context, RouteNames.quizScreen);
+                            },
+                            child: Container(
+                              width: 100.w,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(10.r),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(16.0),
+                                child: Column(
+                                  spacing: 5,
+                                  children: [
+                                    SvgPicture.asset('assets/icons/quiz.svg'),
+                                    Text(
+                                      'Quiz',
+                                      style: GoogleFonts.merriweather(
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 18,
+                                        color: Color(0xff1A1A1A),
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ),
                           ),
@@ -330,33 +353,38 @@ class HomeScreen extends StatelessWidget {
                               ),
                             ),
                           ),
-                          Container(
-                            width: 100.w,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(10.r),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(16.0),
-                              child: Column(
-                                spacing: 5,
-                                children: [
-                                  SizedBox(
-                                    width: 43,
-                                    height: 43,
-                                    child: SvgPicture.asset(
-                                      'assets/icons/searching.svg',
+                          GestureDetector(
+                            onTap: (){
+                              Navigator.pushNamed(context, RouteNames.searchScreen);
+                            },
+                            child: Container(
+                              width: 100.w,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(10.r),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(16.0),
+                                child: Column(
+                                  spacing: 5,
+                                  children: [
+                                    SizedBox(
+                                      width: 43,
+                                      height: 43,
+                                      child: SvgPicture.asset(
+                                        'assets/icons/searching.svg',
+                                      ),
                                     ),
-                                  ),
-                                  Text(
-                                    'Search',
-                                    style: GoogleFonts.merriweather(
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 18,
-                                      color: Color(0xff1A1A1A),
+                                    Text(
+                                      'Search',
+                                      style: GoogleFonts.merriweather(
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 18,
+                                        color: Color(0xff1A1A1A),
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ),
                           ),
