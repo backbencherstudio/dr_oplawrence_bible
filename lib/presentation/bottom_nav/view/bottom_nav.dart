@@ -5,7 +5,9 @@ import 'package:flutter_riverpod/legacy.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../book/book_screen.dart';
 import '../../home/view/home_screen.dart';
+import '../../plan/plan_Screen.dart';
 
 final parentScreenProvider =
 ChangeNotifierProvider<ParentScreenProvider>((ref) {
@@ -29,11 +31,11 @@ class ParentScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final navParentProvider = ref.watch(parentScreenProvider);
-
+    final bibleVM = BibleViewModel();
     final List<Widget> pages = [
       HomeScreen(),
-      HomeScreen(),
-      HomeScreen(),
+      BookListScreen(bibleVM: bibleVM,),
+      VideoStoriesScreen(),
       HomeScreen(),
     ];
 

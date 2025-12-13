@@ -39,6 +39,11 @@ import '../../presentation/home/view/screens/gospel_psalm/gospel_psalm_screen.da
 import '../../presentation/home/view/screens/morning_prayer/morning_prayer_screen.dart';
 import '../../presentation/onboarding/onboarding_screen.dart';
 import '../../presentation/onboarding/second_onboarding.dart';
+import '../../presentation/plan/plan_Screen.dart';
+import '../../presentation/quiz/quiz_screen.dart';
+import '../../presentation/quiz/screens/quiz_test_start.dart';
+import '../../presentation/quiz/screens/study_more.dart';
+import '../../presentation/search/search_screen.dart';
 import '../../presentation/splash/view/splash_screen.dart';
  // contains BibleViewModel
 
@@ -60,9 +65,13 @@ class AppRoutes {
     RouteNames.morningPrayerScreen: (context) => const MorningPrayerScreen(),
     RouteNames.gospelPsalmScreen: (context) => const GospelPsalmScreen(),
     RouteNames.archievedDailyDevotionalsScreen: (context) => const ArchievedDailyDevotionalsScreen(),
+    RouteNames.searchScreen: (context) => const SearchScreen(),
+    RouteNames.videoStoriesScreen: (context) => const VideoStoriesScreen(),
+    RouteNames.quizScreen: (context) => const QuizScreen(),
+    RouteNames.studyMoreScreen: (context) => const StudyMoreScreen(),
+    RouteNames.quizQuestionScreen: (context) => const QuizQuestionScreen(),
 
 
-    // Show list of all books
     RouteNames.bookListScreen: (context) => BookListScreen(bibleVM: bibleVM),
   };
 }

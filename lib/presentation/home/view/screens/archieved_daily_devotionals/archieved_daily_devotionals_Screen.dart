@@ -15,18 +15,9 @@ class ArchievedDailyDevotionalsScreen extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: const Color(0xffEBEBEB),
           elevation: 0,
-          leading: Container(
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.black),
-              borderRadius: BorderRadius.circular(30),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(2.0),
-              child: IconButton(
-                icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
-                onPressed: () => Navigator.pop(context),
-              ),
-            ),
+          leading: GestureDetector(
+            onTap: () => Navigator.pop(context),
+            child: Image.asset('assets/icons/back_arrow.png', scale: 4),
           ),
           bottom: PreferredSize(
             preferredSize: const Size.fromHeight(60.0),
