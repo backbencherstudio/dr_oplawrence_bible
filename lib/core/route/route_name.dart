@@ -20,6 +20,9 @@ class RouteNames {
   static const String quizScreen = "/quizScreen";
   static const String studyMoreScreen = "/studyMoreScreen";
   static const String quizQuestionScreen = "/quizQuestionScreen";
+  static const String myNotesScreen = "/myNotesScreen";
+  static const String donateMoneySystem = "/donateMoneySystem";
+  static const String donationScreen = "/donationScreen";
   // static const String careBottomNavBarScreen = "/careBottomNavBarScreen";
   // static const String onboardingScreen = "/onboardingScreen";
 }
