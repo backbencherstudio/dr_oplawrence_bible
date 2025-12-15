@@ -37,6 +37,9 @@ import '../../presentation/home/view/home_screen.dart';
 import '../../presentation/home/view/screens/archieved_daily_devotionals/archieved_daily_devotionals_Screen.dart';
 import '../../presentation/home/view/screens/gospel_psalm/gospel_psalm_screen.dart';
 import '../../presentation/home/view/screens/morning_prayer/morning_prayer_screen.dart';
+import '../../presentation/menu/my_notes_screen.dart';
+import '../../presentation/menu/screens/donate_money.dart';
+import '../../presentation/menu/screens/donate_money_system.dart';
 import '../../presentation/onboarding/onboarding_screen.dart';
 import '../../presentation/onboarding/second_onboarding.dart';
 import '../../presentation/plan/plan_Screen.dart';
@@ -70,6 +73,9 @@ class AppRoutes {
     RouteNames.quizScreen: (context) => const QuizScreen(),
     RouteNames.studyMoreScreen: (context) => const StudyMoreScreen(),
     RouteNames.quizQuestionScreen: (context) => const QuizQuestionScreen(),
+    RouteNames.myNotesScreen: (context) => const MyNotesScreen(),
+    RouteNames.donateMoneySystem: (context) => const DonateMoneySystem(),
+    RouteNames.donationScreen: (context) => const DonationScreen(),
 
 
     RouteNames.bookListScreen: (context) => BookListScreen(bibleVM: bibleVM),

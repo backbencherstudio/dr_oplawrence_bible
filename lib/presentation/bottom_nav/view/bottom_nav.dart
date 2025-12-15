@@ -7,6 +7,7 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../book/book_screen.dart';
 import '../../home/view/home_screen.dart';
+import '../../menu/my_notes_screen.dart';
 import '../../plan/plan_Screen.dart';
 
 final parentScreenProvider =
@@ -36,7 +37,7 @@ class ParentScreen extends ConsumerWidget {
       HomeScreen(),
       BookListScreen(bibleVM: bibleVM,),
       VideoStoriesScreen(),
-      HomeScreen(),
+      MyNotesScreen(),
     ];
 
     return Scaffold(
