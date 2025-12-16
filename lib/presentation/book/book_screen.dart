@@ -62,10 +62,35 @@ class _BookListScreenState extends State<BookListScreen>
   BibleBook? selectedBook;
   Chapter? selectedChapter;
 
+  List<BibleBook> books = [];
+  List<BibleBook> filteredBooks = [];
+
+  final TextEditingController searchController = TextEditingController();
+
   @override
   void initState() {
     super.initState();
     tabController = TabController(length: 3, vsync: this);
+
+
+    widget.bibleVM.loadBooks().then((value) {
+      setState(() {
+        books = value;
+        filteredBooks = List.from(books);
+      });
+    });
+
+
+    searchController.addListener(_filterBooks);
+  }
+
+  void _filterBooks() {
+    final query = searchController.text.toLowerCase();
+    setState(() {
+      filteredBooks = books
+          .where((book) => book.name.toLowerCase().contains(query))
+          .toList();
+    });
   }
 
   void goToChapterTab(BibleBook book) {
@@ -99,120 +124,105 @@ class _BookListScreenState extends State<BookListScreen>
         ),
       ),
 
-      body: FutureBuilder<List<BibleBook>>(
-        future: widget.bibleVM.loadBooks(),
-        builder: (context, snapshot) {
-          if (!snapshot.hasData) return const Center(child: CircularProgressIndicator());
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            buildSearchField(),
 
-          final books = snapshot.data!;
+            const SizedBox(height: 15),
 
-          return Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              spacing: 15,
-              children: [
-                buildSearchField(),
-
-                TabBar(
-                  controller: tabController,
-                  indicatorColor: const Color(0xffB02626),
-                  labelColor: const Color(0xffB02626),
-                  unselectedLabelColor: Colors.black,
-                  labelStyle: GoogleFonts.merriweather(fontSize: 16),
-                  tabs: const [
-                    Tab(text: "Books"),
-                    Tab(text: "Chapter"),
-                    Tab(text: "Verses"),
-                  ],
-                ),
-
-                const SizedBox(height: 10),
-
-                Expanded(
-                  child: TabBarView(
-                    controller: tabController,
-                    children: [
-
-                      ListView.builder(
-                        itemCount: books.length,
-                        itemBuilder: (context, index) {
-                          final book = books[index];
-                          return Column(
-                            children: [
-                              Container(
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(12),
-                                ),
-                                child: ListTile(
-                                  leading: CircleAvatar(
-                                    backgroundColor: const Color(0xffB02626),
-                                    child: Text(
-                                      '${index + 1}',
-                                      style: const TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-
-                                  title: Text(
-                                    book.name,
-                                    style: const TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  subtitle: Text("${book.chapters.length} Chapters"),
-                                  // trailing: const Text(
-                                  //   '0%',
-                                  //   style: TextStyle(
-                                  //     color: Color(0xffCDA434),
-                                  //     fontWeight: FontWeight.w600,
-                                  //     fontSize: 16,
-                                  //   ),
-                                  // ),
-                                  onTap: () {
-                                    goToChapterTab(book);
-                                  },
-                                ),
-                              ),
-                              const SizedBox(height: 12),
-                            ],
-                          );
-                        },
-                      ),
-
-
-
-                      selectedBook == null
-                          ? const Center(child: Text("Select a book"))
-                          : ChapterTabView(
-                        book: selectedBook!,
-                        onSelectChapter: (chapter) {
-                          goToVerseTab(chapter, selectedBook!);
-                        },
-                      ),
-
-
-                      (selectedBook == null || selectedChapter == null)
-                          ? const Center(child: Text("Select a chapter"))
-                          : VerseTabView(
-                        chapter: selectedChapter!,
-                        bookName: selectedBook!.name,
-                      ),
-                    ],
-                  ),
-                ),
+            TabBar(
+              controller: tabController,
+              indicatorColor: const Color(0xffB02626),
+              labelColor: const Color(0xffB02626),
+              unselectedLabelColor: Colors.black,
+              labelStyle: GoogleFonts.merriweather(fontSize: 16),
+              tabs: const [
+                Tab(text: "Books"),
+                Tab(text: "Chapter"),
+                Tab(text: "Verses"),
               ],
             ),
-          );
-        },
+
+            const SizedBox(height: 10),
+
+            Expanded(
+              child: TabBarView(
+                controller: tabController,
+                children: [
+
+                  // Books List
+                  ListView.builder(
+                    itemCount: filteredBooks.length,
+                    itemBuilder: (context, index) {
+                      final book = filteredBooks[index];
+                      return Column(
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: ListTile(
+                              leading: CircleAvatar(
+                                backgroundColor: const Color(0xffB02626),
+                                child: Text(
+                                  '${index + 1}',
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+
+                              title: Text(
+                                book.name,
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              subtitle: Text("${book.chapters.length} Chapters"),
+                              onTap: () {
+                                goToChapterTab(book);
+                              },
+                            ),
+                          ),
+                          const SizedBox(height: 12),
+                        ],
+                      );
+                    },
+                  ),
+
+                  // Chapter tab
+                  selectedBook == null
+                      ? const Center(child: Text("Select a book"))
+                      : ChapterTabView(
+                    book: selectedBook!,
+                    onSelectChapter: (chapter) {
+                      goToVerseTab(chapter, selectedBook!);
+                    },
+                  ),
+
+                  // Verse tab
+                  (selectedBook == null || selectedChapter == null)
+                      ? const Center(child: Text("Select a chapter"))
+                      : VerseTabView(
+                    chapter: selectedChapter!,
+                    bookName: selectedBook!.name,
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
 
   Widget buildSearchField() {
     return TextFormField(
+      controller: searchController,
       decoration: InputDecoration(
         filled: true,
         fillColor: Colors.white,
@@ -230,5 +240,12 @@ class _BookListScreenState extends State<BookListScreen>
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    searchController.dispose();
+    tabController.dispose();
+    super.dispose();
   }
 }
