@@ -145,19 +145,32 @@ class _BookListScreenState extends State<BookListScreen>
                                   borderRadius: BorderRadius.circular(12),
                                 ),
                                 child: ListTile(
-                                  title: Text(book.name,
+                                  leading: CircleAvatar(
+                                    backgroundColor: const Color(0xffB02626),
+                                    child: Text(
+                                      '${index + 1}',
                                       style: const TextStyle(
-                                          fontWeight: FontWeight.bold)),
-                                  subtitle:
-                                  Text("${book.chapters.length} Chapters"),
-                                  trailing: const Text(
-                                    '0%',
-                                    style: TextStyle(
-                                        color: Color(0xffCDA434),
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: 16),
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
                                   ),
 
+                                  title: Text(
+                                    book.name,
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  subtitle: Text("${book.chapters.length} Chapters"),
+                                  // trailing: const Text(
+                                  //   '0%',
+                                  //   style: TextStyle(
+                                  //     color: Color(0xffCDA434),
+                                  //     fontWeight: FontWeight.w600,
+                                  //     fontSize: 16,
+                                  //   ),
+                                  // ),
                                   onTap: () {
                                     goToChapterTab(book);
                                   },
@@ -168,6 +181,7 @@ class _BookListScreenState extends State<BookListScreen>
                           );
                         },
                       ),
+
 
 
                       selectedBook == null
