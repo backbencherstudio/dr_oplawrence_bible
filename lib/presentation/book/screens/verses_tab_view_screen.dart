@@ -23,6 +23,8 @@ class VerseTabView extends StatefulWidget {
 class _VerseTabViewState extends State<VerseTabView> {
   final Set<int> highlightedIndexes = {};
   final Map<int, String> notes = {};
+  final Set<int> bookmarkedIndexes = {};
+
   late SharedPreferences prefs;
 
   String get _highlightKey =>
@@ -30,6 +32,8 @@ class _VerseTabViewState extends State<VerseTabView> {
 
   String get _noteKey =>
       'notes_${widget.bookName}_${widget.chapter.number}';
+
+  static const String _bookmarkKey = 'bookmarks_list';
 
   @override
   void initState() {
@@ -42,17 +46,26 @@ class _VerseTabViewState extends State<VerseTabView> {
 
     final highlights = prefs.getStringList(_highlightKey) ?? [];
     final notesMap = prefs.getStringList(_noteKey) ?? [];
+    final bookmarks = prefs.getStringList(_bookmarkKey) ?? [];
 
     setState(() {
-      highlightedIndexes
-          .addAll(highlights.map((e) => int.parse(e)));
+      highlightedIndexes.addAll(highlights.map(int.parse));
 
       for (var item in notesMap) {
         final parts = item.split('|');
         notes[int.parse(parts[0])] = parts[1];
       }
+
+      for (var item in bookmarks) {
+        final parts = item.split('|');
+        if (parts[0] == widget.bookName &&
+            parts[1] == widget.chapter.number.toString()) {
+          bookmarkedIndexes.add(int.parse(parts[2]));
+        }
+      }
     });
   }
+
 
   Future<void> _saveHighlights() async {
     await prefs.setStringList(
@@ -67,6 +80,26 @@ class _VerseTabViewState extends State<VerseTabView> {
         .toList();
     await prefs.setStringList(_noteKey, list);
   }
+
+  Future<void> _toggleBookmark(int index, String verseText) async {
+    final bookmarks = prefs.getStringList(_bookmarkKey) ?? [];
+    final preview = verseText.split(' ').take(3).join(' ');
+    final entry =
+        '${widget.bookName}|${widget.chapter.number}|$index|$preview';
+
+    setState(() {
+      if (bookmarkedIndexes.contains(index)) {
+        bookmarkedIndexes.remove(index);
+        bookmarks.remove(entry);
+      } else {
+        bookmarkedIndexes.add(index);
+        bookmarks.add(entry);
+      }
+    });
+
+    await prefs.setStringList(_bookmarkKey, bookmarks);
+  }
+
 
   void _toggleHighlight(int index) {
     setState(() {
@@ -287,7 +320,8 @@ class _VerseTabViewState extends State<VerseTabView> {
                 final verseText = widget.chapter.verses[index];
                 final isHighlighted = highlightedIndexes.contains(index);
                 final hasNote = notes.containsKey(index);
-      
+                final isBookmarked = bookmarkedIndexes.contains(index);
+
                 return Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: GestureDetector(
@@ -324,6 +358,19 @@ class _VerseTabViewState extends State<VerseTabView> {
                             ),
                           ),
                         ),
+
+                        Positioned(
+                          top: 4,
+                          left: 4,
+                          child: IconButton(
+                            icon: Icon(
+                              isBookmarked ? Icons.bookmark : Icons.bookmark_border,
+                              color: Colors.amber,
+                            ),
+                            onPressed: () => _toggleBookmark(index, verseText),
+                          ),
+                        ),
+
                         if (hasNote)
                           Positioned(
                             top: 8,
