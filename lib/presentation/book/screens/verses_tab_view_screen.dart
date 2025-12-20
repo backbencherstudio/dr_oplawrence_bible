@@ -239,7 +239,7 @@ class _VerseTabViewState extends State<VerseTabView> {
                   title: 'Image',
                   onTap: () {
                     Navigator.pop(context);
-                    _showFullScreenVerseImage(verseText);
+                    _showFullScreenVerseImage(index, verseText);
                   },
                 ),
                 _optionTile(
@@ -260,11 +260,6 @@ class _VerseTabViewState extends State<VerseTabView> {
                     _openNoteDialog(index);
                   },
                 ),
-                // _optionTile(
-                //   icon: "assets/icons/multiple.svg",
-                //   title: 'Multiple',
-                //   onTap: () => Navigator.pop(context),
-                // ),
                 _optionTile(
                   icon: "assets/icons/explore.svg",
                   title: 'Explore',
@@ -278,49 +273,59 @@ class _VerseTabViewState extends State<VerseTabView> {
     );
   }
 
-  void _showFullScreenVerseImage(String verseText) {
-    // Enable immersive full screen
+  // 🔹 FULL SCREEN IMAGE WITH BOOK NAME + CHAPTER + VERSE
+  void _showFullScreenVerseImage(int index, String verseText) {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
 
     showDialog(
       context: context,
-      barrierDismissible: true,
       barrierColor: Colors.black,
       builder: (_) => GestureDetector(
         onTap: () {
-          // Exit immersive mode when tapped
           SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
           Navigator.pop(context);
         },
         child: SizedBox.expand(
           child: Stack(
             children: [
-              // Background image full screen
               Positioned.fill(
                 child: Image.asset(
-                  'assets/images/img.png',
+                  'assets/images/home_upper.png',
                   fit: BoxFit.cover,
                 ),
               ),
-              // Centered verse text
               Center(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Text(
-                    verseText,
-                    textAlign: TextAlign.center,
-                    style: GoogleFonts.merriweather(
-                      fontSize: 25,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      shadows: [
-                        Shadow(
-                          color: Colors.black87,
-                          offset: Offset(2, 2),
-                          blurRadius: 3,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        "${widget.bookName} ${widget.chapter.number} : ${index + 1}",
+                        style: GoogleFonts.merriweather(
+                          fontSize: 20,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600,
                         ),
-                      ],
-                    ),
+                      ),
+                      const SizedBox(height: 16),
+                      Text(
+                        verseText,
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.merriweather(
+                          fontSize: 25,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          shadows: const [
+                            Shadow(
+                              color: Colors.black87,
+                              offset: Offset(2, 2),
+                              blurRadius: 3,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -329,7 +334,6 @@ class _VerseTabViewState extends State<VerseTabView> {
         ),
       ),
     ).then((_) {
-      // Restore status/navigation bars after dialog dismissed
       SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
     });
   }
@@ -342,7 +346,6 @@ class _VerseTabViewState extends State<VerseTabView> {
     return GestureDetector(
       onTap: onTap,
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           SvgPicture.asset(icon, color: Colors.white),
           const SizedBox(height: 6),
