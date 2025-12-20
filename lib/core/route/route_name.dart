@@ -23,6 +23,7 @@ class RouteNames {
   static const String myNotesScreen = "/myNotesScreen";
   static const String donateMoneySystem = "/donateMoneySystem";
   static const String donationScreen = "/donationScreen";
+  static const String prayerScreen = "/prayerScreen";
   // static const String careBottomNavBarScreen = "/careBottomNavBarScreen";
   // static const String onboardingScreen = "/onboardingScreen";
 }

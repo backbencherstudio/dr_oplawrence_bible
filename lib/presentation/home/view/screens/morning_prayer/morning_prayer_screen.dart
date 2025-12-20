@@ -1,3 +1,4 @@
+import 'package:dr_oplawrence_bible/core/route/route_name.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -145,7 +146,9 @@ class _MorningPrayerScreenState extends State<MorningPrayerScreen> {
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Color(0xffCDA434),
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pushNamed(context, RouteNames.prayerScreen);
+                          },
                           child: Center(
                             child: Text(
                               'Amen',
