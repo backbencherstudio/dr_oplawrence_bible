@@ -66,7 +66,6 @@ class _VerseTabViewState extends State<VerseTabView> {
     });
   }
 
-
   Future<void> _saveHighlights() async {
     await prefs.setStringList(
       _highlightKey,
@@ -75,9 +74,7 @@ class _VerseTabViewState extends State<VerseTabView> {
   }
 
   Future<void> _saveNotes() async {
-    final list = notes.entries
-        .map((e) => '${e.key}|${e.value}')
-        .toList();
+    final list = notes.entries.map((e) => '${e.key}|${e.value}').toList();
     await prefs.setStringList(_noteKey, list);
   }
 
@@ -100,7 +97,6 @@ class _VerseTabViewState extends State<VerseTabView> {
     await prefs.setStringList(_bookmarkKey, bookmarks);
   }
 
-
   void _toggleHighlight(int index) {
     setState(() {
       highlightedIndexes.contains(index)
@@ -111,8 +107,7 @@ class _VerseTabViewState extends State<VerseTabView> {
   }
 
   void _openNoteDialog(int index, {bool isEdit = false}) {
-    final controller =
-    TextEditingController(text: notes[index] ?? '');
+    final controller = TextEditingController(text: notes[index] ?? '');
 
     showDialog(
       context: context,
@@ -141,7 +136,8 @@ class _VerseTabViewState extends State<VerseTabView> {
                 style: TextStyle(color: Colors.red),
               ),
             ),
-          SizedBox(width: double.infinity,
+          SizedBox(
+            width: double.infinity,
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
                 backgroundColor: Color(0xff1F3B96),
@@ -195,15 +191,17 @@ class _VerseTabViewState extends State<VerseTabView> {
                       },
                     ),
                     IconButton(
-                      icon:
-                      const Icon(Icons.delete_forever_outlined, color: Color(0xffEB3D4D)),
+                      icon: const Icon(
+                        Icons.delete_forever_outlined,
+                        color: Color(0xffEB3D4D),
+                      ),
                       onPressed: () {
                         Navigator.pop(context);
                         _openNoteDialog(index, isEdit: true);
                       },
                     ),
                   ],
-                )
+                ),
               ],
             ),
           ),
@@ -220,26 +218,29 @@ class _VerseTabViewState extends State<VerseTabView> {
         alignment: Alignment.topCenter,
         child: Material(
           borderRadius: BorderRadius.circular(16),
-          child: Container(color: Color(0xff262626),
+          child: Container(
+            color: const Color(0xff262626),
             padding: const EdgeInsets.all(16),
             width: MediaQuery.of(context).size.width - 32,
             child: Wrap(
-              spacing: 20,
+              spacing: 38,
               runSpacing: 12,
               children: [
                 _optionTile(
                   icon: "assets/icons/copy.svg",
                   title: 'Copy',
                   onTap: () {
-                    Clipboard.setData(
-                        ClipboardData(text: verseText));
+                    Clipboard.setData(ClipboardData(text: verseText));
                     Navigator.pop(context);
                   },
                 ),
                 _optionTile(
                   icon: "assets/icons/image.svg",
                   title: 'Image',
-                  onTap: () => Navigator.pop(context),
+                  onTap: () {
+                    Navigator.pop(context);
+                    _showFullScreenVerseImage(verseText);
+                  },
                 ),
                 _optionTile(
                   icon: "assets/icons/highlight.svg",
@@ -259,11 +260,11 @@ class _VerseTabViewState extends State<VerseTabView> {
                     _openNoteDialog(index);
                   },
                 ),
-                _optionTile(
-                  icon: "assets/icons/multiple.svg",
-                  title: 'Multiple',
-                  onTap: () => Navigator.pop(context),
-                ),
+                // _optionTile(
+                //   icon: "assets/icons/multiple.svg",
+                //   title: 'Multiple',
+                //   onTap: () => Navigator.pop(context),
+                // ),
                 _optionTile(
                   icon: "assets/icons/explore.svg",
                   title: 'Explore',
@@ -277,6 +278,61 @@ class _VerseTabViewState extends State<VerseTabView> {
     );
   }
 
+  void _showFullScreenVerseImage(String verseText) {
+    // Enable immersive full screen
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
+
+    showDialog(
+      context: context,
+      barrierDismissible: true,
+      barrierColor: Colors.black,
+      builder: (_) => GestureDetector(
+        onTap: () {
+          // Exit immersive mode when tapped
+          SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+          Navigator.pop(context);
+        },
+        child: SizedBox.expand(
+          child: Stack(
+            children: [
+              // Background image full screen
+              Positioned.fill(
+                child: Image.asset(
+                  'assets/images/img.png',
+                  fit: BoxFit.cover,
+                ),
+              ),
+              // Centered verse text
+              Center(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Text(
+                    verseText,
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.merriweather(
+                      fontSize: 25,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      shadows: [
+                        Shadow(
+                          color: Colors.black87,
+                          offset: Offset(2, 2),
+                          blurRadius: 3,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    ).then((_) {
+      // Restore status/navigation bars after dialog dismissed
+      SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+    });
+  }
 
   Widget _optionTile({
     required String icon,
@@ -288,9 +344,9 @@ class _VerseTabViewState extends State<VerseTabView> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-         SvgPicture.asset(icon,color: Colors.white,),
+          SvgPicture.asset(icon, color: Colors.white),
           const SizedBox(height: 6),
-          Text(title, style: const TextStyle(fontSize: 12,color: Colors.white)),
+          Text(title, style: const TextStyle(fontSize: 12, color: Colors.white)),
         ],
       ),
     );
@@ -358,26 +414,30 @@ class _VerseTabViewState extends State<VerseTabView> {
                             ),
                           ),
                         ),
-
                         Positioned(
                           top: 4,
                           left: 4,
                           child: IconButton(
                             icon: Icon(
-                              isBookmarked ? Icons.bookmark : Icons.bookmark_border,
+                              isBookmarked
+                                  ? Icons.bookmark
+                                  : Icons.bookmark_border,
                               color: Colors.amber,
                             ),
-                            onPressed: () => _toggleBookmark(index, verseText),
+                            onPressed: () =>
+                                _toggleBookmark(index, verseText),
                           ),
                         ),
-
                         if (hasNote)
                           Positioned(
                             top: 8,
                             right: 8,
                             child: GestureDetector(
                               onTap: () => _showNotePopup(index),
-                              child: SvgPicture.asset('assets/icons/desc.svg',color: Colors.blueAccent.shade700,)
+                              child: SvgPicture.asset(
+                                'assets/icons/desc.svg',
+                                color: Colors.blueAccent.shade700,
+                              ),
                             ),
                           ),
                       ],
