@@ -60,15 +60,15 @@ class HomeScreen extends StatelessWidget {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
-                                        'Hi Henry',
+                                        "Hi YAH'USHUA HAMASHIACH",
                                         style: TextStyle(
                                           fontWeight: FontWeight.w500,
-                                          fontSize: 18,
+                                          fontSize: 16,
                                           color: Color(0xffF7F5EF),
                                         ),
                                       ),
                                       Text(
-                                        'Good Morning',
+                                        'God Bless You',
                                         style: GoogleFonts.merriweather(
                                           fontWeight: FontWeight.w700,
                                           fontSize: 24,
@@ -78,7 +78,7 @@ class HomeScreen extends StatelessWidget {
                                     ],
                                   ),
                                   SizedBox(width: 30.w),
-                                  SvgPicture.asset('assets/icons/Bell.svg'),
+                                  // SvgPicture.asset('assets/icons/Bell.svg'),
                                 ],
                               ),
                             ),
@@ -89,8 +89,10 @@ class HomeScreen extends StatelessWidget {
                     Positioned(
                       top: 160.h,
                       child: Padding(
-                        padding: const EdgeInsets.all(16.0),
+                        padding: const EdgeInsets.all(25.0),
                         child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           spacing: 30,
                           children: [
                             Row(
@@ -99,22 +101,22 @@ class HomeScreen extends StatelessWidget {
                                 Text(
                                   'Verse of the day',
                                   style: TextStyle(
-                                    fontSize: 18,
+                                    fontSize: 17,
                                     fontWeight: FontWeight.w500,
                                     color: Colors.white,
                                   ),
                                 ),
                                 GestureDetector(
                                   onTap: () async {
-                                    DateTime? selectedDate = await showDatePicker(
-                                      context: context,
-                                      initialDate: DateTime.now(),
-                                      firstDate: DateTime(2000),
-                                      lastDate: DateTime(2100),
-                                    );
+                                    DateTime? selectedDate =
+                                        await showDatePicker(
+                                          context: context,
+                                          initialDate: DateTime.now(),
+                                          firstDate: DateTime(2000),
+                                          lastDate: DateTime(2100),
+                                        );
 
                                     if (selectedDate != null) {
-
                                       print(selectedDate);
                                     }
                                   },
@@ -124,34 +126,57 @@ class HomeScreen extends StatelessWidget {
                                     height: 24,
                                   ),
                                 ),
-
                               ],
                             ),
 
                             Text(
                               textAlign: TextAlign.center,
-                              'And ELOHIYM said, Let there\nbe light: and\nthere was light.',
+                              '''God is YAHAWAH ELOHIYM\nLord is YAHAWAH\n Amen is Ommah\nJesus Christ is YAH'USHUA HAMASHIACH''',
+
                               style: GoogleFonts.merriweather(
-                                fontSize: 22,
+                                fontSize: 17,
                                 fontWeight: FontWeight.w400,
                                 color: Colors.white,
                               ),
                             ),
 
-                            Text(
-                              'GENESIS 1:3 >>',
-                              style: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.white,
-                              ),
-                            ),
-
+                            // Text(
+                            //   'GENESIS 1:3 >>',
+                            //   style: TextStyle(
+                            //     fontSize: 15,
+                            //     fontWeight: FontWeight.w400,
+                            //     color: Colors.white,
+                            //   ),
+                            // ),
                             Row(
                               spacing: 30,
                               children: [
-                                SvgPicture.asset('assets/icons/share.svg'),
-                                SvgPicture.asset('assets/icons/notes.svg'),
+                                GestureDetector(
+                                  onTap: () {
+                                    Navigator.pushNamed(
+                                      context,
+                                      RouteNames.glossaryScreen,
+                                    );
+                                  },
+                                  child: SvgPicture.asset(
+                                    'assets/icons/share.svg',
+                                    width: 40.w,
+                                    height: 40.h,
+                                  ),
+                                ),
+                                GestureDetector(
+                                  onTap: () {
+                                    Navigator.pushNamed(
+                                      context,
+                                      RouteNames.bookListScreen,
+                                    );
+                                  },
+                                  child: SvgPicture.asset(
+                                    'assets/icons/notes.svg',
+                                    width: 40.w,
+                                    height: 40.h,
+                                  ),
+                                ),
                               ],
                             ),
                           ],
@@ -219,7 +244,10 @@ class HomeScreen extends StatelessWidget {
 
                               ElevatedButton(
                                 onPressed: () {
-                                  Navigator.pushNamed(context, RouteNames.morningPrayerScreen);
+                                  Navigator.pushNamed(
+                                    context,
+                                    RouteNames.morningPrayerScreen,
+                                  );
                                 },
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: Color(0xff1F3B96),
@@ -274,7 +302,10 @@ class HomeScreen extends StatelessWidget {
 
                               ElevatedButton(
                                 onPressed: () {
-                                  Navigator.pushNamed(context, RouteNames.gospelPsalmScreen);
+                                  Navigator.pushNamed(
+                                    context,
+                                    RouteNames.gospelPsalmScreen,
+                                  );
                                 },
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: Color(0xff1F3B96),
@@ -290,8 +321,11 @@ class HomeScreen extends StatelessWidget {
                         spacing: 20,
                         children: [
                           GestureDetector(
-                            onTap: (){
-                              Navigator.pushNamed(context, RouteNames.quizScreen);
+                            onTap: () {
+                              Navigator.pushNamed(
+                                context,
+                                RouteNames.highlightsScreen,
+                              );
                             },
                             child: Container(
                               width: 100.w,
@@ -300,16 +334,16 @@ class HomeScreen extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(10.r),
                               ),
                               child: Padding(
-                                padding: const EdgeInsets.all(16.0),
+                                padding: const EdgeInsets.all(12.0),
                                 child: Column(
-                                  spacing: 5,
+                                  spacing: 9,
                                   children: [
-                                    SvgPicture.asset('assets/icons/quiz.svg'),
+                                    SvgPicture.asset('assets/images/star.svg',width: 40.w,height: 40.h,),
                                     Text(
-                                      'Quiz',
+                                      'Highlight',
                                       style: GoogleFonts.merriweather(
                                         fontWeight: FontWeight.w400,
-                                        fontSize: 18,
+                                        fontSize: 16,
                                         color: Color(0xff1A1A1A),
                                       ),
                                     ),
@@ -319,8 +353,11 @@ class HomeScreen extends StatelessWidget {
                             ),
                           ),
                           GestureDetector(
-                            onTap: (){
-                              Navigator.pushNamed(context, RouteNames.bookListScreen);
+                            onTap: () {
+                              Navigator.pushNamed(
+                                context,
+                                RouteNames.bookListScreen,
+                              );
                             },
                             child: Container(
                               width: 100.w,
@@ -329,7 +366,7 @@ class HomeScreen extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(10.r),
                               ),
                               child: Padding(
-                                padding: const EdgeInsets.all(16.0),
+                                padding: const EdgeInsets.all(12.0),
                                 child: Column(
                                   spacing: 5,
                                   children: [
@@ -354,8 +391,11 @@ class HomeScreen extends StatelessWidget {
                             ),
                           ),
                           GestureDetector(
-                            onTap: (){
-                              Navigator.pushNamed(context, RouteNames.searchScreen);
+                            onTap: () {
+                              Navigator.pushNamed(
+                                context,
+                                RouteNames.glossaryScreen,
+                              );
                             },
                             child: Container(
                               width: 100.w,
@@ -364,7 +404,7 @@ class HomeScreen extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(10.r),
                               ),
                               child: Padding(
-                                padding: const EdgeInsets.all(16.0),
+                                padding: const EdgeInsets.all(12.0),
                                 child: Column(
                                   spacing: 5,
                                   children: [
@@ -376,7 +416,7 @@ class HomeScreen extends StatelessWidget {
                                       ),
                                     ),
                                     Text(
-                                      'Search',
+                                      'Glossary',
                                       style: GoogleFonts.merriweather(
                                         fontWeight: FontWeight.w400,
                                         fontSize: 18,
@@ -392,8 +432,11 @@ class HomeScreen extends StatelessWidget {
                       ),
 
                       GestureDetector(
-                        onTap: (){
-                          Navigator.pushNamed(context, RouteNames.archievedDailyDevotionalsScreen);
+                        onTap: () {
+                          Navigator.pushNamed(
+                            context,
+                            RouteNames.archievedDailyDevotionalsScreen,
+                          );
                         },
                         child: Container(
                           decoration: BoxDecoration(
@@ -402,7 +445,8 @@ class HomeScreen extends StatelessWidget {
                           ),
                           child: Padding(
                             padding: const EdgeInsets.all(16.0),
-                            child: Row(spacing: 10,
+                            child: Row(
+                              spacing: 10,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -430,7 +474,9 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ),
 
-                      Row(spacing: 10, mainAxisAlignment: MainAxisAlignment.center,
+                      Row(
+                        spacing: 10,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Container(
                             decoration: BoxDecoration(
@@ -456,14 +502,15 @@ class HomeScreen extends StatelessWidget {
                             ),
                             child: Padding(
                               padding: const EdgeInsets.all(12.0),
-                              child: Row(spacing: 10,
+                              child: Row(
+                                spacing: 10,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   SvgPicture.asset('assets/icons/barakat.svg'),
                                   Text(
                                     'Barakat  ',
-                                    style:TextStyle(
+                                    style: TextStyle(
                                       fontWeight: FontWeight.w400,
                                       fontSize: 18,
                                       color: Color(0xff1A1A1A),
@@ -480,28 +527,28 @@ class HomeScreen extends StatelessWidget {
                             ),
                             child: Padding(
                               padding: const EdgeInsets.all(12.0),
-                              child: Row(spacing: 10,
+                              child: Row(
+                                spacing: 10,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-
                                   SvgPicture.asset('assets/icons/peace.svg'),
                                   Text(
                                     'Peace ',
-                                    style:TextStyle(
+                                    style: TextStyle(
                                       fontWeight: FontWeight.w400,
                                       fontSize: 18,
                                       color: Color(0xff1A1A1A),
                                     ),
                                   ),
-
                                 ],
                               ),
                             ),
                           ),
                         ],
                       ),
-                      Row(spacing: 10,
+                      Row(
+                        spacing: 10,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Container(
@@ -533,14 +580,17 @@ class HomeScreen extends StatelessWidget {
                             ),
                             child: Padding(
                               padding: const EdgeInsets.all(12.0),
-                              child: Row(spacing: 10,
+                              child: Row(
+                                spacing: 10,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  SvgPicture.asset('assets/icons/Salvation.svg'),
+                                  SvgPicture.asset(
+                                    'assets/icons/Salvation.svg',
+                                  ),
                                   Text(
                                     'Salvation  ',
-                                    style:TextStyle(
+                                    style: TextStyle(
                                       fontWeight: FontWeight.w400,
                                       fontSize: 18,
                                       color: Color(0xff1A1A1A),
@@ -557,21 +607,20 @@ class HomeScreen extends StatelessWidget {
                             ),
                             child: Padding(
                               padding: const EdgeInsets.all(12.0),
-                              child: Row(spacing: 10,
+                              child: Row(
+                                spacing: 10,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-
                                   SvgPicture.asset('assets/icons/Faith.svg'),
                                   Text(
                                     'Faith ',
-                                    style:TextStyle(
+                                    style: TextStyle(
                                       fontWeight: FontWeight.w400,
                                       fontSize: 18,
                                       color: Color(0xff1A1A1A),
                                     ),
                                   ),
-
                                 ],
                               ),
                             ),

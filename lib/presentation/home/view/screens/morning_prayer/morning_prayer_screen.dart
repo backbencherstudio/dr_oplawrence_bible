@@ -34,7 +34,7 @@ class _MorningPrayerScreenState extends State<MorningPrayerScreen> {
                               Navigator.pop(context);
                             },
                             child: Image.asset('assets/images/cross.png', scale: 3)),
-                        Image.asset('assets/images/play_music.png', scale: 3),
+                       // Image.asset('assets/images/play_music.png', scale: 3),
                       ],
                     ),
                   ),

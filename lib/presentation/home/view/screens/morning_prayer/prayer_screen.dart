@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -21,7 +22,6 @@ class _PrayerScreenState extends State<PrayerScreen> {
       body: Container(
         child: Stack(
           children: [
-
             Positioned.fill(
               child: Image.asset(
                 'assets/images/morning_background.png',
@@ -45,7 +45,7 @@ class _PrayerScreenState extends State<PrayerScreen> {
                       ),
                     ),
                   ),SizedBox(height: 120,),
-                    Image.asset('assets/images/img_1.png',scale: 3.5,),
+                    SvgPicture.asset('assets/icons/Prayer.svg',width: 120.w,height: 120.h,),
                   ],
                 ))),
             Positioned(

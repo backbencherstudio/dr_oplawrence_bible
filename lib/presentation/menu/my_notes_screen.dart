@@ -119,7 +119,7 @@ class _MyNotesScreenState extends State<MyNotesScreen> {
                   onTap: _openNotesScreen,
                   child: Container(
                     width: 95.w,
-                    height: 80.h,
+                    height: 90.h,
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(12.r),
@@ -127,7 +127,10 @@ class _MyNotesScreenState extends State<MyNotesScreen> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        SvgPicture.asset('assets/icons/alert_triangle.svg'),
+                        SizedBox(
+                            width: 30.w,
+                            height: 30.h,
+                            child: SvgPicture.asset('assets/icons/notes_icon.svg',width: 28.w,height: 28.h,)),
                         const SizedBox(height: 6),
                         const Text('Notes'),
                       ],
@@ -140,7 +143,7 @@ class _MyNotesScreenState extends State<MyNotesScreen> {
                   onTap: _openBookmarksScreen,
                   child: Container(
                     width: 95.w,
-                    height: 80.h,
+                    height: 90.h,
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(12.r),
@@ -148,7 +151,11 @@ class _MyNotesScreenState extends State<MyNotesScreen> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        SvgPicture.asset('assets/icons/alert_triangle.svg'),
+                       // SvgPicture.asset('assets/icons/alert_triangle.svg'),
+                        SizedBox(
+                            width: 30.w,
+                            height: 33.h,
+                            child: Icon(Icons.bookmark,color: Color(0xffB02626),size: 40,)),
                         const SizedBox(height: 6),
                         const Text('Bookmark'),
                       ],
@@ -161,7 +168,7 @@ class _MyNotesScreenState extends State<MyNotesScreen> {
                   onTap: _openHighlightsScreen,
                   child: Container(
                     width: 95.w,
-                    height: 80.h,
+                    height: 90.h,
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(12.r),
@@ -169,7 +176,10 @@ class _MyNotesScreenState extends State<MyNotesScreen> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        SvgPicture.asset('assets/icons/alert_triangle.svg'),
+                        SizedBox(
+                            width: 30.w,
+                            height: 30.h,
+                            child: SvgPicture.asset('assets/icons/Highlights.svg',width: 30.w,height: 30.h,)),
                         const SizedBox(height: 6),
                         const Text('Highlight'),
                       ],
@@ -178,22 +188,60 @@ class _MyNotesScreenState extends State<MyNotesScreen> {
                 ),
               ],
             ),
-            const Spacer(),
-            SizedBox(
-              width: 200.w,
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, RouteNames.donateMoneySystem);
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xffCDA434),
+            SizedBox(height: 40.h,),
+            Stack(
+              children: [
+                Image.asset('assets/images/menu_bird.png'),
+
+                Positioned(
+                  top: 100,
+                  left: 10,
+                  right: 10,
+                  child: Text(
+                      textAlign: TextAlign.center,
+                      'Giving is not losing, it is planting hope.\n The smallest gift can spark the\n greatest change.'),
                 ),
-                child: const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text('Donate Money'),
+                Positioned(
+                  bottom: 100,
+                  left: 10,
+                  right: 10,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 60.0,right: 60),
+                    child: SizedBox(
+                      width: 100.w,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, RouteNames.donateMoneySystem);
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color(0xffCDA434),
+                        ),
+                        child: const Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Text('Donate Money'),
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
-              ),
+              ],
             ),
+            // const Spacer(),
+            // SizedBox(
+            //   width: 200.w,
+            //   child: ElevatedButton(
+            //     onPressed: () {
+            //       Navigator.pushNamed(context, RouteNames.donateMoneySystem);
+            //     },
+            //     style: ElevatedButton.styleFrom(
+            //       backgroundColor: const Color(0xffCDA434),
+            //     ),
+            //     child: const Padding(
+            //       padding: EdgeInsets.all(8.0),
+            //       child: Text('Donate Money'),
+            //     ),
+            //   ),
+            // ),
           ],
         ),
       ),

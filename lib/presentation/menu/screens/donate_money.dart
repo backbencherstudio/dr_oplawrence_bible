@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../core/route/route_name.dart';
@@ -112,15 +113,7 @@ class _DonationScreenState extends State<DonationScreen> {
                 hintText: 'Card Number',
                 suffixIcon: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: const [
-                      Icon(Icons.payment, size: 20),
-                      Icon(Icons.payment, size: 20),
-                      Icon(Icons.payment, size: 20),
-                      Icon(Icons.payment, size: 20),
-                    ],
-                  ),
+                  child: SvgPicture.asset('assets/images/Card1.svg'),
                 ),
               ),
               keyboardType: TextInputType.number,
@@ -140,10 +133,13 @@ class _DonationScreenState extends State<DonationScreen> {
                 const SizedBox(width: 8),
                 Expanded(
                   child: TextFormField(
-                    decoration: const InputDecoration(
+                    decoration:  InputDecoration(
                       fillColor: Color(0xffEBEBEB),
                       hintText: 'CVC',
-                      suffixIcon: Icon(Icons.credit_card, size: 20),
+                      suffixIcon: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: SvgPicture.asset('assets/images/Card 2.svg'),
+                      ),
                     ),
                     keyboardType: TextInputType.number,
                   ),
