@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../book/book_screen.dart';
+import '../../book/screens/glossary/glossary_screen.dart';
 import '../../home/view/home_screen.dart';
 import '../../menu/my_notes_screen.dart';
 import '../../plan/plan_Screen.dart';
@@ -33,10 +34,11 @@ class ParentScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final navParentProvider = ref.watch(parentScreenProvider);
     final bibleVM = BibleViewModel();
+
     final List<Widget> pages = [
       HomeScreen(),
-      BookListScreen(bibleVM: bibleVM,),
-      VideoStoriesScreen(),
+      BookListScreen(bibleVM: bibleVM),
+      GlossaryScreen(),
       MyNotesScreen(),
     ];
 
@@ -69,16 +71,15 @@ class ParentScreen extends ConsumerWidget {
                         vertical: 10.h,
                       ),
                       padding: EdgeInsets.symmetric(horizontal: 12.w),
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.only(
                           topRight: Radius.circular(30),
                           topLeft: Radius.circular(30),
                         ),
-
                       ),
                       child: Row(
-                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           _buildNavigationBar(
@@ -87,33 +88,34 @@ class ParentScreen extends ConsumerWidget {
                             index: 0,
                             label: 'Home',
                             iconPath: 'assets/icons/homes.svg',
+                            baseSize: 27,
                             selectedIconColor: const Color(0xff0D5593),
                           ),
-
                           _buildNavigationBar(
                             context: context,
                             ref: ref,
                             index: 1,
                             label: 'Bible',
                             iconPath: 'assets/icons/Bible.svg',
+                            baseSize: 27,
                             selectedIconColor: const Color(0xff0D5593),
                           ),
-
                           _buildNavigationBar(
                             context: context,
                             ref: ref,
                             index: 2,
-                            label: 'Plan',
-                            iconPath: 'assets/icons/plan.svg',
+                            label: 'Glossary',
+                            iconPath: 'assets/icons/notes_icon.svg',
+                            baseSize: 24,
                             selectedIconColor: const Color(0xff0D5593),
                           ),
-
                           _buildNavigationBar(
                             context: context,
                             ref: ref,
                             index: 3,
                             label: 'Menu',
                             iconPath: 'assets/icons/menu.svg',
+                            baseSize: 25,
                             selectedIconColor: const Color(0xff0D5593),
                           ),
                         ],
@@ -135,10 +137,15 @@ class ParentScreen extends ConsumerWidget {
     required int index,
     required String label,
     required String iconPath,
+    required double baseSize, // 👈 per icon base size
     required Color selectedIconColor,
   }) {
     final navProvider = ref.watch(parentScreenProvider);
     final isSelected = navProvider.selectedIndex == index;
+
+    /// 🎯 Dynamic size per SVG
+    final double iconSize =
+    isSelected ? (baseSize + 4).w : baseSize.w;
 
     return SizedBox(
       width: 60.w,
@@ -151,18 +158,25 @@ class ParentScreen extends ConsumerWidget {
               onTap: () => ref
                   .read(parentScreenProvider.notifier)
                   .changeIndex(index),
-              child: SvgPicture.asset(
-                iconPath,
-                width: 28.w,
-                height: 28.h,
-                color: isSelected ? Color(0xff0D5593) :  Color(0xff4C4C4C),
+              child: AnimatedContainer(
+                duration: const Duration(milliseconds: 220),
+                curve: Curves.easeOut,
+                child: SvgPicture.asset(
+                  iconPath,
+                  width: iconSize,
+                  height: iconSize,
+                  color: isSelected
+                      ? const Color(0xff0D5593)
+                      : const Color(0xff4C4C4C),
+                ),
               ),
             ),
             SizedBox(height: 6.h),
             Text(
               label,
               style: TextStyle(
-                color: isSelected ? selectedIconColor : Color(0xff4C4C4C),
+                color:
+                isSelected ? selectedIconColor : const Color(0xff4C4C4C),
                 fontSize: 15.sp,
                 fontWeight: FontWeight.w700,
               ),

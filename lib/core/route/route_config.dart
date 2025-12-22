@@ -32,6 +32,7 @@ import '../../presentation/auth/login_screen.dart';
 import '../../presentation/auth/otp_screen.dart';
 import '../../presentation/auth/sign_up_screen.dart';
 import '../../presentation/book/book_screen.dart';
+import '../../presentation/book/screens/glossary/glossary_screen.dart';
 import '../../presentation/bottom_nav/view/bottom_nav.dart';
 import '../../presentation/home/view/home_screen.dart';
 import '../../presentation/home/view/screens/archieved_daily_devotionals/archieved_daily_devotionals_Screen.dart';
@@ -41,6 +42,7 @@ import '../../presentation/home/view/screens/morning_prayer/prayer_screen.dart';
 import '../../presentation/menu/my_notes_screen.dart';
 import '../../presentation/menu/screens/donate_money.dart';
 import '../../presentation/menu/screens/donate_money_system.dart';
+import '../../presentation/menu/screens/saved_data/highlight_screen.dart';
 import '../../presentation/onboarding/onboarding_screen.dart';
 import '../../presentation/onboarding/second_onboarding.dart';
 import '../../presentation/plan/plan_Screen.dart';
@@ -78,6 +80,8 @@ class AppRoutes {
     RouteNames.donateMoneySystem: (context) => const DonateMoneySystem(),
     RouteNames.donationScreen: (context) => const DonationScreen(),
     RouteNames.prayerScreen: (context) => const PrayerScreen(),
+    RouteNames.glossaryScreen: (context) => const GlossaryScreen(),
+    RouteNames.highlightsScreen: (context) => const HighlightsScreen(),
 
 
     RouteNames.bookListScreen: (context) => BookListScreen(bibleVM: bibleVM),

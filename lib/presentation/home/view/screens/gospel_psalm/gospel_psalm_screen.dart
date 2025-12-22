@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../../core/route/route_name.dart';
 import 'dotted_divider.dart';
 
 class GospelPsalmScreen extends StatefulWidget {
@@ -41,7 +43,7 @@ class _GospelPsalmScreenState extends State<GospelPsalmScreen> {
                             Navigator.pop(context);
                           },
                           child: Image.asset('assets/images/cross.png', scale: 3)),
-                      Image.asset('assets/images/play_music.png', scale: 3),
+                      //Image.asset('assets/images/play_music.png', scale: 3),
                     ],
                   ),
 
@@ -95,12 +97,36 @@ class _GospelPsalmScreenState extends State<GospelPsalmScreen> {
 
                   SizedBox(height: 20.h),
 
-                  Row(
+                  Row(crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
+                    spacing: 30,
                     children: [
-                      Image.asset('assets/images/share.png', scale: 3),
-                      SizedBox(width: 40.w),
-                      Image.asset('assets/images/document.png', scale: 3),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(
+                            context,
+                            RouteNames.glossaryScreen,
+                          );
+                        },
+                        child: SvgPicture.asset(
+                          'assets/icons/share.svg',
+                          width: 40.w,
+                          height: 40.h,
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(
+                            context,
+                            RouteNames.bookListScreen,
+                          );
+                        },
+                        child: SvgPicture.asset(
+                          'assets/icons/notes.svg',
+                          width: 40.w,
+                          height: 40.h,
+                        ),
+                      ),
                     ],
                   ),
 

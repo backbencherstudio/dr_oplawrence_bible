@@ -64,7 +64,8 @@ class _DonateMoneySystemState extends State<DonateMoneySystem> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      SvgPicture.asset('assets/icons/alert_triangle.svg'),
+                       SvgPicture.asset('assets/images/Card 2.svg'),
+                    //  SvgPicture.asset('assets/icons/alert_triangle.svg'),
                       Text(
                         'Card',
                         style: TextStyle(color: Colors.black),
@@ -91,7 +92,8 @@ class _DonateMoneySystemState extends State<DonateMoneySystem> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      SvgPicture.asset('assets/icons/alert_triangle.svg'),
+                      //SvgPicture.asset('assets/icons/alert_triangle.svg'),
+                      SvgPicture.asset('assets/images/Card 2.svg'),
                       Text(
                         'Klarna',
                         style: TextStyle(color: Colors.black),

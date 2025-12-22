@@ -23,23 +23,23 @@ class _SecondOnboardingState extends State<SecondOnboarding> {
             ),
           ),
 
-          Positioned(
-            left: 20,
-            right: 20,
-            bottom: 160,
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xff1F3B96),
-              ),
-              onPressed: () {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => LoginScreen()),
-                );
-              },
-              child: const Text('Login'),
-            ),
-          ),
+          // Positioned(
+          //   left: 20,
+          //   right: 20,
+          //   bottom: 160,
+          //   child: ElevatedButton(
+          //     style: ElevatedButton.styleFrom(
+          //       backgroundColor: const Color(0xff1F3B96),
+          //     ),
+          //     onPressed: () {
+          //       Navigator.pushReplacement(
+          //         context,
+          //         MaterialPageRoute(builder: (context) => LoginScreen()),
+          //       );
+          //     },
+          //     child: const Text('Here You Go'),
+          //   ),
+          // ),
           Positioned(
             left: 20,
             right: 20,
@@ -51,10 +51,10 @@ class _SecondOnboardingState extends State<SecondOnboarding> {
               onPressed: () {
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) => OnboardingScreen()),
+                  MaterialPageRoute(builder: (context) => LoginScreen()),
                 );
               },
-              child: const Text('Continue as Guest',style: TextStyle(color: Colors.black),),
+              child: const Text('Here You Go',style: TextStyle(color: Colors.black),),
             ),
           ),
         ],
