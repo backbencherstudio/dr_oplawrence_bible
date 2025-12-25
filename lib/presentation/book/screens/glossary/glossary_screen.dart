@@ -169,10 +169,14 @@ class _GlossaryScreenState extends State<GlossaryScreen>
                           child: Container(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(18),
-                              gradient: const LinearGradient(
+                              gradient: LinearGradient(
                                 colors: [
-                                  Color(0xFF667EEA),
-                                  Color(0xFF764BA2),
+                                  // Color(0xFF667EEA),
+                                  // Color(0xFF764BA2),
+
+                                  Colors.blue.shade800,
+                                  Colors.white54,
+
                                 ],
                                 begin: Alignment.topLeft,
                                 end: Alignment.bottomRight,
