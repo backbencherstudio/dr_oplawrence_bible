@@ -37,8 +37,8 @@ class ParentScreen extends ConsumerWidget {
     final bibleVM = BibleViewModel();
 
     final List<Widget> pages = [
-      //HomeScreen(),
-      LottieScreen(),
+      HomeScreen(),
+     // LottieScreen(),
       BookListScreen(bibleVM: bibleVM),
       GlossaryScreen(),
       MyNotesScreen(),
