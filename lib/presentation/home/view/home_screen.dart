@@ -26,68 +26,68 @@ class HomeScreen extends StatelessWidget {
                 Stack(
                   children: [
                     Image.asset('assets/images/home_upper.png'),
+                    // Positioned(
+                    //   top: 50.h,
+                    //   left: 10.w,
+                    //   right: 10.w,
+                    //   child: ClipRRect(
+                    //     borderRadius: BorderRadius.circular(16.r),
+                    //     child: BackdropFilter(
+                    //       filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                    //       child: Container(
+                    //         width: 320.w,
+                    //         height: 90.h,
+                    //         decoration: BoxDecoration(
+                    //           borderRadius: BorderRadius.circular(16.r),
+                    //           border: Border.all(color: Colors.white70),
+                    //           color: Colors.white.withOpacity(0.1),
+                    //         ),
+                    //         child: Padding(
+                    //           padding: const EdgeInsets.all(12.0),
+                    //           child: Row(
+                    //             spacing: 10,
+                    //             children: [
+                    //               CircleAvatar(
+                    //                 radius: 40,
+                    //                 child: Image.asset(
+                    //                   'assets/images/user.png',
+                    //                 ),
+                    //               ),
+                    //
+                    //               Column(
+                    //                 crossAxisAlignment:
+                    //                     CrossAxisAlignment.start,
+                    //                 mainAxisAlignment: MainAxisAlignment.center,
+                    //                 children: [
+                    //                   Text(
+                    //                     "Hi YAH'USHUA HAMASHIACH",
+                    //                     style: TextStyle(
+                    //                       fontWeight: FontWeight.w500,
+                    //                       fontSize: 16,
+                    //                       color: Color(0xffF7F5EF),
+                    //                     ),
+                    //                   ),
+                    //                   Text(
+                    //                     'God Bless You',
+                    //                     style: GoogleFonts.merriweather(
+                    //                       fontWeight: FontWeight.w700,
+                    //                       fontSize: 24,
+                    //                       color: Color(0xffFAD33E),
+                    //                     ),
+                    //                   ),
+                    //                 ],
+                    //               ),
+                    //               SizedBox(width: 30.w),
+                    //               // SvgPicture.asset('assets/icons/Bell.svg'),
+                    //             ],
+                    //           ),
+                    //         ),
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
                     Positioned(
-                      top: 50.h,
-                      left: 10.w,
-                      right: 10.w,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(16.r),
-                        child: BackdropFilter(
-                          filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-                          child: Container(
-                            width: 320.w,
-                            height: 90.h,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(16.r),
-                              border: Border.all(color: Colors.white70),
-                              color: Colors.white.withOpacity(0.1),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(12.0),
-                              child: Row(
-                                spacing: 10,
-                                children: [
-                                  CircleAvatar(
-                                    radius: 40,
-                                    child: Image.asset(
-                                      'assets/images/user.png',
-                                    ),
-                                  ),
-
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        "Hi YAH'USHUA HAMASHIACH",
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 16,
-                                          color: Color(0xffF7F5EF),
-                                        ),
-                                      ),
-                                      Text(
-                                        'God Bless You',
-                                        style: GoogleFonts.merriweather(
-                                          fontWeight: FontWeight.w700,
-                                          fontSize: 24,
-                                          color: Color(0xffFAD33E),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(width: 30.w),
-                                  // SvgPicture.asset('assets/icons/Bell.svg'),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      top: 160.h,
+                      top: 80.h,
                       child: Padding(
                         padding: const EdgeInsets.all(25.0),
                         child: Column(
@@ -96,12 +96,12 @@ class HomeScreen extends StatelessWidget {
                           spacing: 30,
                           children: [
                             Row(
-                              spacing: 200,
+                              spacing: 130,
                               children: [
                                 Text(
                                   'Verse of the day',
                                   style: TextStyle(
-                                    fontSize: 17,
+                                    fontSize: 22,
                                     fontWeight: FontWeight.w500,
                                     color: Colors.white,
                                   ),
@@ -129,16 +129,16 @@ class HomeScreen extends StatelessWidget {
                               ],
                             ),
 
-                            Text(
-                              textAlign: TextAlign.center,
-                              '''God is YAHAWAH ELOHIYM\nLord is YAHAWAH\n Amen is Ommah\nJesus Christ is YAH'USHUA HAMASHIACH''',
-
-                              style: GoogleFonts.merriweather(
-                                fontSize: 17,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.white,
-                              ),
-                            ),
+                            // Text(
+                            //   textAlign: TextAlign.center,
+                            //   '''God is YAHAWAH ELOHIYM\nLord is YAHAWAH\n Amen is Ommah\nJesus Christ is YAH'USHUA HAMASHIACH''',
+                            //
+                            //   style: GoogleFonts.merriweather(
+                            //     fontSize: 17,
+                            //     fontWeight: FontWeight.w400,
+                            //     color: Colors.white,
+                            //   ),
+                            // ),
 
                             // Text(
                             //   'GENESIS 1:3 >>',
@@ -148,37 +148,37 @@ class HomeScreen extends StatelessWidget {
                             //     color: Colors.white,
                             //   ),
                             // ),
-                            Row(
-                              spacing: 30,
-                              children: [
-                                GestureDetector(
-                                  onTap: () {
-                                    Navigator.pushNamed(
-                                      context,
-                                      RouteNames.glossaryScreen,
-                                    );
-                                  },
-                                  child: SvgPicture.asset(
-                                    'assets/icons/share.svg',
-                                    width: 40.w,
-                                    height: 40.h,
-                                  ),
-                                ),
-                                GestureDetector(
-                                  onTap: () {
-                                    Navigator.pushNamed(
-                                      context,
-                                      RouteNames.bookListScreen,
-                                    );
-                                  },
-                                  child: SvgPicture.asset(
-                                    'assets/icons/notes.svg',
-                                    width: 40.w,
-                                    height: 40.h,
-                                  ),
-                                ),
-                              ],
-                            ),
+                            // Row(
+                            //   spacing: 30,
+                            //   children: [
+                            //     GestureDetector(
+                            //       onTap: () {
+                            //         Navigator.pushNamed(
+                            //           context,
+                            //           RouteNames.glossaryScreen,
+                            //         );
+                            //       },
+                            //       child: SvgPicture.asset(
+                            //         'assets/icons/share.svg',
+                            //         width: 40.w,
+                            //         height: 40.h,
+                            //       ),
+                            //     ),
+                            //     GestureDetector(
+                            //       onTap: () {
+                            //         Navigator.pushNamed(
+                            //           context,
+                            //           RouteNames.bookListScreen,
+                            //         );
+                            //       },
+                            //       child: SvgPicture.asset(
+                            //         'assets/icons/notes.svg',
+                            //         width: 40.w,
+                            //         height: 40.h,
+                            //       ),
+                            //     ),
+                            //   ],
+                            // ),
                           ],
                         ),
                       ),

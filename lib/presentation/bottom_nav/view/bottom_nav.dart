@@ -8,6 +8,7 @@ import 'package:flutter_svg/svg.dart';
 import '../../book/book_screen.dart';
 import '../../book/screens/glossary/glossary_screen.dart';
 import '../../home/view/home_screen.dart';
+import '../../home/view/screens/lottie_Screen.dart';
 import '../../menu/my_notes_screen.dart';
 import '../../plan/plan_Screen.dart';
 
@@ -36,7 +37,8 @@ class ParentScreen extends ConsumerWidget {
     final bibleVM = BibleViewModel();
 
     final List<Widget> pages = [
-      HomeScreen(),
+      //HomeScreen(),
+      LottieScreen(),
       BookListScreen(bibleVM: bibleVM),
       GlossaryScreen(),
       MyNotesScreen(),
