@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/number_symbols_data.dart';
+import 'package:lottie/lottie.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -25,7 +27,13 @@ class HomeScreen extends StatelessWidget {
               children: [
                 Stack(
                   children: [
-                    Image.asset('assets/images/home_upper.png'),
+                    Image.asset('assets/images/home_upper.png',),
+                    Positioned(
+                        left: 20,
+                        right: 20,
+                        bottom: 100,
+                        top: 20,
+                        child: Lottie.asset('assets/lottie/Book with bookmark.json', height: 700.h, width: 700.w)),
                     // Positioned(
                     //   top: 50.h,
                     //   left: 10.w,
@@ -87,45 +95,59 @@ class HomeScreen extends StatelessWidget {
                     //   ),
                     // ),
                     Positioned(
-                      top: 80.h,
+                      bottom: 30.h,
+                      left: 5,
+                      right: 5,
                       child: Padding(
-                        padding: const EdgeInsets.all(25.0),
+                        padding: const EdgeInsets.all(15.0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.center,
                           spacing: 30,
                           children: [
-                            Row(
-                              spacing: 130,
+                            Column(mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              spacing: 10,
                               children: [
-                                Text(
-                                  'Verse of the day',
-                                  style: TextStyle(
-                                    fontSize: 22,
+                                Text(textAlign: TextAlign.center,
+                                  'Now these are the names of the children\nof YisraEL, which came into Egypt;\nevery man and his household\ncame with Ya’aqob.',
+                                  style: GoogleFonts.merriweather(
+                                    fontSize: 17,
                                     fontWeight: FontWeight.w500,
                                     color: Colors.white,
                                   ),
+                                ),  Row(
+                                  children: [
+                                    Text(textAlign: TextAlign.end,
+                                    "Exodus-1-1",
+                                                                 style: GoogleFonts.merriweather(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w500,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                                GestureDetector(
-                                  onTap: () async {
-                                    DateTime? selectedDate =
-                                        await showDatePicker(
-                                          context: context,
-                                          initialDate: DateTime.now(),
-                                          firstDate: DateTime(2000),
-                                          lastDate: DateTime(2100),
-                                        );
-
-                                    if (selectedDate != null) {
-                                      print(selectedDate);
-                                    }
-                                  },
-                                  child: SvgPicture.asset(
-                                    'assets/icons/calender_type.svg',
-                                    width: 24,
-                                    height: 24,
-                                  ),
-                                ),
+                                // GestureDetector(
+                                //   onTap: () async {
+                                //     DateTime? selectedDate =
+                                //         await showDatePicker(
+                                //           context: context,
+                                //           initialDate: DateTime.now(),
+                                //           firstDate: DateTime(2000),
+                                //           lastDate: DateTime(2100),
+                                //         );
+                                //
+                                //     if (selectedDate != null) {
+                                //       print(selectedDate);
+                                //     }
+                                //   },
+                                //   child: SvgPicture.asset(
+                                //     'assets/icons/calender_type.svg',
+                                //     width: 24,
+                                //     height: 24,
+                                //   ),
+                                // ),
                               ],
                             ),
 
@@ -633,6 +655,22 @@ class HomeScreen extends StatelessWidget {
               ],
             ),
           ),
+        ),
+      ),
+    );
+  }
+  Widget shimmer({
+    String? name,
+    required BuildContext context,
+    Color? color,
+    double? size,
+  }) {
+    return Center(
+      child: Container(
+        child: Lottie.asset(
+          name ??  'assets/lottie/Book with bookmark.json',
+          width: size,
+          height: size,
         ),
       ),
     );

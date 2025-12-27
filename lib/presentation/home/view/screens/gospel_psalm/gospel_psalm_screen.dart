@@ -97,38 +97,38 @@ class _GospelPsalmScreenState extends State<GospelPsalmScreen> {
 
                   SizedBox(height: 20.h),
 
-                  Row(crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    spacing: 30,
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.pushNamed(
-                            context,
-                            RouteNames.glossaryScreen,
-                          );
-                        },
-                        child: SvgPicture.asset(
-                          'assets/icons/share.svg',
-                          width: 40.w,
-                          height: 40.h,
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.pushNamed(
-                            context,
-                            RouteNames.bookListScreen,
-                          );
-                        },
-                        child: SvgPicture.asset(
-                          'assets/icons/notes.svg',
-                          width: 40.w,
-                          height: 40.h,
-                        ),
-                      ),
-                    ],
-                  ),
+                  // Row(crossAxisAlignment: CrossAxisAlignment.center,
+                  //   mainAxisAlignment: MainAxisAlignment.center,
+                  //   spacing: 30,
+                  //   children: [
+                  //     GestureDetector(
+                  //       onTap: () {
+                  //         Navigator.pushNamed(
+                  //           context,
+                  //           RouteNames.glossaryScreen,
+                  //         );
+                  //       },
+                  //       child: SvgPicture.asset(
+                  //         'assets/icons/share.svg',
+                  //         width: 40.w,
+                  //         height: 40.h,
+                  //       ),
+                  //     ),
+                  //     GestureDetector(
+                  //       onTap: () {
+                  //         Navigator.pushNamed(
+                  //           context,
+                  //           RouteNames.bookListScreen,
+                  //         );
+                  //       },
+                  //       child: SvgPicture.asset(
+                  //         'assets/icons/notes.svg',
+                  //         width: 40.w,
+                  //         height: 40.h,
+                  //       ),
+                  //     ),
+                  //   ],
+                  // ),
 
                   SizedBox(height: 20.h),
 

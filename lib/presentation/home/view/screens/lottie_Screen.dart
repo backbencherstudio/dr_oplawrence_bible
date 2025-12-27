@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 
 class LottieScreen extends StatefulWidget {
@@ -16,15 +17,21 @@ class _LottieScreenState extends State<LottieScreen> {
         title: const Text('Lottie Demo'),
         backgroundColor: Colors.blue,
       ),
-      body: Center(
-        child:Lottie.asset(
-          'assets/lottie/okk.json',
-          width: 300,
-          height: 300,
-          fit: BoxFit.cover,
-          repeat: true,
-          animate: true,
-          reverse: false,
+      body: Lottie.asset('assets/lottie/Book with bookmark.json', height: 100.h, width: 100.w)
+    );
+  }
+  Widget shimmer({
+    String? name,
+    required BuildContext context,
+    Color? color,
+    double? size,
+  }) {
+    return Center(
+      child: Container(
+        child: Lottie.asset(
+          name ??  'assets/lottie/Book with bookmark.json',
+          width: size,
+          height: size,
         ),
       ),
     );
