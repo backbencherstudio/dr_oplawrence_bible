@@ -107,7 +107,7 @@ class HomeScreen extends StatelessWidget {
                           children: [
                             Column(mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
-                              spacing: 10,
+                              spacing: 15,
                               children: [
                                 Text(textAlign: TextAlign.center,
                                   'Now these are the names of the children\nof YisraEL, which came into Egypt;\nevery man and his household\ncame with Ya’aqob.',
@@ -116,17 +116,16 @@ class HomeScreen extends StatelessWidget {
                                     fontWeight: FontWeight.w500,
                                     color: Colors.white,
                                   ),
-                                ),  Row(
-                                  children: [
-                                    Text(textAlign: TextAlign.end,
-                                    "Exodus-1-1",
-                                                                 style: GoogleFonts.merriweather(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w500,
-                                        color: Colors.white,
-                                      ),
+                                ),  Align(
+                                  alignment: AlignmentGeometry.center,
+                                  child: Text(textAlign: TextAlign.end,
+                                  "Exodus-1-1",
+                                                               style: GoogleFonts.merriweather(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w500,
+                                      color: Colors.white,
                                     ),
-                                  ],
+                                  ),
                                 ),
                                 // GestureDetector(
                                 //   onTap: () async {
@@ -488,7 +487,7 @@ class HomeScreen extends StatelessWidget {
                       ),
 
                       Text(
-                        'GOD’s words for today',
+                        "YAHAWAH ELOHIYM's words for today",
                         style: TextStyle(
                           fontWeight: FontWeight.w400,
                           fontSize: 20,
@@ -500,23 +499,6 @@ class HomeScreen extends StatelessWidget {
                         spacing: 10,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Container(
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(30.r),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(12.0),
-                              child: Text(
-                                ' Any Topic ',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 18,
-                                  color: Color(0xff1A1A1A),
-                                ),
-                              ),
-                            ),
-                          ),
                           Container(
                             decoration: BoxDecoration(
                               color: Colors.white,
