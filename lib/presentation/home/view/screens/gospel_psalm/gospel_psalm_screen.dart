@@ -85,7 +85,7 @@ class _GospelPsalmScreenState extends State<GospelPsalmScreen> {
                   SizedBox(height: 20.h),
 
                   Text(
-                    '“Now when YAH’USHUA was born in Bethlehem of Yehudaea in the days of Herod the king, behold, there came wise men from the east to Yerushalayim.”',
+                    '“Now when YAH’USHUA HAMASHIACH was born in Bethlehem of Yehudaea in the days of Herod the king, behold, there came wise men from the east to Yerushalayim.”',
                     textAlign: TextAlign.center,
                     style: GoogleFonts.merriweather(
                       fontSize: 20,
