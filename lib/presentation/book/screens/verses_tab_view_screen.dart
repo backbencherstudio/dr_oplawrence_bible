@@ -269,6 +269,7 @@ class _VerseTabViewState extends State<VerseTabView> {
   }
 
   void _showOptions(BuildContext context, int index, String verseText) {
+    final width = MediaQuery.of(context).size.width;
     showDialog(
       context: context,
       barrierColor: Colors.black26,
@@ -277,11 +278,13 @@ class _VerseTabViewState extends State<VerseTabView> {
         child: Material(
           borderRadius: BorderRadius.circular(16),
           child: Container(
-            color: const Color(0xff262626),
+            height: width*0.2,
+            alignment: Alignment.center,
+            color: Colors.blue.shade900,
             padding: const EdgeInsets.all(16),
-            width: MediaQuery.of(context).size.width - 32,
+            width: width,
             child: Wrap(
-              spacing: 38,
+              spacing: 20,
               runSpacing: 12,
               children: [
                 _optionTile(
@@ -296,7 +299,7 @@ class _VerseTabViewState extends State<VerseTabView> {
                   icon: "assets/icons/image.svg",
                   title: 'Image',
                   onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_)=>FullScreenVerseImage(
-                    backgroundAsset: "assets/images/morning_background.png",
+                    backgroundAsset: "assets/images/home_upper.png",
                     title: "${widget.bookName} ${widget.chapter.number}",
                     verseText: verseText
                   )))
