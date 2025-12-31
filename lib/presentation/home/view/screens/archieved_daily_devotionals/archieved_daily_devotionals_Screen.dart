@@ -2,6 +2,7 @@ import 'package:dr_oplawrence_bible/core/route/route_name.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ArchievedDailyDevotionalsScreen extends StatelessWidget {
   const ArchievedDailyDevotionalsScreen({super.key});
@@ -49,8 +50,8 @@ class ArchievedDailyDevotionalsScreen extends StatelessWidget {
                 _buildDevotionCard(
                   context,
                   '26/11/2025',
-                  'Philippians 1:21',
-                  'For to me to live is HAMASHIACH, and to die is gain.',
+                  'Leviticus 2:6',
+                  'Thou shalt part it in pieces, and pour oil thereon: it is a meat offering.',
                   onTap: () {
                     Navigator.pushNamed(context, RouteNames.morningPrayerScreen);
                   },
@@ -58,22 +59,22 @@ class ArchievedDailyDevotionalsScreen extends StatelessWidget {
                 _buildDevotionCard(
                   context,
                   '25/11/2025',
-                  '1 Yohanan 1:9',
-                  'He that saith he is in the Light, and hateth his brother, is in darkness even until now.',
+                  'Deuteronomy 12:13',
+                  'Take heed to thyself that thou offer not thy burnt offerings in every place that thou seest:',
                   onTap: () {Navigator.pushNamed(context, RouteNames.morningPrayerScreen);},
                 ),
                 _buildDevotionCard(
                   context,
                   '24/11/2025',
-                  '1 Chronicles 1:26',
-                  'And all the people, both small and great, and the captains of the armies, arose, an...',
+                  'Ezekiel 16:12',
+                  'And I put a helya on thy forehead, and earrings in thine ears, and a beautiful crown upon thine head.',
                   onTap: () {Navigator.pushNamed(context, RouteNames.morningPrayerScreen);},
                 ),
                 _buildDevotionCard(
                   context,
                   '22/11/2025',
-                  '1 Chronicles 2:29',
-                  'And the sons of Ram the firstborn of Yerahmeel were, Maaz, and Yamin, and E...',
+                  '2 Samuel 4:1',
+                  'And when Saul’s son heard that Abner was dead in Hebron, his hands were feeble, and all the YisraELites were troubled.',
                   onTap: () {  Navigator.pushNamed(context, RouteNames.morningPrayerScreen);},
                 ),
                 const SizedBox(height: 30),
@@ -83,10 +84,10 @@ class ArchievedDailyDevotionalsScreen extends StatelessWidget {
                     SvgPicture.asset('assets/images/left_bird.svg'),
                     const SizedBox(width: 8),
                     Text(
-                      'End of the List - God Bless',
+                      'End of the List - YAHAWAH ELOHIYM Bless',
                       style: TextStyle(
                         color: Colors.grey.shade600,
-                        fontSize: 15,
+                        fontSize: 13.sp,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -104,8 +105,8 @@ class ArchievedDailyDevotionalsScreen extends StatelessWidget {
                 _buildDevotionCard(
                   context,
                   '26/11/2025',
-                  'Philippians 4:5',
-                  'Let your moderation be known unto all men. The Lord is at hand.',
+                  'Luke 6:2',
+                  'And certain of the Pharisees said unto them, Why do ye that which is not lawful to do on the Sabbath days?',
                   onTap: () {
                     Navigator.pushNamed(context, RouteNames.gospelPsalmScreen);
                   },
@@ -113,21 +114,21 @@ class ArchievedDailyDevotionalsScreen extends StatelessWidget {
                 _buildDevotionCard(
                   context,
                   '25/11/2025',
-                  'John 16:33',
-                  'I have told you these things, so that in me you may have peace. In this world you will have trouble.',
+                  'Yovel 28:11',
+                  'And the YAHAWAH opened the womb of Leah, and she conceived and bare Ya’aqob a son, and he called his name Reuben, on the fourteenth day of the ninth month, in the first year of the third week.',
                   onTap: () {  Navigator.pushNamed(context, RouteNames.gospelPsalmScreen);},
                 ), _buildDevotionCard(
                   context,
                   '26/11/2025',
-                  'Philippians 4:5',
-                  'Let your moderation be known unto all men. The Lord is at hand.',
+                  'Philippians 4:1',
+                  'Therefore, my brethren dearly beloved and longed for, my delight and crown, so stand fast in the YAHAWAH, my dearly beloved.',
                   onTap: () {  Navigator.pushNamed(context, RouteNames.gospelPsalmScreen);},
                 ),
                 _buildDevotionCard(
                   context,
                   '25/11/2025',
-                  'John 16:33',
-                  'I have told you these things, so that in me you may have peace. In this world you will have trouble.',
+                  'Yehuda 1:6',
+                  'And the angels which kept not their first estate, but left their own habitation, he hath reserved in everlasting chains under darkness unto the mishpat of the great day.',
                   onTap: () {  Navigator.pushNamed(context, RouteNames.gospelPsalmScreen);},
                 ),
                 const SizedBox(height: 30),
@@ -137,10 +138,10 @@ class ArchievedDailyDevotionalsScreen extends StatelessWidget {
                     SvgPicture.asset('assets/images/left_bird.svg'),
                     const SizedBox(width: 8),
                     Text(
-                      'End of the List - God Bless',
+                      'End of the List - YAHAWAH ELOHIYM Bless',
                       style: TextStyle(
                         color: Colors.grey.shade600,
-                        fontSize: 15,
+                        fontSize: 13.sp,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -168,18 +169,16 @@ class ArchievedDailyDevotionalsScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            date,
-            style: const TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.w400,
-              color: Color(0xff4A4A4A),
-            ),
-          ),
+          // Text(
+          //   date,
+          //   style: const TextStyle(
+          //     fontSize: 14,
+          //     fontWeight: FontWeight.w400,
+          //     color: Color(0xff4A4A4A),
+          //   ),
+          // ),
           const SizedBox(height: 8),
-          GestureDetector(
-            onTap: onTap,
-            child: Container(
+           Container(
               padding: const EdgeInsets.all(16.0),
               decoration: BoxDecoration(
                 color: Colors.white,
@@ -224,7 +223,7 @@ class ArchievedDailyDevotionalsScreen extends StatelessWidget {
                 ],
               ),
             ),
-          ),
+
         ],
       ),
     );

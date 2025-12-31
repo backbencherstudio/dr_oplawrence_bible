@@ -6,6 +6,7 @@ import 'package:flutter_svg/svg.dart';
 import '../../book/book_screen.dart';
 import '../../book/screens/glossary/glossary_screen.dart';
 import '../../home/view/home_screen.dart';
+import '../../home/view/screens/lottie_Screen.dart';
 import '../../menu/my_notes_screen.dart';
 
 final parentScreenProvider =
@@ -34,6 +35,7 @@ class ParentScreen extends ConsumerWidget {
 
     final List<Widget> pages = [
       HomeScreen(),
+     // LottieScreen(),
       BookListScreen(bibleVM: bibleVM),
       GlossaryScreen(),
       MyNotesScreen(),
@@ -175,7 +177,7 @@ class ParentScreen extends ConsumerWidget {
               style: TextStyle(
                 color:
                 isSelected ? selectedIconColor : const Color(0xff4C4C4C),
-                fontSize: 15.sp,
+                fontSize: 12.sp,
                 fontWeight: FontWeight.w700,
               ),
             ),
