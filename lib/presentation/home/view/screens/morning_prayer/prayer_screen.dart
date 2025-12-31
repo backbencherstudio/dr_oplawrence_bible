@@ -15,9 +15,6 @@ class _PrayerScreenState extends State<PrayerScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
-
-
       body: Stack(
         children: [
           Positioned.fill(
@@ -27,35 +24,40 @@ class _PrayerScreenState extends State<PrayerScreen> {
             ),
           ),
           Positioned(
-              bottom: 520,
-              left: 20,
-              right: 20,
-              child: Center(child: Column(
-                children: [ Align(
-                  alignment: AlignmentGeometry.topLeft,
-                  child: GestureDetector(
-                    onTap: (){
-                      Navigator.pop(context);
-                    },
-                    child: Image.asset(
-                      'assets/images/cross.png',
-                      scale: 3,
+            bottom: 480,
+            left: 20,
+            right: 20,
+            child: Center(
+              child: Column(
+                children: [
+                  Align(
+                    alignment: AlignmentGeometry.topLeft,
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Image.asset('assets/images/cross.png', scale: 3),
                     ),
                   ),
-                ),SizedBox(height: 120,),
-                  SvgPicture.asset('assets/icons/Prayer.svg',width: 120.w,height: 120.h,),
+                  SizedBox(height: 120),
+                  SvgPicture.asset(
+                    'assets/icons/Prayer.svg',
+                    width: 120.w,
+                    height: 120.h,
+                  ),
                 ],
-              ))),
-          Positioned(
-            child: Center(
-              child: Text(
-                textAlign: TextAlign.center,
-                "In Yeshua' name Thank you, Adonai Barakat us, O Adonai",
-                style: GoogleFonts.merriweather(
-                  color: Colors.white,
-                  fontSize: 25,
-                  fontWeight: FontWeight.w400,
-                ),
+              ),
+            ),
+          ),
+          SizedBox(height: 15.h,),
+          Center(
+            child: Text(
+              textAlign: TextAlign.center,
+              "In YAH'USHUA HAMASHIACH name Thank you, Adonai Barakat us, O Adonai",
+              style: GoogleFonts.merriweather(
+                color: Colors.white,
+                fontSize: 25,
+                fontWeight: FontWeight.w400,
               ),
             ),
           ),

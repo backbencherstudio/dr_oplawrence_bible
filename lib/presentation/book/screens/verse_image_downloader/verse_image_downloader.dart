@@ -109,7 +109,7 @@ class _FullScreenVerseImageState extends State<FullScreenVerseImage> {
           child: Stack(
             children: [
               Positioned.fill(
-                child: Image.asset(widget.backgroundAsset, fit: BoxFit.cover),
+                child: InkWell(onTap: ()=>Navigator.pop(context), child: Image.asset(widget.backgroundAsset, fit: BoxFit.cover)),
               ),
               Positioned(
                 top: MediaQuery.of(context).size.height * 0.3,
@@ -123,7 +123,7 @@ class _FullScreenVerseImageState extends State<FullScreenVerseImage> {
                         widget.verseText,
                         textAlign: TextAlign.center,
                         style: GoogleFonts.merriweather(
-                          fontSize: 25,
+                          fontSize: 22,
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
                           shadows: const [
