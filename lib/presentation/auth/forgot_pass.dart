@@ -10,8 +10,6 @@ class ForgotPass extends StatefulWidget {
 }
 
 class _ForgotPassState extends State<ForgotPass> {
-  bool _rememberMe = false;
-  bool _isPasswordVisible = false;
 
   @override
   Widget build(BuildContext context) {

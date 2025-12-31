@@ -1,4 +1,3 @@
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -25,7 +24,7 @@ class _PrayerScreenState extends State<PrayerScreen> {
             ),
           ),
           Positioned(
-            bottom: 550,
+            bottom: 480,
             left: 20,
             right: 20,
             child: Center(

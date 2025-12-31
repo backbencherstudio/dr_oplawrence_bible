@@ -1,5 +1,5 @@
 import 'package:dr_oplawrence_bible/core/route/route_name.dart';
-import 'package:dr_oplawrence_bible/presentation/menu/screens/saved_data/bookmark_Screen.dart';
+import 'package:dr_oplawrence_bible/presentation/menu/screens/saved_data/bookmarks_screen.dart';
 import 'package:dr_oplawrence_bible/presentation/menu/screens/saved_data/highlight_screen.dart';
 import 'package:dr_oplawrence_bible/presentation/menu/screens/saved_data/notes_screen.dart';
 import 'package:flutter/material.dart';
@@ -47,7 +47,7 @@ class _MyNotesScreenState extends State<MyNotesScreen> {
       } else if (key.startsWith('highlight_')) {
         final list = prefs.getStringList(key) ?? [];
         for (var index in list) {
-          tempHighlights['$key\_$index'] = 'Highlighted verse $index';
+          tempHighlights['${key}_$index'] = 'Highlighted verse $index';
         }
       }
     }

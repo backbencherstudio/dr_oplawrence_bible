@@ -2,6 +2,7 @@ import 'package:dr_oplawrence_bible/core/route/route_name.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ArchievedDailyDevotionalsScreen extends StatelessWidget {
   const ArchievedDailyDevotionalsScreen({super.key});
@@ -86,7 +87,7 @@ class ArchievedDailyDevotionalsScreen extends StatelessWidget {
                       'End of the List - YAHAWAH ELOHIYM Bless',
                       style: TextStyle(
                         color: Colors.grey.shade600,
-                        fontSize: 15,
+                        fontSize: 13.sp,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -140,7 +141,7 @@ class ArchievedDailyDevotionalsScreen extends StatelessWidget {
                       'End of the List - YAHAWAH ELOHIYM Bless',
                       style: TextStyle(
                         color: Colors.grey.shade600,
-                        fontSize: 15,
+                        fontSize: 13.sp,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -190,6 +191,7 @@ class ArchievedDailyDevotionalsScreen extends StatelessWidget {
                 ),
                 boxShadow: [
                   BoxShadow(
+                    // ignore: deprecated_member_use
                     color: Colors.grey.withOpacity(0.1),
                     spreadRadius: 1,
                     blurRadius: 5,
