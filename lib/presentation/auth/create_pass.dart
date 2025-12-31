@@ -9,7 +9,6 @@ class CreatePass extends StatefulWidget {
 }
 
 class _CreatePassState extends State<CreatePass> {
-  bool _rememberMe = false;
   bool _isPasswordVisible = false;
 
   @override

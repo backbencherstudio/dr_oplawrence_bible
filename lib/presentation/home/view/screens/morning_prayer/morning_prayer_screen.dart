@@ -131,7 +131,7 @@ class _MorningPrayerScreenState extends State<MorningPrayerScreen> {
                         ),
                         Text(
                           textAlign: TextAlign.center,
-                          "Heavenly Father, we’re so grateful for Your never-ending presence in our lives. You are a loving reminder that You are always with us, even in our most difficult times, helping us to become stronger and wiser.  Amen.",
+                          "Heavenly Father, we’re so grateful for Your never-ending presence in our lives. You are a loving reminder that You are always with us, even in our most difficult times, helping us to become stronger and wiser. Amen.",
                           style: GoogleFonts.merriweather(
                             fontSize: 16,
                             fontWeight: FontWeight.w400,

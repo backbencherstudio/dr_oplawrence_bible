@@ -1,8 +1,16 @@
+import 'dart:io';
+import 'dart:ui';
+import 'package:dr_oplawrence_bible/presentation/book/screens/verse_image_downloader/verse_image_downloader.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:gallery_saver_plus/gallery_saver.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/services.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../book_screen.dart';
 
@@ -21,6 +29,7 @@ class VerseTabView extends StatefulWidget {
 }
 
 class _VerseTabViewState extends State<VerseTabView> {
+  final GlobalKey _imageKey = GlobalKey();
   final Set<int> highlightedIndexes = {};
   final Map<int, String> notes = {};
   final Set<int> bookmarkedIndexes = {};
@@ -30,8 +39,7 @@ class _VerseTabViewState extends State<VerseTabView> {
   String get _highlightKey =>
       'highlight_${widget.bookName}_${widget.chapter.number}';
 
-  String get _noteKey =>
-      'notes_${widget.bookName}_${widget.chapter.number}';
+  String get _noteKey => 'notes_${widget.bookName}_${widget.chapter.number}';
 
   static const String _bookmarkKey = 'bookmarks_list';
 
@@ -39,6 +47,60 @@ class _VerseTabViewState extends State<VerseTabView> {
   void initState() {
     super.initState();
     _loadData();
+  }
+
+  Future<Uint8List?> _capturePng() async {
+    try {
+      RenderRepaintBoundary boundary =
+          _imageKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
+      var image = await boundary.toImage(pixelRatio: 3.0);
+      var byteData = await image.toByteData(format: ImageByteFormat.png);
+      return byteData?.buffer.asUint8List();
+    } catch (e) {
+      if (kDebugMode) {
+        print("Error capturing image: $e");
+      }
+      return null;
+    }
+  }
+
+  Future<void> _saveToGallery(Uint8List bytes) async {
+    // 1️⃣ Request permissions
+    await Permission.photos.request();
+    await Permission.storage.request();
+
+    if (!await Permission.photos.isGranted &&
+        !await Permission.storage.isGranted) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text("Permission denied")));
+      return;
+    }
+
+    try {
+      // 2️⃣ Write bytes to temporary file
+      final tempDir = await getTemporaryDirectory();
+      final filePath =
+          '${tempDir.path}/${DateTime.now().millisecondsSinceEpoch}.png';
+      final file = File(filePath);
+      await file.writeAsBytes(bytes);
+
+      // 3️⃣ Save file to gallery
+      final success = await GallerySaver.saveImage(file.path);
+
+      // 4️⃣ Feedback
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            success == true ? "Saved to Gallery" : "Failed to Save",
+          ),
+        ),
+      );
+    } catch (e) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text("Error: $e")));
+    }
   }
 
   Future<void> _loadData() async {
@@ -81,8 +143,7 @@ class _VerseTabViewState extends State<VerseTabView> {
   Future<void> _toggleBookmark(int index, String verseText) async {
     final bookmarks = prefs.getStringList(_bookmarkKey) ?? [];
     final preview = verseText.split(' ').take(3).join(' ');
-    final entry =
-        '${widget.bookName}|${widget.chapter.number}|$index|$preview';
+    final entry = '${widget.bookName}|${widget.chapter.number}|$index|$preview';
 
     setState(() {
       if (bookmarkedIndexes.contains(index)) {
@@ -131,10 +192,7 @@ class _VerseTabViewState extends State<VerseTabView> {
                 _saveNotes();
                 Navigator.pop(context);
               },
-              child: const Text(
-                'Delete',
-                style: TextStyle(color: Colors.red),
-              ),
+              child: const Text('Delete', style: TextStyle(color: Colors.red)),
             ),
           SizedBox(
             width: double.infinity,
@@ -237,10 +295,11 @@ class _VerseTabViewState extends State<VerseTabView> {
                 _optionTile(
                   icon: "assets/icons/image.svg",
                   title: 'Image',
-                  onTap: () {
-                    Navigator.pop(context);
-                    _showFullScreenVerseImage(index, verseText);
-                  },
+                  onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_)=>FullScreenVerseImage(
+                    backgroundAsset: "assets/images/morning_background.png",
+                    title: "${widget.bookName} ${widget.chapter.number}",
+                    verseText: verseText
+                  )))
                 ),
                 _optionTile(
                   icon: "assets/icons/highlight.svg",
@@ -273,70 +332,72 @@ class _VerseTabViewState extends State<VerseTabView> {
     );
   }
 
-  // 🔹 FULL SCREEN IMAGE WITH BOOK NAME + CHAPTER + VERSE
-  void _showFullScreenVerseImage(int index, String verseText) {
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
+  // // 🔹 FULL SCREEN IMAGE WITH BOOK NAME + CHAPTER + VERSE
+  // void _showFullScreenVerseImage(int index, String verseText) {
+  //   SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
 
-    showDialog(
-      context: context,
-      barrierColor: Colors.black,
-      builder: (_) => GestureDetector(
-        onTap: () {
-          SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
-          Navigator.pop(context);
-        },
-        child: SizedBox.expand(
-          child: Stack(
-            children: [
-              Positioned.fill(
-                child: Image.asset(
-                  'assets/images/home_upper.png',
-                  fit: BoxFit.cover,
-                ),
-              ),
-              Center(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        "${widget.bookName} ${widget.chapter.number} : ${index + 1}",
-                        style: GoogleFonts.merriweather(
-                          fontSize: 20,
-                          color: Colors.white,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      const SizedBox(height: 16),
-                      Text(
-                        verseText,
-                        textAlign: TextAlign.center,
-                        style: GoogleFonts.merriweather(
-                          fontSize: 25,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          shadows: const [
-                            Shadow(
-                              color: Colors.black87,
-                              offset: Offset(2, 2),
-                              blurRadius: 3,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    ).then((_) {
-      SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
-    });
-  }
+  //   showDialog(
+  //     context: context,
+  //     barrierColor: Colors.black,
+  //     builder: (_) => GestureDetector(
+  //       onTap: () {
+  //         SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+  //         Navigator.pop(context);
+  //       },
+  //       child: SizedBox(
+  //         width: MediaQuery.of(context).size.width,
+  //         height: MediaQuery.of(context).size.height,
+  //         child: RepaintBoundary(
+  //           key: _imageKey,
+  //           child: Stack(
+  //             children: [
+  //               Positioned.fill(
+  //                 child: Image.asset(
+  //                   "assets/images/morning_background.png",
+  //                   fit: BoxFit.cover,
+  //                 ),
+  //               ),
+  //               Positioned(
+  //                 top: 0,
+  //                 left: 0,
+  //                 right: 0,
+  //                 child: Column(
+  //                   children: [
+  //                     Text(
+  //                       "${widget.bookName} ${widget.chapter.number}",
+  //                       style: GoogleFonts.merriweather(
+  //                         fontSize: 20,
+  //                         color: Colors.white,
+  //                         fontWeight: FontWeight.w600,
+  //                       ),
+  //                     ),
+  //                     Text(
+  //                       verseText,
+  //                       style: GoogleFonts.merriweather(
+  //                         fontSize: 25,
+  //                         color: Colors.white,
+  //                         fontWeight: FontWeight.bold,
+  //                         shadows: const [
+  //                           Shadow(
+  //                             color: Colors.black87,
+  //                             offset: Offset(2, 2),
+  //                             blurRadius: 3,
+  //                           ),
+  //                         ],
+  //                       ),
+  //                     ),
+  //                   ],
+  //                 ),
+  //               )
+  //             ],
+  //           ),
+  //         ),
+  //       ),
+  //     ),
+  //   ).then((_) {
+  //     SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+  //   });
+  // }
 
   Widget _optionTile({
     required String icon,
@@ -347,9 +408,13 @@ class _VerseTabViewState extends State<VerseTabView> {
       onTap: onTap,
       child: Column(
         children: [
+          // ignore: deprecated_member_use
           SvgPicture.asset(icon, color: Colors.white),
           const SizedBox(height: 6),
-          Text(title, style: const TextStyle(fontSize: 12, color: Colors.white)),
+          Text(
+            title,
+            style: const TextStyle(fontSize: 12, color: Colors.white),
+          ),
         ],
       ),
     );
@@ -384,8 +449,7 @@ class _VerseTabViewState extends State<VerseTabView> {
                 return Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: GestureDetector(
-                    onLongPress: () =>
-                        _showOptions(context, index, verseText),
+                    onLongPress: () => _showOptions(context, index, verseText),
                     child: Stack(
                       children: [
                         Container(
@@ -403,6 +467,7 @@ class _VerseTabViewState extends State<VerseTabView> {
                             ),
                             boxShadow: [
                               BoxShadow(
+                                // ignore: deprecated_member_use
                                 color: Colors.grey.withOpacity(0.1),
                                 blurRadius: 5,
                                 offset: const Offset(0, 3),
@@ -427,8 +492,7 @@ class _VerseTabViewState extends State<VerseTabView> {
                                   : Icons.bookmark_border,
                               color: Colors.amber,
                             ),
-                            onPressed: () =>
-                                _toggleBookmark(index, verseText),
+                            onPressed: () => _toggleBookmark(index, verseText),
                           ),
                         ),
                         if (hasNote)
@@ -439,6 +503,7 @@ class _VerseTabViewState extends State<VerseTabView> {
                               onTap: () => _showNotePopup(index),
                               child: SvgPicture.asset(
                                 'assets/icons/desc.svg',
+                                // ignore: deprecated_member_use
                                 color: Colors.blueAccent.shade700,
                               ),
                             ),

@@ -1,8 +1,7 @@
 import 'dart:ui';
-
 import 'package:dr_oplawrence_bible/core/resource/utils.dart';
-import 'package:dr_oplawrence_bible/core/resource/values_manager.dart';
 import 'package:dr_oplawrence_bible/core/route/route_name.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -40,6 +39,7 @@ class HomeScreen extends StatelessWidget {
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(16.r),
                               border: Border.all(color: Colors.white70),
+                              // ignore: deprecated_member_use
                               color: Colors.white.withOpacity(0.1),
                             ),
                             child: Padding(
@@ -117,7 +117,9 @@ class HomeScreen extends StatelessWidget {
                                         );
 
                                     if (selectedDate != null) {
-                                      print(selectedDate);
+                                      if (kDebugMode) {
+                                        print(selectedDate);
+                                      }
                                     }
                                   },
                                   child: SvgPicture.asset(

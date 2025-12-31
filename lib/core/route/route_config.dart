@@ -35,7 +35,7 @@ import '../../presentation/book/book_screen.dart';
 import '../../presentation/book/screens/glossary/glossary_screen.dart';
 import '../../presentation/bottom_nav/view/bottom_nav.dart';
 import '../../presentation/home/view/home_screen.dart';
-import '../../presentation/home/view/screens/archieved_daily_devotionals/archieved_daily_devotionals_Screen.dart';
+import '../../presentation/home/view/screens/archieved_daily_devotionals/archieved_daily_devotionals_screen.dart';
 import '../../presentation/home/view/screens/gospel_psalm/gospel_psalm_screen.dart';
 import '../../presentation/home/view/screens/morning_prayer/morning_prayer_screen.dart';
 import '../../presentation/home/view/screens/morning_prayer/prayer_screen.dart';
@@ -45,7 +45,7 @@ import '../../presentation/menu/screens/donate_money_system.dart';
 import '../../presentation/menu/screens/saved_data/highlight_screen.dart';
 import '../../presentation/onboarding/onboarding_screen.dart';
 import '../../presentation/onboarding/second_onboarding.dart';
-import '../../presentation/plan/plan_Screen.dart';
+import '../../presentation/plan/plan_screen.dart';
 import '../../presentation/quiz/quiz_screen.dart';
 import '../../presentation/quiz/screens/quiz_test_start.dart';
 import '../../presentation/quiz/screens/study_more.dart';
@@ -57,7 +57,7 @@ class AppRoutes {
   static final BibleViewModel bibleVM = BibleViewModel();
   static final String initialRoute = RouteNames.splashScreen;
 
-  static late final Map<String, WidgetBuilder> routes = {
+  static final Map<String, WidgetBuilder> routes = {
     RouteNames.splashScreen: (context) => const SplashScreen(),
     RouteNames.onboardingScreen: (context) => const OnboardingScreen(),
     RouteNames.secondOnboarding: (context) => const SecondOnboarding(),

@@ -1,5 +1,4 @@
 import 'package:dr_oplawrence_bible/presentation/auth/login_screen.dart';
-import 'package:dr_oplawrence_bible/presentation/onboarding/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 
 class SecondOnboarding extends StatefulWidget {

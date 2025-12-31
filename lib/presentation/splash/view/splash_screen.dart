@@ -1,6 +1,4 @@
 import 'dart:async';
-import 'package:dr_oplawrence_bible/core/constansts/color_manager.dart';
-import 'package:dr_oplawrence_bible/core/constansts/image_manager.dart';
 import 'package:flutter/material.dart';
 import '../../../core/route/route_name.dart';
 

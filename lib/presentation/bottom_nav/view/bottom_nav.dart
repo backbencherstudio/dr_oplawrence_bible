@@ -1,15 +1,12 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/legacy.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-
 import '../../book/book_screen.dart';
 import '../../book/screens/glossary/glossary_screen.dart';
 import '../../home/view/home_screen.dart';
 import '../../menu/my_notes_screen.dart';
-import '../../plan/plan_Screen.dart';
 
 final parentScreenProvider =
 ChangeNotifierProvider<ParentScreenProvider>((ref) {
@@ -165,6 +162,7 @@ class ParentScreen extends ConsumerWidget {
                   iconPath,
                   width: iconSize,
                   height: iconSize,
+                  // ignore: deprecated_member_use
                   color: isSelected
                       ? const Color(0xff0D5593)
                       : const Color(0xff4C4C4C),

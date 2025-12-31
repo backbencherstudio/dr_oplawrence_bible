@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:dr_oplawrence_bible/core/route/route_name.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -61,7 +62,9 @@ class _OtpScreenState extends State<OtpScreen> {
   void submitOtp() {
     if (isOtpComplete()) {
       String otp = getOtp();
-      print("Submitted OTP: $otp");
+      if (kDebugMode) {
+        print("Submitted OTP: $otp");
+      }
       Navigator.pushNamed(context, RouteNames.createPass);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
