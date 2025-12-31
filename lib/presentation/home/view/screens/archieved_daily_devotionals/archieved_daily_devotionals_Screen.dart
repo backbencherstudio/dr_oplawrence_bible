@@ -177,9 +177,7 @@ class ArchievedDailyDevotionalsScreen extends StatelessWidget {
           //   ),
           // ),
           const SizedBox(height: 8),
-          GestureDetector(
-            onTap: onTap,
-            child: Container(
+           Container(
               padding: const EdgeInsets.all(16.0),
               decoration: BoxDecoration(
                 color: Colors.white,
@@ -223,7 +221,7 @@ class ArchievedDailyDevotionalsScreen extends StatelessWidget {
                 ],
               ),
             ),
-          ),
+
         ],
       ),
     );
