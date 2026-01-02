@@ -169,6 +169,7 @@ class _MyNotesScreenState extends State<MyNotesScreen> {
                   child: Container(
                     width: 95.w,
                     height: 90.h,
+
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(12.r),
@@ -249,6 +250,8 @@ class _MyNotesScreenState extends State<MyNotesScreen> {
   }
 }
 
+
+
 abstract class BaseListScreen extends StatefulWidget {
   const BaseListScreen({super.key});
 
@@ -271,6 +274,10 @@ abstract class BaseListScreenState<T extends BaseListScreen> extends State<T> {
     _loadData();
   }
 
+  String _cleanKey(String rawKey) {
+    return rawKey.replaceAll('_', ' ').split(' ').skip(1).join(' ').trim();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -282,8 +289,13 @@ abstract class BaseListScreenState<T extends BaseListScreen> extends State<T> {
         ),
         title: Text(
           getTitle(),
-          style: GoogleFonts.merriweather(color: const Color(0xffB02626), fontSize: 20),
+          style: GoogleFonts.merriweather(
+            color: const Color(0xffB02626),
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
         ),
+        centerTitle: true,
       ),
       backgroundColor: const Color(0xffEBEBEB),
       body: isLoading
@@ -291,17 +303,94 @@ abstract class BaseListScreenState<T extends BaseListScreen> extends State<T> {
           : RefreshIndicator(
         onRefresh: _loadData,
         child: data.isEmpty
-            ? Center(child: Text('No ${getTitle().toLowerCase()} yet'))
+            ? Center(
+          child: Text(
+            'No ${getTitle().toLowerCase()} yet',
+            style: const TextStyle(fontSize: 18, color: Colors.grey),
+          ),
+        )
             : ListView.builder(
           padding: const EdgeInsets.all(16),
           itemCount: data.length,
           itemBuilder: (context, index) {
             final key = data.keys.elementAt(index);
             final value = data.values.elementAt(index);
-            return Card(
-              child: ListTile(
-                title: Text(value),
-                subtitle: Text(key),
+
+            return Container(
+              margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
+              padding: const EdgeInsets.all(18),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(18),
+                border: Border(
+                  left: BorderSide(
+                    color: const Color(0xffB02626),
+                    width: 6,
+                  ),
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: const Color(0xffB02626).withOpacity(0.18),
+                    blurRadius: 5,
+                    spreadRadius: 2,
+                    offset: const Offset(0, 8),
+                  ),
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.12),
+                    blurRadius: 5,
+                    offset: const Offset(0, 2),
+                  ),
+                ],
+              ),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      color: const Color(0xffB02626).withOpacity(0.12),
+                      shape: BoxShape.circle,
+                    ),
+                    child: const Icon(
+                      Icons.auto_stories,
+                      color: Color(0xffB02626),
+                      size: 28,
+                    ),
+                  ),
+
+                  const SizedBox(width: 16),
+
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+
+                        if (_cleanKey(key).isNotEmpty)
+                          Text(
+                            _cleanKey(key).toUpperCase(),
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w600,
+                              color: const Color(0xffB02626),
+                              letterSpacing: 0.5,
+                            ),
+                          ),
+                        if (_cleanKey(key).isNotEmpty)
+                          const SizedBox(height: 8),
+
+                        Text(
+                          value,
+                          style: const TextStyle(
+                            fontSize: 16.5,
+                            height: 1.7,
+                            color: Colors.black87,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
             );
           },
