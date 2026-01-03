@@ -95,7 +95,7 @@ class ParentScreen extends ConsumerWidget {
                             ref: ref,
                             index: 1,
                             label: 'Bible',
-                            iconPath: 'assets/icons/Bible.svg',
+                            iconPath: 'assets/icons/books.svg',
                             baseSize: 27,
                             selectedIconColor: const Color(0xff0D5593),
                           ),
@@ -136,13 +136,12 @@ class ParentScreen extends ConsumerWidget {
     required int index,
     required String label,
     required String iconPath,
-    required double baseSize, // 👈 per icon base size
+    required double baseSize,
     required Color selectedIconColor,
   }) {
     final navProvider = ref.watch(parentScreenProvider);
     final isSelected = navProvider.selectedIndex == index;
 
-    /// 🎯 Dynamic size per SVG
     final double iconSize =
     isSelected ? (baseSize + 4).w : baseSize.w;
 
@@ -164,7 +163,6 @@ class ParentScreen extends ConsumerWidget {
                   iconPath,
                   width: iconSize,
                   height: iconSize,
-                  // ignore: deprecated_member_use
                   color: isSelected
                       ? const Color(0xff0D5593)
                       : const Color(0xff4C4C4C),

@@ -369,7 +369,7 @@ abstract class BaseListScreenState<T extends BaseListScreen> extends State<T> {
                           Text(
                             _cleanKey(key).toUpperCase(),
                             style: TextStyle(
-                              fontSize: 12,
+                              fontSize: 15,
                               fontWeight: FontWeight.w600,
                               color: const Color(0xffB02626),
                               letterSpacing: 0.5,
