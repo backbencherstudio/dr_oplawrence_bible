@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -24,7 +23,7 @@ class _PrayerScreenState extends State<PrayerScreen> {
             ),
           ),
           Positioned(
-            bottom: 480,
+            bottom: 520,
             left: 20,
             right: 20,
             child: Center(
@@ -42,22 +41,26 @@ class _PrayerScreenState extends State<PrayerScreen> {
                   SizedBox(height: 120),
                   SvgPicture.asset(
                     'assets/icons/Prayer.svg',
-                    width: 120.w,
-                    height: 120.h,
+                    width: 100.w,
+                    height: 100.h,
                   ),
                 ],
               ),
             ),
           ),
-          SizedBox(height: 15.h,),
-          Center(
-            child: Text(
-              textAlign: TextAlign.center,
-              "In YAH'USHUA HAMASHIACH name Thank you, Adonai Barakat us, O Adonai",
-              style: GoogleFonts.merriweather(
-                color: Colors.white,
-                fontSize: 25,
-                fontWeight: FontWeight.w400,
+          SizedBox(height: 15.h),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Center(
+              child: Text(
+                "In Yeshua' name\nThank you, Adonai\nBarakat us, O Adonai",
+                textAlign: TextAlign.center,
+                style: GoogleFonts.merriweather(
+                  color: Colors.white,
+                  fontSize: 20,
+                  fontWeight: FontWeight.w400,
+                  height: 1.6,
+                ),
               ),
             ),
           ),

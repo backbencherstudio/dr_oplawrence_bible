@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../core/route/route_name.dart';
 
@@ -17,74 +18,74 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return Scaffold(
       body: Center(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.all(32.0),
+          padding:  EdgeInsets.all(32.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const SizedBox(height: 60),
+               SizedBox(height: 60),
               Image.asset('assets/images/sign_up_icon.png',scale: 4,),
-              const SizedBox(height: 25),
+               SizedBox(height: 25),
 
-              const SizedBox(height: 8),
+               SizedBox(height: 8),
               TextFormField(
                 decoration: InputDecoration(
                   hintText: 'enter your name',
                   hintStyle: TextStyle(fontSize: 15,color: Colors.grey.shade500),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8.0),
-                    borderSide: const BorderSide(color: Colors.grey),
+                    borderSide:  BorderSide(color: Colors.grey),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8.0),
-                    borderSide: const BorderSide(color: Colors.blue, width: 2.0),
+                    borderSide:  BorderSide(color: Colors.blue, width: 2.0),
                   ),
-                  contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  contentPadding:  EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                   fillColor: Colors.white,
                   filled: true,
                 ),
                 keyboardType: TextInputType.emailAddress,
               ),
-              const SizedBox(height: 12),
+               SizedBox(height: 12),
               TextFormField(
                 decoration: InputDecoration(
                   hintText: 'example@gmail.com',
                   hintStyle: TextStyle(fontSize: 15,color: Colors.grey.shade500),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8.0),
-                    borderSide: const BorderSide(color: Colors.grey),
+                    borderSide:  BorderSide(color: Colors.grey),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8.0),
-                    borderSide: const BorderSide(color: Colors.blue, width: 2.0),
+                    borderSide:  BorderSide(color: Colors.blue, width: 2.0),
                   ),
-                  contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  contentPadding:  EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                   fillColor: Colors.white,
                   filled: true,
                 ),
                 keyboardType: TextInputType.emailAddress,
               ),
-              const SizedBox(height: 12),
+               SizedBox(height: 12),
               TextFormField(
                 decoration: InputDecoration(
                   hintText: 'enter your phone number',
                   hintStyle: TextStyle(fontSize: 15,color: Colors.grey.shade500),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8.0),
-                    borderSide: const BorderSide(color: Colors.grey),
+                    borderSide:  BorderSide(color: Colors.grey),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8.0),
-                    borderSide: const BorderSide(color: Colors.blue, width: 2.0),
+                    borderSide:  BorderSide(color: Colors.blue, width: 2.0),
                   ),
-                  contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  contentPadding:  EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                   fillColor: Colors.white,
                   filled: true,
                 ),
                 keyboardType: TextInputType.emailAddress,
               ),
 
-              const SizedBox(height: 12),
+               SizedBox(height: 12),
               TextFormField(
                 obscureText: !_isPasswordVisible,
                 decoration: InputDecoration(
@@ -92,13 +93,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   hintStyle: TextStyle(fontSize: 15,color: Colors.grey.shade500),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8.0),
-                    borderSide: const BorderSide(color: Colors.grey),
+                    borderSide:  BorderSide(color: Colors.grey),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8.0),
-                    borderSide: const BorderSide(color: Colors.blue, width: 2.0),
+                    borderSide:  BorderSide(color: Colors.blue, width: 2.0),
                   ),
-                  contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  contentPadding:  EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                   fillColor: Colors.white,
                   filled: true,
                   suffixIcon: IconButton(
@@ -123,10 +124,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8.0),
                   ),
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  minimumSize: const Size(double.infinity, 50),
+                  padding:  EdgeInsets.symmetric(vertical: 16),
+                  minimumSize:  Size(double.infinity, 50),
                 ),
-                child: const Text(
+                child:  Text(
                   'Sign Up',
                   style: TextStyle(
                     fontSize: 18,
@@ -135,14 +136,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                 ),
               ),
-              const SizedBox(height: 100),
+               SizedBox(height: 100.h),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text(
+                   Text(
                     "Already have an account?",
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 16.sp,
                       color: Colors.black54,
                     ),
                   ),
@@ -150,11 +151,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     onPressed: () {
                       Navigator.pushNamed(context, RouteNames.loginScreen);
                     },
-                    child: const Text(
+                    child:  Text(
                       'Login',
                       style: TextStyle(
                         color: Color(0xff0D5593),
-                        fontSize: 16,
+                        fontSize: 16.sp,
                         fontWeight: FontWeight.bold,
                       ),
                     ),

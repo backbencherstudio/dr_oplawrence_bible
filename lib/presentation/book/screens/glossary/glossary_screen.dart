@@ -90,7 +90,7 @@ class _GlossaryScreenState extends State<GlossaryScreen>
                     children: [
             
             Padding(
-              padding: const EdgeInsets.all(16),
+              padding:  EdgeInsets.all(16),
               child: TextField(
                 controller: _searchController,
                 onChanged: searchGlossary,
@@ -102,7 +102,7 @@ class _GlossaryScreenState extends State<GlossaryScreen>
             
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(16),
-                    borderSide: const BorderSide(
+                    borderSide:  BorderSide(
                       color: Colors.grey,
                       width: 1.5,
                     ),
@@ -110,7 +110,7 @@ class _GlossaryScreenState extends State<GlossaryScreen>
             
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(16),
-                    borderSide: const BorderSide(
+                    borderSide:  BorderSide(
                       color: Colors.grey,
                       width: 1.5,
                     ),
@@ -118,7 +118,7 @@ class _GlossaryScreenState extends State<GlossaryScreen>
             
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(16),
-                    borderSide: const BorderSide(
+                    borderSide:  BorderSide(
                       color: Colors.grey,
                       width: 2,
                     ),
@@ -152,7 +152,7 @@ class _GlossaryScreenState extends State<GlossaryScreen>
                     child: FadeTransition(
                       opacity: _controller,
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(
+                        padding:  EdgeInsets.symmetric(
                             horizontal: 16, vertical: 8),
                         child: GestureDetector(
                           onTap: () {
@@ -171,8 +171,7 @@ class _GlossaryScreenState extends State<GlossaryScreen>
                               borderRadius: BorderRadius.circular(18),
                               gradient: LinearGradient(
                                 colors: [
-                                  // Color(0xFF667EEA),
-                                  // Color(0xFF764BA2),
+                                  
 
                                   Colors.blue.shade800,
                                   Colors.white54,
@@ -192,7 +191,7 @@ class _GlossaryScreenState extends State<GlossaryScreen>
                             child: ListTile(
                               title: Text(
                                 key,
-                                style: const TextStyle(
+                                style:  TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white,
@@ -205,7 +204,7 @@ class _GlossaryScreenState extends State<GlossaryScreen>
                                   ],
                                 ),
                               ),
-                              trailing: const Icon(
+                              trailing:  Icon(
                                 Icons.arrow_forward_ios,
                                 size: 16,
                                 color: Colors.white,

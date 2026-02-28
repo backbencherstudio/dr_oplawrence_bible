@@ -1,16 +1,10 @@
-import 'dart:io';
-import 'dart:ui';
+
 import 'package:dr_oplawrence_bible/presentation/book/screens/verse_image_downloader/verse_image_downloader.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:gallery_saver_plus/gallery_saver.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/services.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../book_screen.dart';
 
@@ -29,7 +23,6 @@ class VerseTabView extends StatefulWidget {
 }
 
 class _VerseTabViewState extends State<VerseTabView> {
-  final GlobalKey _imageKey = GlobalKey();
   final Set<int> highlightedIndexes = {};
   final Map<int, String> notes = {};
   final Set<int> bookmarkedIndexes = {};
@@ -49,60 +42,9 @@ class _VerseTabViewState extends State<VerseTabView> {
     _loadData();
   }
 
-  Future<Uint8List?> _capturePng() async {
-    try {
-      RenderRepaintBoundary boundary =
-          _imageKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
-      var image = await boundary.toImage(pixelRatio: 3.0);
-      var byteData = await image.toByteData(format: ImageByteFormat.png);
-      return byteData?.buffer.asUint8List();
-    } catch (e) {
-      if (kDebugMode) {
-        print("Error capturing image: $e");
-      }
-      return null;
-    }
-  }
 
-  Future<void> _saveToGallery(Uint8List bytes) async {
-    // 1️⃣ Request permissions
-    await Permission.photos.request();
-    await Permission.storage.request();
 
-    if (!await Permission.photos.isGranted &&
-        !await Permission.storage.isGranted) {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(const SnackBar(content: Text("Permission denied")));
-      return;
-    }
-
-    try {
-      // 2️⃣ Write bytes to temporary file
-      final tempDir = await getTemporaryDirectory();
-      final filePath =
-          '${tempDir.path}/${DateTime.now().millisecondsSinceEpoch}.png';
-      final file = File(filePath);
-      await file.writeAsBytes(bytes);
-
-      // 3️⃣ Save file to gallery
-      final success = await GallerySaver.saveImage(file.path);
-
-      // 4️⃣ Feedback
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            success == true ? "Saved to Gallery" : "Failed to Save",
-          ),
-        ),
-      );
-    } catch (e) {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text("Error: $e")));
-    }
-  }
-
+  
   Future<void> _loadData() async {
     prefs = await SharedPreferences.getInstance();
 
@@ -335,73 +277,8 @@ class _VerseTabViewState extends State<VerseTabView> {
     );
   }
 
-  // // 🔹 FULL SCREEN IMAGE WITH BOOK NAME + CHAPTER + VERSE
-  // void _showFullScreenVerseImage(int index, String verseText) {
-  //   SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
-
-  //   showDialog(
-  //     context: context,
-  //     barrierColor: Colors.black,
-  //     builder: (_) => GestureDetector(
-  //       onTap: () {
-  //         SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
-  //         Navigator.pop(context);
-  //       },
-  //       child: SizedBox(
-  //         width: MediaQuery.of(context).size.width,
-  //         height: MediaQuery.of(context).size.height,
-  //         child: RepaintBoundary(
-  //           key: _imageKey,
-  //           child: Stack(
-  //             children: [
-  //               Positioned.fill(
-  //                 child: Image.asset(
-  //                   "assets/images/morning_background.png",
-  //                   fit: BoxFit.cover,
-  //                 ),
-  //               ),
-  //               Positioned(
-  //                 top: 0,
-  //                 left: 0,
-  //                 right: 0,
-  //                 child: Column(
-  //                   children: [
-  //                     Text(
-  //                       "${widget.bookName} ${widget.chapter.number}",
-  //                       style: GoogleFonts.merriweather(
-  //                         fontSize: 20,
-  //                         color: Colors.white,
-  //                         fontWeight: FontWeight.w600,
-  //                       ),
-  //                     ),
-  //                     Text(
-  //                       verseText,
-  //                       style: GoogleFonts.merriweather(
-  //                         fontSize: 25,
-  //                         color: Colors.white,
-  //                         fontWeight: FontWeight.bold,
-  //                         shadows: const [
-  //                           Shadow(
-  //                             color: Colors.black87,
-  //                             offset: Offset(2, 2),
-  //                             blurRadius: 3,
-  //                           ),
-  //                         ],
-  //                       ),
-  //                     ),
-  //                   ],
-  //                 ),
-  //               )
-  //             ],
-  //           ),
-  //         ),
-  //       ),
-  //     ),
-  //   ).then((_) {
-  //     SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
-  //   });
-  // }
-
+ 
+  
   Widget _optionTile({
     required String icon,
     required String title,
@@ -413,10 +290,10 @@ class _VerseTabViewState extends State<VerseTabView> {
         children: [
           // ignore: deprecated_member_use
           SvgPicture.asset(icon, color: Colors.white),
-          const SizedBox(height: 6),
+           SizedBox(height: 6),
           Text(
             title,
-            style: const TextStyle(fontSize: 12, color: Colors.white),
+            style:  TextStyle(fontSize: 12, color: Colors.white),
           ),
         ],
       ),
@@ -431,7 +308,7 @@ class _VerseTabViewState extends State<VerseTabView> {
         children: [
           SizedBox(height: 10.h),
           Padding(
-            padding: const EdgeInsets.only(left: 18.0),
+            padding:  EdgeInsets.only(left: 18.0),
             child: Text(
               "${widget.bookName} ${widget.chapter.number}",
               style: GoogleFonts.merriweather(
@@ -450,19 +327,19 @@ class _VerseTabViewState extends State<VerseTabView> {
                 final isBookmarked = bookmarkedIndexes.contains(index);
 
                 return Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding:  EdgeInsets.all(16.0),
                   child: GestureDetector(
                     onLongPress: () => _showOptions(context, index, verseText),
                     child: Stack(
                       children: [
                         Container(
-                          padding: const EdgeInsets.all(16.0),
+                          padding:  EdgeInsets.all(16.0),
                           decoration: BoxDecoration(
                             color: isHighlighted
                                 ? const Color(0xff8EDFB9)
                                 : Colors.white,
                             borderRadius: BorderRadius.circular(8.0),
-                            border: const Border(
+                            border:  Border(
                               left: BorderSide(
                                 color: Color(0xffCDA434),
                                 width: 5,

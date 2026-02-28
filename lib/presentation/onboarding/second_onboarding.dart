@@ -1,5 +1,6 @@
-import 'package:dr_oplawrence_bible/presentation/auth/login_screen.dart';
+import 'package:dr_oplawrence_bible/core/route/route_name.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SecondOnboarding extends StatefulWidget {
   const SecondOnboarding({super.key});
@@ -14,7 +15,6 @@ class _SecondOnboardingState extends State<SecondOnboarding> {
     return Scaffold(
       body: Stack(
         children: [
-
           Positioned.fill(
             child: Image.asset(
               'assets/images/second_on_back.png',
@@ -22,38 +22,46 @@ class _SecondOnboardingState extends State<SecondOnboarding> {
             ),
           ),
 
-          // Positioned(
-          //   left: 20,
-          //   right: 20,
-          //   bottom: 160,
-          //   child: ElevatedButton(
-          //     style: ElevatedButton.styleFrom(
-          //       backgroundColor: const Color(0xff1F3B96),
-          //     ),
-          //     onPressed: () {
-          //       Navigator.pushReplacement(
-          //         context,
-          //         MaterialPageRoute(builder: (context) => LoginScreen()),
-          //       );
-          //     },
-          //     child: const Text('Here You Go'),
-          //   ),
-          // ),
           Positioned(
-            left: 20,
-            right: 20,
-            bottom: 100,
+            left: 20.w,
+            right: 20.w,
+            bottom: 160.h,
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFF1E3A8A),
+              ),
+              onPressed: () {
+                Navigator.pushNamedAndRemoveUntil(
+                  context,
+                  RouteNames.loginScreen,
+                  (route) => false,
+                );
+              },
+              child:  Text(
+                'Login',
+                style: TextStyle(color: Colors.white, fontSize: 20.sp),
+              ),
+            ),
+          ),
+          Positioned(
+            left: 20.w,
+            right: 20.w,
+            bottom: 100.h,
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xffCDA434),
               ),
               onPressed: () {
-                Navigator.pushReplacement(
+                Navigator.pushNamedAndRemoveUntil(
                   context,
-                  MaterialPageRoute(builder: (context) => LoginScreen()),
+                  RouteNames.parentScreen,
+                  (route) => false,
                 );
               },
-              child: const Text('Here You Go',style: TextStyle(color: Colors.black),),
+              child:  Text(
+                'Continue as Guest',
+                style: TextStyle(color: Colors.black54, fontSize: 20),
+              ),
             ),
           ),
         ],

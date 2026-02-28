@@ -1,4 +1,3 @@
-
 import 'package:dr_oplawrence_bible/core/resource/utils.dart';
 import 'package:dr_oplawrence_bible/core/route/route_name.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +14,7 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Color(0xffEBEBEB),
       body: SizedBox(
-        height: Utils.fullHeight(context) * 0.80,
+        height: Utils.fullHeight(context) * 0.80.h,
         child: SingleChildScrollView(
           child: Column(
             spacing: 15,
@@ -23,73 +22,18 @@ class HomeScreen extends StatelessWidget {
             children: [
               Stack(
                 children: [
-                  Image.asset('assets/images/home_upper.png',),
+                  Image.asset('assets/images/home_upper.png'),
                   Positioned(
-                      left: 20,
-                      right: 20,
-                      bottom: 100,
-                      top: 20,
-                      child: Lottie.asset('assets/lottie/Book with bookmark.json', height: 700.h, width: 700.w)),
-                  // Positioned(
-                  //   top: 50.h,
-                  //   left: 10.w,
-                  //   right: 10.w,
-                  //   child: ClipRRect(
-                  //     borderRadius: BorderRadius.circular(16.r),
-                  //     child: BackdropFilter(
-                  //       filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-                  //       child: Container(
-                  //         width: 320.w,
-                  //         height: 90.h,
-                  //         decoration: BoxDecoration(
-                  //           borderRadius: BorderRadius.circular(16.r),
-                  //           border: Border.all(color: Colors.white70),
-                  //           color: Colors.white.withOpacity(0.1),
-                  //         ),
-                  //         child: Padding(
-                  //           padding: const EdgeInsets.all(12.0),
-                  //           child: Row(
-                  //             spacing: 10,
-                  //             children: [
-                  //               CircleAvatar(
-                  //                 radius: 40,
-                  //                 child: Image.asset(
-                  //                   'assets/images/user.png',
-                  //                 ),
-                  //               ),
-                  //
-                  //               Column(
-                  //                 crossAxisAlignment:
-                  //                     CrossAxisAlignment.start,
-                  //                 mainAxisAlignment: MainAxisAlignment.center,
-                  //                 children: [
-                  //                   Text(
-                  //                     "Hi YAH'USHUA HAMASHIACH",
-                  //                     style: TextStyle(
-                  //                       fontWeight: FontWeight.w500,
-                  //                       fontSize: 16,
-                  //                       color: Color(0xffF7F5EF),
-                  //                     ),
-                  //                   ),
-                  //                   Text(
-                  //                     'God Bless You',
-                  //                     style: GoogleFonts.merriweather(
-                  //                       fontWeight: FontWeight.w700,
-                  //                       fontSize: 24,
-                  //                       color: Color(0xffFAD33E),
-                  //                     ),
-                  //                   ),
-                  //                 ],
-                  //               ),
-                  //               SizedBox(width: 30.w),
-                  //               // SvgPicture.asset('assets/icons/Bell.svg'),
-                  //             ],
-                  //           ),
-                  //         ),
-                  //       ),
-                  //     ),
-                  //   ),
-                  // ),
+                    left: 20.w,
+                    right: 20.w,
+                    bottom: 100.h,
+                    top: 20.h,
+                    child: Lottie.asset(
+                      'assets/lottie/Book with bookmark.json',
+                      height: 700.h,
+                      width: 700.w,
+                    ),
+                  ),
                   Positioned(
                     bottom: 30.h,
                     left: 5,
@@ -101,22 +45,26 @@ class HomeScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         spacing: 30,
                         children: [
-                          Column(mainAxisAlignment: MainAxisAlignment.center,
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             spacing: 15,
                             children: [
-                              Text(textAlign: TextAlign.center,
+                              Text(
+                                textAlign: TextAlign.center,
                                 'Now these are the names of the children\nof YisraEL, which came into Egypt;\nevery man and his household\ncame with Ya’aqob.',
                                 style: GoogleFonts.merriweather(
                                   fontSize: 17,
                                   fontWeight: FontWeight.w500,
                                   color: Colors.white,
                                 ),
-                              ),  Align(
+                              ),
+                              Align(
                                 alignment: AlignmentGeometry.center,
-                                child: Text(textAlign: TextAlign.end,
-                                "Exodus-1-1",
-                                                             style: GoogleFonts.merriweather(
+                                child: Text(
+                                  textAlign: TextAlign.end,
+                                  "Exodus-1-1",
+                                  style: GoogleFonts.merriweather(
                                     fontSize: 14,
                                     fontWeight: FontWeight.w500,
                                     color: Colors.white,
@@ -145,7 +93,7 @@ class HomeScreen extends StatelessWidget {
                               // ),
                             ],
                           ),
-      
+
                           // Text(
                           //   textAlign: TextAlign.center,
                           //   '''God is YAHAWAH ELOHIYM\nLord is YAHAWAH\n Amen is Ommah\nJesus Christ is YAH'USHUA HAMASHIACH''',
@@ -156,7 +104,7 @@ class HomeScreen extends StatelessWidget {
                           //     color: Colors.white,
                           //   ),
                           // ),
-      
+
                           // Text(
                           //   'GENESIS 1:3 >>',
                           //   style: TextStyle(
@@ -203,7 +151,7 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
               Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding:  EdgeInsets.all(16.0.w),
                 child: Column(
                   spacing: 20,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -212,36 +160,34 @@ class HomeScreen extends StatelessWidget {
                       'Prayer of the day',
                       style: GoogleFonts.merriweather(
                         fontWeight: FontWeight.w700,
-                        fontSize: 18,
+                        fontSize: 18.sp,
                         color: Color(0xff1A1A1A),
                       ),
                     ),
                     Image.asset('assets/images/prayer_day.png'),
-      
+
                     Container(
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(16.r),
                       ),
                       child: Padding(
-                        padding: const EdgeInsets.all(16.0),
+                        padding:  EdgeInsets.all(16.0.w),
                         child: Column(
                           spacing: 15,
                           children: [
                             Row(
-                              mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Column(
                                   spacing: 5,
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
                                       'Morning Pray',
                                       style: GoogleFonts.merriweather(
                                         fontWeight: FontWeight.w700,
-                                        fontSize: 18,
+                                        fontSize: 18.sp,
                                         color: Color(0xff1A1A1A),
                                       ),
                                     ),
@@ -249,7 +195,7 @@ class HomeScreen extends StatelessWidget {
                                       'Start Your Day With This Verse',
                                       style: TextStyle(
                                         fontWeight: FontWeight.w400,
-                                        fontSize: 16,
+                                        fontSize: 16.sp,
                                         color: Color(0xff4A4A4A),
                                       ),
                                     ),
@@ -258,7 +204,7 @@ class HomeScreen extends StatelessWidget {
                                 SvgPicture.asset('assets/images/tree.svg'),
                               ],
                             ),
-      
+
                             ElevatedButton(
                               onPressed: () {
                                 Navigator.pushNamed(
@@ -275,31 +221,29 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-      
+
                     Container(
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(16.r),
                       ),
                       child: Padding(
-                        padding: const EdgeInsets.all(16.0),
+                        padding:  EdgeInsets.all(16.0.w),
                         child: Column(
                           spacing: 15,
                           children: [
                             Row(
-                              mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Column(
                                   spacing: 5,
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
                                       'Gospel & Psalms of the Day',
                                       style: GoogleFonts.merriweather(
                                         fontWeight: FontWeight.w700,
-                                        fontSize: 18,
+                                        fontSize: 18.sp,
                                         color: Color(0xff1A1A1A),
                                       ),
                                     ),
@@ -307,7 +251,7 @@ class HomeScreen extends StatelessWidget {
                                       'Start Your Day With This Verse',
                                       style: TextStyle(
                                         fontWeight: FontWeight.w400,
-                                        fontSize: 16,
+                                        fontSize: 16.sp,
                                         color: Color(0xff4A4A4A),
                                       ),
                                     ),
@@ -316,7 +260,7 @@ class HomeScreen extends StatelessWidget {
                                 SvgPicture.asset('assets/images/star.svg'),
                               ],
                             ),
-      
+
                             ElevatedButton(
                               onPressed: () {
                                 Navigator.pushNamed(
@@ -333,7 +277,7 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-      
+
                     Row(
                       spacing: 20,
                       children: [
@@ -341,7 +285,7 @@ class HomeScreen extends StatelessWidget {
                           onTap: () {
                             Navigator.pushNamed(
                               context,
-                              RouteNames.highlightsScreen,
+                              RouteNames.quizQuestionScreen,
                             );
                           },
                           child: Container(
@@ -351,16 +295,20 @@ class HomeScreen extends StatelessWidget {
                               borderRadius: BorderRadius.circular(10.r),
                             ),
                             child: Padding(
-                              padding: const EdgeInsets.all(12.0),
+                              padding:  EdgeInsets.all(12.0.w),
                               child: Column(
                                 spacing: 9,
                                 children: [
-                                  SvgPicture.asset('assets/images/star.svg',width: 40.w,height: 40.h,),
+                                  SvgPicture.asset(
+                                    'assets/icons/quiz.svg',
+                                    width: 40.w,
+                                    height: 40.h,
+                                  ),
                                   Text(
-                                    'Highlight',
+                                    'Quiz',
                                     style: GoogleFonts.merriweather(
                                       fontWeight: FontWeight.w400,
-                                      fontSize: 16,
+                                      fontSize: 16.sp,
                                       color: Color(0xff1A1A1A),
                                     ),
                                   ),
@@ -383,13 +331,13 @@ class HomeScreen extends StatelessWidget {
                               borderRadius: BorderRadius.circular(10.r),
                             ),
                             child: Padding(
-                              padding: const EdgeInsets.all(12.0),
+                              padding:  EdgeInsets.all(12.0.w),
                               child: Column(
                                 spacing: 5,
                                 children: [
                                   SizedBox(
-                                    width: 43,
-                                    height: 43,
+                                    width: 43.w,
+                                    height: 43.h,
                                     child: Image.asset(
                                       'assets/icons/login_icons.png',
                                     ),
@@ -398,7 +346,7 @@ class HomeScreen extends StatelessWidget {
                                     'Bible',
                                     style: GoogleFonts.merriweather(
                                       fontWeight: FontWeight.w400,
-                                      fontSize: 18,
+                                      fontSize: 18.sp,
                                       color: Color(0xff1A1A1A),
                                     ),
                                   ),
@@ -411,7 +359,7 @@ class HomeScreen extends StatelessWidget {
                           onTap: () {
                             Navigator.pushNamed(
                               context,
-                              RouteNames.glossaryScreen,
+                              RouteNames.searchScreen,
                             );
                           },
                           child: Container(
@@ -421,22 +369,22 @@ class HomeScreen extends StatelessWidget {
                               borderRadius: BorderRadius.circular(10.r),
                             ),
                             child: Padding(
-                              padding: const EdgeInsets.all(12.0),
+                              padding:  EdgeInsets.all(12.0.w),
                               child: Column(
                                 spacing: 5,
                                 children: [
                                   SizedBox(
-                                    width: 43,
-                                    height: 43,
+                                    width: 43.w,
+                                    height: 43.h,
                                     child: SvgPicture.asset(
                                       'assets/icons/searching.svg',
                                     ),
                                   ),
                                   Text(
-                                    'Glossary',
+                                    'Search',
                                     style: GoogleFonts.merriweather(
                                       fontWeight: FontWeight.w400,
-                                      fontSize: 18,
+                                      fontSize: 18.sp,
                                       color: Color(0xff1A1A1A),
                                     ),
                                   ),
@@ -447,7 +395,7 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-      
+
                     GestureDetector(
                       onTap: () {
                         Navigator.pushNamed(
@@ -461,7 +409,7 @@ class HomeScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10.r),
                         ),
                         child: Padding(
-                          padding: const EdgeInsets.all(16.0),
+                          padding:  EdgeInsets.all(16.0.w),
                           child: Row(
                             spacing: 10,
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -472,7 +420,7 @@ class HomeScreen extends StatelessWidget {
                                 'Archived Daily Devotionals',
                                 style: GoogleFonts.merriweather(
                                   fontWeight: FontWeight.w400,
-                                  fontSize: 18,
+                                  fontSize: 18.sp,
                                   color: Color(0xff1A1A1A),
                                 ),
                               ),
@@ -481,16 +429,16 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-      
+
                     Text(
                       "YAHAWAH ELOHIYM's words for today",
                       style: TextStyle(
                         fontWeight: FontWeight.w400,
-                        fontSize: 20,
+                        fontSize: 20.sp,
                         color: Color(0xff4A4A4A),
                       ),
                     ),
-      
+
                     Row(
                       spacing: 10,
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -501,7 +449,7 @@ class HomeScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(30.r),
                           ),
                           child: Padding(
-                            padding: const EdgeInsets.all(12.0),
+                            padding:  EdgeInsets.all(12.0.w),
                             child: Row(
                               spacing: 10,
                               crossAxisAlignment: CrossAxisAlignment.center,
@@ -512,7 +460,7 @@ class HomeScreen extends StatelessWidget {
                                   'Barakat  ',
                                   style: TextStyle(
                                     fontWeight: FontWeight.w400,
-                                    fontSize: 18,
+                                    fontSize: 18.sp,
                                     color: Color(0xff1A1A1A),
                                   ),
                                 ),
@@ -526,7 +474,7 @@ class HomeScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(30.r),
                           ),
                           child: Padding(
-                            padding: const EdgeInsets.all(12.0),
+                            padding:  EdgeInsets.all(12.0.w),
                             child: Row(
                               spacing: 10,
                               crossAxisAlignment: CrossAxisAlignment.center,
@@ -537,7 +485,7 @@ class HomeScreen extends StatelessWidget {
                                   'Peace ',
                                   style: TextStyle(
                                     fontWeight: FontWeight.w400,
-                                    fontSize: 18,
+                                    fontSize: 18.sp,
                                     color: Color(0xff1A1A1A),
                                   ),
                                 ),
@@ -557,7 +505,7 @@ class HomeScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(30.r),
                           ),
                           child: Padding(
-                            padding: const EdgeInsets.all(12.0),
+                            padding:  EdgeInsets.all(12.0.w),
                             child: Row(
                               children: [
                                 SvgPicture.asset('assets/icons/love.svg'),
@@ -565,7 +513,7 @@ class HomeScreen extends StatelessWidget {
                                   ' Love ',
                                   style: TextStyle(
                                     fontWeight: FontWeight.w400,
-                                    fontSize: 18,
+                                    fontSize: 18.sp,
                                     color: Color(0xff1A1A1A),
                                   ),
                                 ),
@@ -579,20 +527,18 @@ class HomeScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(30.r),
                           ),
                           child: Padding(
-                            padding: const EdgeInsets.all(12.0),
+                            padding:  EdgeInsets.all(12.0.w),
                             child: Row(
                               spacing: 10,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                SvgPicture.asset(
-                                  'assets/icons/Salvation.svg',
-                                ),
+                                SvgPicture.asset('assets/icons/Salvation.svg'),
                                 Text(
                                   'Salvation  ',
                                   style: TextStyle(
                                     fontWeight: FontWeight.w400,
-                                    fontSize: 18,
+                                    fontSize: 18.sp,
                                     color: Color(0xff1A1A1A),
                                   ),
                                 ),
@@ -606,7 +552,7 @@ class HomeScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(30.r),
                           ),
                           child: Padding(
-                            padding: const EdgeInsets.all(12.0),
+                            padding:  EdgeInsets.all(12.0.w),
                             child: Row(
                               spacing: 10,
                               crossAxisAlignment: CrossAxisAlignment.center,
@@ -617,7 +563,7 @@ class HomeScreen extends StatelessWidget {
                                   'Faith ',
                                   style: TextStyle(
                                     fontWeight: FontWeight.w400,
-                                    fontSize: 18,
+                                    fontSize: 18.sp,
                                     color: Color(0xff1A1A1A),
                                   ),
                                 ),
@@ -636,6 +582,7 @@ class HomeScreen extends StatelessWidget {
       ),
     );
   }
+
   Widget shimmer({
     String? name,
     required BuildContext context,
@@ -645,7 +592,7 @@ class HomeScreen extends StatelessWidget {
     return Center(
       child: Container(
         child: Lottie.asset(
-          name ??  'assets/lottie/Book with bookmark.json',
+          name ?? 'assets/lottie/Book with bookmark.json',
           width: size,
           height: size,
         ),

@@ -26,6 +26,7 @@ class RouteNames {
   static const String prayerScreen = "/prayerScreen";
   static const String glossaryScreen = "/glossaryScreen";
   static const String highlightsScreen = "/highlightsScreen";
+  static const String bottomn = "/highlightsScreen";
   // static const String careBottomNavBarScreen = "/careBottomNavBarScreen";
   // static const String onboardingScreen = "/onboardingScreen";
 }

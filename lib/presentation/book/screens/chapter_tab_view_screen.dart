@@ -25,7 +25,7 @@ class _ChapterTabViewState extends State<ChapterTabView> {
     return Column(crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.only(left: 18.0),
+          padding:  EdgeInsets.only(left: 18.0),
           child: Text(
             "${widget.book.name} ${widget.book.chapters.length}",
             style: GoogleFonts.merriweather(
@@ -36,7 +36,7 @@ class _ChapterTabViewState extends State<ChapterTabView> {
         ),
         Expanded(
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding:  EdgeInsets.all(16.0),
             child: GridView.builder(
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 6,
@@ -62,16 +62,16 @@ class _ChapterTabViewState extends State<ChapterTabView> {
                     decoration: BoxDecoration(
                       color: isSelected ? const Color(0xffCDA434) : Colors.white,
                       borderRadius: BorderRadius.circular(8),
-                      boxShadow: const [
+                      boxShadow:  [
                         BoxShadow(
                             color: Colors.black12, blurRadius: 4, offset: Offset(0, 2)),
                       ],
                     ),
                     alignment: Alignment.center,
                     child: isSelected
-                        ? const CircularProgressIndicator(strokeWidth: 2)
+                        ?  CircularProgressIndicator(strokeWidth: 2)
                         : Text("${chapter.number}",
-                        style: const TextStyle(
+                        style:  TextStyle(
                             fontSize: 16, fontWeight: FontWeight.w600)),
                   ),
                 );

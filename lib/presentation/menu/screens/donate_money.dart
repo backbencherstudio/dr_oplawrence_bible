@@ -18,7 +18,7 @@ class _DonationScreenState extends State<DonationScreen> {
     'United States',
     'Canada',
     'Mexico',
-    'United Kingdom'
+    'United Kingdom',
   ];
 
   void _showSuccessDialog() {
@@ -28,44 +28,40 @@ class _DonationScreenState extends State<DonationScreen> {
       builder: (context) {
         return AlertDialog(
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(12.r),
           ),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Icon(
-                Icons.check_circle,
-                color: Colors.green,
-                size: 60,
-              ),
-              const SizedBox(height: 16),
-              const Text(
+              const Icon(Icons.check_circle, color: Colors.green, size: 60),
+               SizedBox(height: 16.h),
+               Text(
                 'Payment Successful',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600,
-                ),
+                style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w600),
               ),
-              const SizedBox(height: 8),
-              const Text(
+               SizedBox(height: 8.h),
+               Text(
                 "You've successfully completed your order",
                 textAlign: TextAlign.center,
               ),
-              const SizedBox(height: 24),
+               SizedBox(height: 24.h),
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
                     Navigator.pop(context);
-                    Navigator.pushNamed(
-                        context, RouteNames.parentScreen);
+                    Navigator.pushNamedAndRemoveUntil(
+                      context,
+                      RouteNames.parentScreen,
+                      (router) => false,
+                    );
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xff1F3B96),
                   ),
-                  child: const Text('Back to Homepage'),
+                  child:  Text('Back to Homepage'),
                 ),
-              )
+              ),
             ],
           ),
         );
@@ -85,7 +81,7 @@ class _DonationScreenState extends State<DonationScreen> {
         ),
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16.0),
+        padding:  EdgeInsets.all(16.0.w),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -94,50 +90,50 @@ class _DonationScreenState extends State<DonationScreen> {
               'Donate Money',
               style: GoogleFonts.merriweather(
                 color: const Color(0xffB02626),
-                fontSize: 18,
+                fontSize: 18.sp,
                 fontWeight: FontWeight.w400,
               ),
             ),
             const Divider(color: Color(0xffB02626), thickness: 1),
             SizedBox(height: 10.h),
-            const Text('Add card', style: TextStyle(fontSize: 16)),
-            const SizedBox(height: 15),
-            const Text(
+             Text('Add card', style: TextStyle(fontSize: 16.sp)),
+             SizedBox(height: 15.h),
+             Text(
               'Card information',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+              style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w400),
             ),
-            const SizedBox(height: 8),
+             SizedBox(height: 8.h),
             TextFormField(
               decoration: InputDecoration(
                 fillColor: const Color(0xffEBEBEB),
                 hintText: 'Card Number',
                 suffixIcon: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding:  EdgeInsets.all(8.0.r),
                   child: SvgPicture.asset('assets/images/Card1.svg'),
                 ),
               ),
               keyboardType: TextInputType.number,
             ),
-            const SizedBox(height: 8),
+             SizedBox(height: 8.h),
             Row(
               children: [
                 Expanded(
                   child: TextFormField(
-                    decoration: const InputDecoration(
+                    decoration:  InputDecoration(
                       fillColor: Color(0xffEBEBEB),
                       hintText: 'MM/YY',
                     ),
                     keyboardType: TextInputType.datetime,
                   ),
                 ),
-                const SizedBox(width: 8),
+                 SizedBox(width: 8.w),
                 Expanded(
                   child: TextFormField(
-                    decoration:  InputDecoration(
+                    decoration: InputDecoration(
                       fillColor: Color(0xffEBEBEB),
                       hintText: 'CVC',
                       suffixIcon: Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding:  EdgeInsets.all(8.0.w),
                         child: SvgPicture.asset('assets/images/Card 2.svg'),
                       ),
                     ),
@@ -146,21 +142,20 @@ class _DonationScreenState extends State<DonationScreen> {
                 ),
               ],
             ),
-            const SizedBox(height: 24),
-            const Text('Billing address', style: TextStyle(fontSize: 16)),
-            const SizedBox(height: 8),
+             SizedBox(height: 24.h),
+             Text('Billing address', style: TextStyle(fontSize: 16.sp)),
+             SizedBox(height: 8.h),
             DropdownButtonFormField(
-              decoration: const InputDecoration(
+              decoration:  InputDecoration(
                 fillColor: Color(0xffEBEBEB),
-                contentPadding:
-                EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                contentPadding: EdgeInsets.symmetric(
+                  horizontal: 10.w,
+                  vertical: 5.h,
+                ),
               ),
               value: _selectedCountry,
               items: _countries.map((country) {
-                return DropdownMenuItem(
-                  value: country,
-                  child: Text(country),
-                );
+                return DropdownMenuItem(value: country, child: Text(country));
               }).toList(),
               onChanged: (value) {
                 setState(() {
@@ -168,17 +163,17 @@ class _DonationScreenState extends State<DonationScreen> {
                 });
               },
             ),
-            const SizedBox(height: 8),
-            const TextField(
+             SizedBox(height: 8.h),
+             TextField(
               decoration: InputDecoration(
                 fillColor: Color(0xffEBEBEB),
                 hintText: 'ZIP',
               ),
               keyboardType: TextInputType.number,
             ),
-            const SizedBox(height: 24),
-            const Text('Amount', style: TextStyle(fontSize: 16)),
-            const SizedBox(height: 8),
+             SizedBox(height: 24.h),
+             Text('Amount', style: TextStyle(fontSize: 16)),
+             SizedBox(height: 8.h),
             TextFormField(
               decoration: const InputDecoration(
                 fillColor: Color(0xffEBEBEB),
@@ -186,7 +181,7 @@ class _DonationScreenState extends State<DonationScreen> {
               ),
               keyboardType: TextInputType.number,
             ),
-            const SizedBox(height: 16),
+             SizedBox(height: 16.h),
             Row(
               children: [
                 Checkbox(
@@ -207,8 +202,8 @@ class _DonationScreenState extends State<DonationScreen> {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xff1F3B96),
                 ),
-                child: const Padding(
-                  padding: EdgeInsets.all(8.0),
+                child:  Padding(
+                  padding: EdgeInsets.all(8.0.w),
                   child: Text('Pay'),
                 ),
               ),
