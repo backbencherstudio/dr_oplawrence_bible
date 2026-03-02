@@ -1,8 +1,8 @@
-import 'package:dr_oplawrence_bible/core/route/route_name.dart';
 import 'package:flutter/material.dart';
-
-// Assuming RouteNames is defined in your project
-// import 'package:dr_oplawrence_bible/core/route/route_name.dart';
+import 'package:dr_oplawrence_bible/core/route/route_name.dart';
+import '../../../../../data/sources/local/shared_preference/shared_preference.dart';
+import '../../../../../data/sources/remote/auth_api_services.dart';
+import '../../../../../core/network/api_clients.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -14,13 +14,67 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   bool _obscureText = true;
   bool _rememberMe = true;
+  bool _isLoading = false;
+
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
+  final AuthApiServices authService = AuthApiServices(apiClient: ApiClient());
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
+  Future<void> login() async {
+    final email = emailController.text.trim();
+    final password = passwordController.text.trim();
+
+    if (email.isEmpty || password.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Please enter email and password")),
+      );
+      return;
+    }
+
+    setState(() => _isLoading = true);
+
+    try {
+      final res = await authService.login(email: email, password: password);
+
+      if (res != null && res['success'] == true) {
+        // Save token and email
+        final token = res['token'];
+        await SharedPreferenceData().setToken(token);
+        await SharedPreferenceData().setEmailId(email);
+
+        // Navigate to home screen
+        if (!mounted) return;
+        Navigator.pushNamedAndRemoveUntil(
+          context,
+          RouteNames.parentScreen,
+          (route) => false,
+        );
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(res['message'] ?? "Login failed")),
+        );
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text("Error: $e")));
+    } finally {
+      setState(() => _isLoading = false);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(
-        0xFFF8F7F2,
-      ), // Matches the off-white background
+      backgroundColor: const Color(0xFFF8F7F2),
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -29,7 +83,6 @@ class _LoginScreenState extends State<LoginScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Icon/Logo
                 Center(
                   child: Image.asset(
                     'assets/icons/login_icons.png',
@@ -42,29 +95,26 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 const SizedBox(height: 20),
-
-                // Welcome Text
                 const Center(
                   child: Text(
                     'Hi, Welcome Back!',
                     style: TextStyle(
                       fontSize: 28,
                       fontWeight: FontWeight.bold,
-                      fontFamily:
-                          'Serif', // Using serif to match the image style
+                      fontFamily: 'Serif',
                       color: Color(0xFF1A1A1A),
                     ),
                   ),
                 ),
                 const SizedBox(height: 40),
 
-                // Email Field
                 const Text(
                   "Email",
                   style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
                 ),
                 const SizedBox(height: 8),
                 TextFormField(
+                  controller: emailController,
                   decoration: InputDecoration(
                     hintText: "example@gmail.com",
                     hintStyle: const TextStyle(color: Colors.grey),
@@ -86,13 +136,13 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 const SizedBox(height: 20),
 
-                // Password Field
                 const Text(
                   "Password",
                   style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
                 ),
                 const SizedBox(height: 8),
                 TextFormField(
+                  controller: passwordController,
                   obscureText: _obscureText,
                   decoration: InputDecoration(
                     hintText: "enter your password",
@@ -124,7 +174,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 const SizedBox(height: 16),
 
-                // Remember Me & Forgot Password
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -148,9 +197,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       ],
                     ),
                     TextButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, RouteNames.forgotPass);
-                      },
+                      onPressed: () =>
+                          Navigator.pushNamed(context, RouteNames.forgotPass),
                       child: const Text(
                         "Forgot Password?",
                         style: TextStyle(
@@ -163,15 +211,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 const SizedBox(height: 30),
 
-                // Login Button
                 ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushNamedAndRemoveUntil(
-                      context,
-                      RouteNames.parentScreen,
-                      (route) => false,
-                    );
-                  },
+                  onPressed: _isLoading ? null : login,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF1E3A8A),
                     foregroundColor: Colors.white,
@@ -181,15 +222,18 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     elevation: 0,
                   ),
-                  child: const Text(
-                    'Login',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
+                  child: _isLoading
+                      ? const CircularProgressIndicator(color: Colors.white)
+                      : const Text(
+                          'Login',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                 ),
-
                 const SizedBox(height: 100),
 
-                // Sign Up Text
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -201,13 +245,11 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                     GestureDetector(
-                      onTap: () {
-                        Navigator.pushNamedAndRemoveUntil(
-                          context,
-                          RouteNames.signUpScreen,
-                          (route) => false,
-                        );
-                      },
+                      onTap: () => Navigator.pushNamedAndRemoveUntil(
+                        context,
+                        RouteNames.signUpScreen,
+                        (route) => false,
+                      ),
                       child: const Text(
                         "Sign Up",
                         style: TextStyle(

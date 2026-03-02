@@ -9,6 +9,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../data/sources/local/shared_preference/shared_preference.dart';
+
 class MyNotesScreen extends StatefulWidget {
   const MyNotesScreen({super.key});
 
@@ -238,11 +240,20 @@ class _MyNotesScreenState extends State<MyNotesScreen> {
                     ],
                   ),
                   SizedBox(height: 50.h),
+
+                  // =========== LogOut Button =================
                   SizedBox(
                     width: 300, // button width
                     height: 50, // button height
                     child: ElevatedButton(
-                      onPressed: () {
+                      onPressed: () async {
+                        // Clear saved data
+                        await SharedPreferenceData.removeToken();
+                        await SharedPreferenceData.removeRole();
+                        await SharedPreferenceData().removeEmailId();
+
+                        // Navigate to login screen
+                        if (!mounted) return;
                         Navigator.pushNamedAndRemoveUntil(
                           context,
                           RouteNames.loginScreen,
@@ -250,13 +261,13 @@ class _MyNotesScreenState extends State<MyNotesScreen> {
                         );
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Color(0xffB02626),
+                        backgroundColor: const Color(0xffB02626),
                         padding: const EdgeInsets.symmetric(
                           horizontal: 16,
                           vertical: 12,
                         ),
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12), // optional
+                          borderRadius: BorderRadius.circular(12),
                         ),
                       ),
                       child: const Text(
@@ -264,7 +275,8 @@ class _MyNotesScreenState extends State<MyNotesScreen> {
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 16,
-                          color: ColorsManager.whiteColor,
+                          color: Colors
+                              .white, // replace ColorsManager.whiteColor if needed
                         ),
                       ),
                     ),
@@ -433,4 +445,18 @@ abstract class BaseListScreenState<T extends BaseListScreen> extends State<T> {
   }
 
   String getTitle();
+}
+
+Future<void> logout(BuildContext context) async {
+  // Remove saved data
+  await SharedPreferenceData.removeToken();
+  await SharedPreferenceData.removeRole();
+  await SharedPreferenceData().removeEmailId();
+
+  // Navigate to login screen and remove all previous screens
+  Navigator.pushNamedAndRemoveUntil(
+    context,
+    RouteNames.loginScreen,
+    (route) => false,
+  );
 }
