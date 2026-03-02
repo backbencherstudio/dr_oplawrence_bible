@@ -22,8 +22,8 @@ class _OtpScreenState extends State<OtpScreen> {
   @override
   void initState() {
     super.initState();
-    controllers = List.generate(4, (_) => TextEditingController());
-    focusNodes = List.generate(4, (_) => FocusNode());
+    controllers = List.generate(6, (_) => TextEditingController());
+    focusNodes = List.generate(6, (_) => FocusNode());
     startTimer();
   }
 
@@ -51,10 +51,9 @@ class _OtpScreenState extends State<OtpScreen> {
 
   void resendCode() {
     if (canResend) {
-
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("New OTP sent!")),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text("New OTP sent!")));
       startTimer();
     }
   }
@@ -73,10 +72,10 @@ class _OtpScreenState extends State<OtpScreen> {
     }
   }
 
-  Widget otpBox(int index) {
+  Widget otpBox(int index, double boxWidth) {
     return SizedBox(
-      width: 75,
-      height: 75,
+      width: boxWidth,
+      height: boxWidth,
       child: TextField(
         controller: controllers[index],
         focusNode: focusNodes[index],
@@ -84,7 +83,7 @@ class _OtpScreenState extends State<OtpScreen> {
         keyboardType: TextInputType.number,
         inputFormatters: [FilteringTextInputFormatter.digitsOnly],
         maxLength: 1,
-        style:  TextStyle(
+        style: const TextStyle(
           fontSize: 28,
           fontWeight: FontWeight.bold,
           color: Colors.white,
@@ -92,18 +91,18 @@ class _OtpScreenState extends State<OtpScreen> {
         decoration: InputDecoration(
           counterText: "",
           filled: true,
-          fillColor:  Color(0xffB02626),
+          fillColor: const Color(0xffB02626),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
             borderSide: BorderSide.none,
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
-            borderSide:  BorderSide(color: Colors.white, width: 2),
+            borderSide: const BorderSide(color: Colors.white, width: 2),
           ),
         ),
         onChanged: (value) {
-          if (value.length == 1 && index < 3) {
+          if (value.length == 1 && index < 5) {
             focusNodes[index + 1].requestFocus();
           } else if (value.isEmpty && index > 0) {
             focusNodes[index - 1].requestFocus();
@@ -128,15 +127,22 @@ class _OtpScreenState extends State<OtpScreen> {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double horizontalPadding = 30;
+    double spacingBetweenBoxes = 10;
+    double boxWidth =
+        (screenWidth - horizontalPadding * 2 - (5 * spacingBetweenBoxes)) / 6;
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: Padding(
-        padding:  EdgeInsets.symmetric(horizontal: 30),
-        child: Column(mainAxisAlignment: MainAxisAlignment.center,
+        padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset('assets/icons/login_icons.png',scale: 3,),
-             SizedBox(height: 25),
-             Text(
+            Image.asset('assets/icons/login_icons.png', scale: 3),
+            const SizedBox(height: 25),
+            const Text(
               'OTP Verification',
               textAlign: TextAlign.center,
               style: TextStyle(
@@ -145,8 +151,8 @@ class _OtpScreenState extends State<OtpScreen> {
                 color: Color(0xff1A1A1A),
               ),
             ),
-             SizedBox(height: 10),
-             Text(
+            const SizedBox(height: 10),
+            const Text(
               'Enter the verification code we just\nsent on your Phone Number.',
               textAlign: TextAlign.center,
               style: TextStyle(
@@ -155,75 +161,77 @@ class _OtpScreenState extends State<OtpScreen> {
                 color: Color(0xff343434),
               ),
             ),
-             SizedBox(height: 30),
+            const SizedBox(height: 30),
 
+            // OTP Boxes Row
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: List.generate(6, (index) => otpBox(index, boxWidth)),
+            ),
+            const SizedBox(height: 20),
 
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: List.generate(4, (index) => otpBox(index)),
-            ),
-
-             SizedBox(height: 20),
-
-            Row(crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
+                const Text(
                   "Resend code in",
-                  style:  TextStyle(
-                    color: Colors.grey.shade700,
+                  style: TextStyle(
+                    color: Colors.grey,
                     fontSize: 15,
-                      fontWeight: FontWeight.w500
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
                 Text(
                   " 00:${secondsRemaining.toString().padLeft(2, '0')}",
-                  style:  TextStyle(
+                  style: const TextStyle(
                     color: Color(0xffB02626),
                     fontSize: 15,
-                      fontWeight: FontWeight.w500
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
               ],
             ),
-             SizedBox(height: 8),
+            const SizedBox(height: 8),
             GestureDetector(
               onTap: canResend ? resendCode : null,
               child: Text(
                 "or Receive code via call",
                 style: TextStyle(
-                  color: canResend ? Color(0xffB02626) : Colors.grey,
+                  color: canResend ? const Color(0xffB02626) : Colors.grey,
                   fontSize: 15,
-                  fontWeight: FontWeight.w500
+                  fontWeight: FontWeight.w500,
                 ),
               ),
             ),
+            const SizedBox(height: 20),
 
-             SizedBox(height: 20),
-
-            Row(crossAxisAlignment: CrossAxisAlignment.center,
+            Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              spacing: 20,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 SizedBox(
                   width: 150,
                   height: 50,
                   child: OutlinedButton(
-                    onPressed: (){ Navigator.pop(context);},
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
                     style: OutlinedButton.styleFrom(
-                      side:  BorderSide(color:Colors.blue.shade900, width: 1.5),
+                      side: BorderSide(color: Colors.blue.shade900, width: 1.5),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
-                    child:  Text(
+                    child: Text(
                       "Back",
-                      style: TextStyle(color: Colors.blue.shade900, fontSize: 16),
+                      style: TextStyle(
+                        color: Colors.blue.shade900,
+                        fontSize: 16,
+                      ),
                     ),
                   ),
                 ),
-
-
+                const SizedBox(width: 20),
                 SizedBox(
                   width: 150,
                   height: 50,
@@ -236,7 +244,7 @@ class _OtpScreenState extends State<OtpScreen> {
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
-                    child:  Text(
+                    child: const Text(
                       "Submit",
                       style: TextStyle(color: Colors.white, fontSize: 16),
                     ),

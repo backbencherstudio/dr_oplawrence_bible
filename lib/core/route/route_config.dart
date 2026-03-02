@@ -26,10 +26,10 @@ import 'package:dr_oplawrence_bible/core/route/route_name.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../presentation/auth/createPass/view/create_pass.dart';
-import '../../presentation/auth/forgotPass/view/forgot_pass.dart';
+import '../../presentation/auth/logIn/createPass/view/create_pass.dart';
+import '../../presentation/auth/logIn/forgotPass/view/forgot_pass.dart';
 import '../../presentation/auth/logIn/view/login_screen.dart';
-import '../../presentation/auth/forgotPass/otp/view/otp_screen.dart';
+import '../../presentation/auth/logIn/forgotPass/otp/view/otp_screen.dart';
 import '../../presentation/auth/signup/otp/view/otp_signup_screen.dart';
 import '../../presentation/auth/signup/view/sign_up_screen.dart';
 import '../../presentation/book/book_screen.dart';
