@@ -1,7 +1,8 @@
 class ApiEndpoints {
   static const String baseUrl =
-      "https://maui-intermediate-represented-option.trycloudflare.com";
+      "https://bible.pixelstack.cloud/";
   static const String users = 'api/auth/register';
+  static const String verifyemail = 'api/auth/verify-email';
    static const String login = 'api/auth/login';
   static const String switchRole = 'api/auth/switch-role';
   static const String verifyMail = 'api/auth/verify-email';

@@ -1,16 +1,16 @@
+import 'package:dr_oplawrence_bible/presentation/plan/plan_Screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/legacy.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../book/book_screen.dart';
-import '../../book/screens/glossary/glossary_screen.dart';
 import '../../home/view/home_screen.dart';
-import '../../home/view/screens/lottie_Screen.dart';
 import '../../menu/my_notes_screen.dart';
 
-final parentScreenProvider =
-ChangeNotifierProvider<ParentScreenProvider>((ref) {
+final parentScreenProvider = ChangeNotifierProvider<ParentScreenProvider>((
+  ref,
+) {
   return ParentScreenProvider();
 });
 
@@ -35,9 +35,10 @@ class ParentScreen extends ConsumerWidget {
 
     final List<Widget> pages = [
       HomeScreen(),
-     // LottieScreen(),
+      // LottieScreen(),
       BookListScreen(bibleVM: bibleVM),
-      GlossaryScreen(),
+      VideoStoriesScreen(),
+      //GlossaryScreen(),
       MyNotesScreen(),
     ];
 
@@ -95,7 +96,7 @@ class ParentScreen extends ConsumerWidget {
                             ref: ref,
                             index: 1,
                             label: 'Bible',
-                            iconPath: 'assets/icons/books.svg',
+                            iconPath: 'assets/icons/Bible.svg',
                             baseSize: 27,
                             selectedIconColor: const Color(0xff0D5593),
                           ),
@@ -103,8 +104,8 @@ class ParentScreen extends ConsumerWidget {
                             context: context,
                             ref: ref,
                             index: 2,
-                            label: 'Glossary',
-                            iconPath: 'assets/icons/notes_icon.svg',
+                            label: 'Plan',
+                            iconPath: 'assets/icons/plan.svg',
                             baseSize: 24,
                             selectedIconColor: const Color(0xff0D5593),
                           ),
@@ -142,8 +143,7 @@ class ParentScreen extends ConsumerWidget {
     final navProvider = ref.watch(parentScreenProvider);
     final isSelected = navProvider.selectedIndex == index;
 
-    final double iconSize =
-    isSelected ? (baseSize + 4).w : baseSize.w;
+    final double iconSize = isSelected ? (baseSize + 4).w : baseSize.w;
 
     return SizedBox(
       width: 60.w,
@@ -153,9 +153,8 @@ class ParentScreen extends ConsumerWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             GestureDetector(
-              onTap: () => ref
-                  .read(parentScreenProvider.notifier)
-                  .changeIndex(index),
+              onTap: () =>
+                  ref.read(parentScreenProvider.notifier).changeIndex(index),
               child: AnimatedContainer(
                 duration: const Duration(milliseconds: 220),
                 curve: Curves.easeOut,
@@ -173,8 +172,7 @@ class ParentScreen extends ConsumerWidget {
             Text(
               label,
               style: TextStyle(
-                color:
-                isSelected ? selectedIconColor : const Color(0xff4C4C4C),
+                color: isSelected ? selectedIconColor : const Color(0xff4C4C4C),
                 fontSize: 12.sp,
                 fontWeight: FontWeight.w700,
               ),

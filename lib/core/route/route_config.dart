@@ -26,11 +26,12 @@ import 'package:dr_oplawrence_bible/core/route/route_name.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../presentation/auth/create_pass.dart';
-import '../../presentation/auth/forgot_pass.dart';
-import '../../presentation/auth/login_screen.dart';
-import '../../presentation/auth/otp_screen.dart';
-import '../../presentation/auth/sign_up_screen.dart';
+import '../../presentation/auth/createPass/view/create_pass.dart';
+import '../../presentation/auth/forgotPass/view/forgot_pass.dart';
+import '../../presentation/auth/logIn/view/login_screen.dart';
+import '../../presentation/auth/forgotPass/otp/view/otp_screen.dart';
+import '../../presentation/auth/signup/otp/view/otp_signup_screen.dart';
+import '../../presentation/auth/signup/view/sign_up_screen.dart';
 import '../../presentation/book/book_screen.dart';
 import '../../presentation/book/screens/glossary/glossary_screen.dart';
 import '../../presentation/bottom_nav/view/bottom_nav.dart';
@@ -51,7 +52,7 @@ import '../../presentation/quiz/screens/quiz_test_start.dart';
 import '../../presentation/quiz/screens/study_more.dart';
 import '../../presentation/search/search_screen.dart';
 import '../../presentation/splash/view/splash_screen.dart';
- // contains BibleViewModel
+// contains BibleViewModel
 
 class AppRoutes {
   static final BibleViewModel bibleVM = BibleViewModel();
@@ -70,7 +71,8 @@ class AppRoutes {
     RouteNames.parentScreen: (context) => const ParentScreen(),
     RouteNames.morningPrayerScreen: (context) => const MorningPrayerScreen(),
     RouteNames.gospelPsalmScreen: (context) => const GospelPsalmScreen(),
-    RouteNames.archievedDailyDevotionalsScreen: (context) => const ArchievedDailyDevotionalsScreen(),
+    RouteNames.archievedDailyDevotionalsScreen: (context) =>
+        const ArchievedDailyDevotionalsScreen(),
     RouteNames.searchScreen: (context) => const SearchScreen(),
     RouteNames.videoStoriesScreen: (context) => const VideoStoriesScreen(),
     RouteNames.quizScreen: (context) => const QuizScreen(),
@@ -82,7 +84,10 @@ class AppRoutes {
     RouteNames.prayerScreen: (context) => const PrayerScreen(),
     RouteNames.glossaryScreen: (context) => const GlossaryScreen(),
     RouteNames.highlightsScreen: (context) => const HighlightsScreen(),
-
+    RouteNames.signupOtpScreen: (context) {
+      final email = ModalRoute.of(context)!.settings.arguments as String;
+      return OtpSignupScreen(email: email);
+    },
 
     RouteNames.bookListScreen: (context) => BookListScreen(bibleVM: bibleVM),
   };

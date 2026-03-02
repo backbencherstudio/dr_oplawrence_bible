@@ -84,7 +84,7 @@ class _OtpScreenState extends State<OtpScreen> {
         keyboardType: TextInputType.number,
         inputFormatters: [FilteringTextInputFormatter.digitsOnly],
         maxLength: 1,
-        style: const TextStyle(
+        style:  TextStyle(
           fontSize: 28,
           fontWeight: FontWeight.bold,
           color: Colors.white,
@@ -92,14 +92,14 @@ class _OtpScreenState extends State<OtpScreen> {
         decoration: InputDecoration(
           counterText: "",
           filled: true,
-          fillColor: const Color(0xffB02626),
+          fillColor:  Color(0xffB02626),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
             borderSide: BorderSide.none,
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
-            borderSide: const BorderSide(color: Colors.white, width: 2),
+            borderSide:  BorderSide(color: Colors.white, width: 2),
           ),
         ),
         onChanged: (value) {
@@ -131,12 +131,12 @@ class _OtpScreenState extends State<OtpScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 30),
+        padding:  EdgeInsets.symmetric(horizontal: 30),
         child: Column(mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset('assets/icons/login_icons.png',scale: 3,),
-            const SizedBox(height: 25),
-            const Text(
+             SizedBox(height: 25),
+             Text(
               'OTP Verification',
               textAlign: TextAlign.center,
               style: TextStyle(
@@ -145,8 +145,8 @@ class _OtpScreenState extends State<OtpScreen> {
                 color: Color(0xff1A1A1A),
               ),
             ),
-            const SizedBox(height: 10),
-            const Text(
+             SizedBox(height: 10),
+             Text(
               'Enter the verification code we just\nsent on your Phone Number.',
               textAlign: TextAlign.center,
               style: TextStyle(
@@ -155,7 +155,7 @@ class _OtpScreenState extends State<OtpScreen> {
                 color: Color(0xff343434),
               ),
             ),
-            const SizedBox(height: 30),
+             SizedBox(height: 30),
 
 
             Row(
@@ -163,7 +163,7 @@ class _OtpScreenState extends State<OtpScreen> {
               children: List.generate(4, (index) => otpBox(index)),
             ),
 
-            const SizedBox(height: 20),
+             SizedBox(height: 20),
 
             Row(crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
@@ -178,7 +178,7 @@ class _OtpScreenState extends State<OtpScreen> {
                 ),
                 Text(
                   " 00:${secondsRemaining.toString().padLeft(2, '0')}",
-                  style: const TextStyle(
+                  style:  TextStyle(
                     color: Color(0xffB02626),
                     fontSize: 15,
                       fontWeight: FontWeight.w500
@@ -186,7 +186,7 @@ class _OtpScreenState extends State<OtpScreen> {
                 ),
               ],
             ),
-            const SizedBox(height: 8),
+             SizedBox(height: 8),
             GestureDetector(
               onTap: canResend ? resendCode : null,
               child: Text(
@@ -199,7 +199,7 @@ class _OtpScreenState extends State<OtpScreen> {
               ),
             ),
 
-            const SizedBox(height: 20),
+             SizedBox(height: 20),
 
             Row(crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
@@ -236,7 +236,7 @@ class _OtpScreenState extends State<OtpScreen> {
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
-                    child: const Text(
+                    child:  Text(
                       "Submit",
                       style: TextStyle(color: Colors.white, fontSize: 16),
                     ),

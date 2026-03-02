@@ -75,7 +75,7 @@ class _GlossaryDetailScreenState extends State<GlossaryDetailScreen>
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(16),
+          padding:  EdgeInsets.all(16),
           child: FadeTransition(
             opacity: _fadeAnimation,
             child: SlideTransition(
@@ -100,7 +100,7 @@ class _GlossaryDetailScreenState extends State<GlossaryDetailScreen>
                       ),
                     ),
                     child: Padding(
-                      padding: const EdgeInsets.all(24),
+                      padding:  EdgeInsets.all(24),
                       child:
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -109,7 +109,7 @@ class _GlossaryDetailScreenState extends State<GlossaryDetailScreen>
                             child: Text(
                               widget.title,
                               textAlign: TextAlign.center,
-                              style: const TextStyle(
+                              style:  TextStyle(
                                 fontSize: 42,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white,
@@ -124,11 +124,11 @@ class _GlossaryDetailScreenState extends State<GlossaryDetailScreen>
                             ),
                           ),
 
-                          const SizedBox(height: 20),
+                           SizedBox(height: 20),
 
                           Text(
                             widget.description,
-                            style: const TextStyle(
+                            style:  TextStyle(
                               fontSize: 25,
                               height: 1.6,
                               color: Colors.white,

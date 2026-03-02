@@ -1,3 +1,4 @@
+import 'package:dr_oplawrence_bible/core/constansts/color_manager.dart';
 import 'package:dr_oplawrence_bible/core/route/route_name.dart';
 import 'package:dr_oplawrence_bible/presentation/menu/screens/saved_data/bookmarks_screen.dart';
 import 'package:dr_oplawrence_bible/presentation/menu/screens/saved_data/highlight_screen.dart';
@@ -63,27 +64,18 @@ class _MyNotesScreenState extends State<MyNotesScreen> {
   void _openBookmarksScreen() {
     Navigator.push(
       context,
-      MaterialPageRoute(
-        builder: (_) => BookmarksScreen(),
-      ),
+      MaterialPageRoute(builder: (_) => BookmarksScreen()),
     );
   }
 
   void _openNotesScreen() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (_) => NotesScreen(),
-      ),
-    );
+    Navigator.push(context, MaterialPageRoute(builder: (_) => NotesScreen()));
   }
 
   void _openHighlightsScreen() {
     Navigator.push(
       context,
-      MaterialPageRoute(
-        builder: (_) => HighlightsScreen(),
-      ),
+      MaterialPageRoute(builder: (_) => HighlightsScreen()),
     );
   }
 
@@ -105,152 +97,184 @@ class _MyNotesScreenState extends State<MyNotesScreen> {
       body: isLoading
           ? const Center(child: CircularProgressIndicator())
           : Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SizedBox(height: 20.h),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-
-                GestureDetector(
-                  onTap: _openNotesScreen,
-                  child: Container(
-                    width: 95.w,
-                    height: 90.h,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(12.r),
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                            width: 30.w,
-                            height: 30.h,
-                            child: SvgPicture.asset('assets/icons/notes_icon.svg',width: 28.w,height: 28.h,)),
-                        const SizedBox(height: 6),
-                        const Text('Notes'),
-                      ],
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 10),
-
-                GestureDetector(
-                  onTap: _openBookmarksScreen,
-                  child: Container(
-                    width: 95.w,
-                    height: 90.h,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(12.r),
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                       // SvgPicture.asset('assets/icons/alert_triangle.svg'),
-                        SizedBox(
-                            width: 30.w,
-                            height: 33.h,
-                            child: Icon(Icons.bookmark,color: Color(0xffB02626),size: 40,)),
-                        const SizedBox(height: 6),
-                        const Text('Bookmark'),
-                      ],
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 10),
-
-                GestureDetector(
-                  onTap: _openHighlightsScreen,
-                  child: Container(
-                    width: 95.w,
-                    height: 90.h,
-
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(12.r),
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                            width: 30.w,
-                            height: 30.h,
-                            child: SvgPicture.asset('assets/icons/Highlights.svg',width: 30.w,height: 30.h,)),
-                        const SizedBox(height: 6),
-                        const Text('Highlight'),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(height: 40.h,),
-            Stack(
-              children: [
-                Image.asset('assets/images/menu_bird.png'),
-
-                Positioned(
-                  top: 100,
-                  left: 10,
-                  right: 10,
-                  child: Text(
-                      textAlign: TextAlign.center,
-                      'Giving is not losing, it is planting hope.\n The smallest gift can spark the\n greatest change.'),
-                ),
-                Positioned(
-                  bottom: 100,
-                  left: 10,
-                  right: 10,
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 60.0,right: 60),
-                    child: SizedBox(
-                      width: 100.w,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.pushNamed(context, RouteNames.donateMoneySystem);
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xffCDA434),
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(height: 20.h),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      GestureDetector(
+                        onTap: _openNotesScreen,
+                        child: Container(
+                          width: 95.w,
+                          height: 90.h,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(12.r),
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SizedBox(
+                                width: 30.w,
+                                height: 30.h,
+                                child: SvgPicture.asset(
+                                  'assets/icons/notes_icon.svg',
+                                  width: 28.w,
+                                  height: 28.h,
+                                ),
+                              ),
+                              const SizedBox(height: 6),
+                              const Text('Notes'),
+                            ],
+                          ),
                         ),
-                        child: const Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Text('Donate Money'),
+                      ),
+                      const SizedBox(width: 10),
+
+                      GestureDetector(
+                        onTap: _openBookmarksScreen,
+                        child: Container(
+                          width: 95.w,
+                          height: 90.h,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(12.r),
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              // SvgPicture.asset('assets/icons/alert_triangle.svg'),
+                              SizedBox(
+                                width: 30.w,
+                                height: 33.h,
+                                child: Icon(
+                                  Icons.bookmark,
+                                  color: Color(0xffB02626),
+                                  size: 40,
+                                ),
+                              ),
+                              const SizedBox(height: 6),
+                              const Text('Bookmark'),
+                            ],
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 10),
+
+                      GestureDetector(
+                        onTap: _openHighlightsScreen,
+                        child: Container(
+                          width: 95.w,
+                          height: 90.h,
+
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(12.r),
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SizedBox(
+                                width: 30.w,
+                                height: 30.h,
+                                child: SvgPicture.asset(
+                                  'assets/icons/Highlights.svg',
+                                  width: 30.w,
+                                  height: 30.h,
+                                ),
+                              ),
+                              const SizedBox(height: 6),
+                              const Text('Highlight'),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 40.h),
+                  Stack(
+                    children: [
+                      Image.asset('assets/images/menu_bird.png'),
+
+                      Positioned(
+                        top: 100,
+                        left: 10,
+                        right: 10,
+                        child: Text(
+                          textAlign: TextAlign.center,
+                          'Giving is not losing, it is planting hope.\n The smallest gift can spark the\n greatest change.',
+                        ),
+                      ),
+                      Positioned(
+                        bottom: 100,
+                        left: 10,
+                        right: 10,
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 60.0, right: 60),
+                          child: SizedBox(
+                            width: 100.w,
+                            child: ElevatedButton(
+                              onPressed: () {
+                                Navigator.pushNamed(
+                                  context,
+                                  RouteNames.donateMoneySystem,
+                                );
+                              },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: const Color(0xffCDA434),
+                              ),
+                              child: const Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Text('Donate Money'),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 50.h),
+                  SizedBox(
+                    width: 300, // button width
+                    height: 50, // button height
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.pushNamedAndRemoveUntil(
+                          context,
+                          RouteNames.loginScreen,
+                          (route) => false,
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color(0xffB02626),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 16,
+                          vertical: 12,
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12), // optional
+                        ),
+                      ),
+                      child: const Text(
+                        'Exit',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                          color: ColorsManager.whiteColor,
                         ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-            // const Spacer(),
-            // SizedBox(
-            //   width: 200.w,
-            //   child: ElevatedButton(
-            //     onPressed: () {
-            //       Navigator.pushNamed(context, RouteNames.donateMoneySystem);
-            //     },
-            //     style: ElevatedButton.styleFrom(
-            //       backgroundColor: const Color(0xffCDA434),
-            //     ),
-            //     child: const Padding(
-            //       padding: EdgeInsets.all(8.0),
-            //       child: Text('Donate Money'),
-            //     ),
-            //   ),
-            // ),
-          ],
-        ),
-      ),
     );
   }
 }
-
-
 
 abstract class BaseListScreen extends StatefulWidget {
   const BaseListScreen({super.key});
@@ -301,101 +325,110 @@ abstract class BaseListScreenState<T extends BaseListScreen> extends State<T> {
       body: isLoading
           ? const Center(child: CircularProgressIndicator())
           : RefreshIndicator(
-        onRefresh: _loadData,
-        child: data.isEmpty
-            ? Center(
-          child: Text(
-            'No ${getTitle().toLowerCase()} yet',
-            style: const TextStyle(fontSize: 18, color: Colors.grey),
-          ),
-        )
-            : ListView.builder(
-          padding: const EdgeInsets.all(16),
-          itemCount: data.length,
-          itemBuilder: (context, index) {
-            final key = data.keys.elementAt(index);
-            final value = data.values.elementAt(index);
-
-            return Container(
-              margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
-              padding: const EdgeInsets.all(18),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(18),
-                border: Border(
-                  left: BorderSide(
-                    color: const Color(0xffB02626),
-                    width: 6,
-                  ),
-                ),
-                boxShadow: [
-                  BoxShadow(
-                    color: const Color(0xffB02626).withOpacity(0.18),
-                    blurRadius: 5,
-                    spreadRadius: 2,
-                    offset: const Offset(0, 8),
-                  ),
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.12),
-                    blurRadius: 5,
-                    offset: const Offset(0, 2),
-                  ),
-                ],
-              ),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    padding: const EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      color: const Color(0xffB02626).withOpacity(0.12),
-                      shape: BoxShape.circle,
-                    ),
-                    child: const Icon(
-                      Icons.auto_stories,
-                      color: Color(0xffB02626),
-                      size: 28,
-                    ),
-                  ),
-
-                  const SizedBox(width: 16),
-
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-
-                        if (_cleanKey(key).isNotEmpty)
-                          Text(
-                            _cleanKey(key).toUpperCase(),
-                            style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w600,
-                              color: const Color(0xffB02626),
-                              letterSpacing: 0.5,
-                            ),
-                          ),
-                        if (_cleanKey(key).isNotEmpty)
-                          const SizedBox(height: 8),
-
-                        Text(
-                          value,
-                          style: const TextStyle(
-                            fontSize: 16.5,
-                            height: 1.7,
-                            color: Colors.black87,
-                            fontWeight: FontWeight.w500,
-                          ),
+              onRefresh: _loadData,
+              child: data.isEmpty
+                  ? Center(
+                      child: Text(
+                        'No ${getTitle().toLowerCase()} yet',
+                        style: const TextStyle(
+                          fontSize: 18,
+                          color: Colors.grey,
                         ),
-                      ],
+                      ),
+                    )
+                  : ListView.builder(
+                      padding: const EdgeInsets.all(16),
+                      itemCount: data.length,
+                      itemBuilder: (context, index) {
+                        final key = data.keys.elementAt(index);
+                        final value = data.values.elementAt(index);
+
+                        return Container(
+                          margin: const EdgeInsets.symmetric(
+                            vertical: 10,
+                            horizontal: 8,
+                          ),
+                          padding: const EdgeInsets.all(18),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(18),
+                            border: Border(
+                              left: BorderSide(
+                                color: const Color(0xffB02626),
+                                width: 6,
+                              ),
+                            ),
+                            boxShadow: [
+                              BoxShadow(
+                                color: const Color(
+                                  0xffB02626,
+                                ).withOpacity(0.18),
+                                blurRadius: 5,
+                                spreadRadius: 2,
+                                offset: const Offset(0, 8),
+                              ),
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.12),
+                                blurRadius: 5,
+                                offset: const Offset(0, 2),
+                              ),
+                            ],
+                          ),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                padding: const EdgeInsets.all(10),
+                                decoration: BoxDecoration(
+                                  color: const Color(
+                                    0xffB02626,
+                                  ).withOpacity(0.12),
+                                  shape: BoxShape.circle,
+                                ),
+                                child: const Icon(
+                                  Icons.auto_stories,
+                                  color: Color(0xffB02626),
+                                  size: 28,
+                                ),
+                              ),
+
+                              const SizedBox(width: 16),
+
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    if (_cleanKey(key).isNotEmpty)
+                                      Text(
+                                        _cleanKey(key).toUpperCase(),
+                                        style: TextStyle(
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w600,
+                                          color: const Color(0xffB02626),
+                                          letterSpacing: 0.5,
+                                        ),
+                                      ),
+                                    if (_cleanKey(key).isNotEmpty)
+                                      const SizedBox(height: 8),
+
+                                    Text(
+                                      value,
+                                      style: const TextStyle(
+                                        fontSize: 16.5,
+                                        height: 1.7,
+                                        color: Colors.black87,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                      },
                     ),
-                  ),
-                ],
-              ),
-            );
-          },
-        ),
-      ),
+            ),
     );
   }
 

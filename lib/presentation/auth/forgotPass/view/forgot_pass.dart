@@ -16,13 +16,13 @@ class _ForgotPassState extends State<ForgotPass> {
     return Scaffold(
       body: Center(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.all(32.0),
+          padding:  EdgeInsets.all(32.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Image.asset('assets/icons/login_icons.png',scale: 3,),
-              const SizedBox(height: 25),
+               SizedBox(height: 25),
               Text(
                 'Forgot Password',
                 textAlign: TextAlign.center,
@@ -33,7 +33,7 @@ class _ForgotPassState extends State<ForgotPass> {
                 ),
               ),
 
-              const Text(
+               Text(
                 'Inter your login email details below',
                 textAlign: TextAlign.center,
                 style: TextStyle(
@@ -42,10 +42,10 @@ class _ForgotPassState extends State<ForgotPass> {
                   color: Color(0xff343434),
                 ),
               ),
-              const SizedBox(height: 40),
+               SizedBox(height: 40),
               Align(
                 alignment: AlignmentGeometry.topLeft,
-                child: const Text(
+                child:  Text(
                   'Email',
                   style: TextStyle(
                     fontSize: 16,
@@ -54,25 +54,25 @@ class _ForgotPassState extends State<ForgotPass> {
                   ),
                 ),
               ),
-              const SizedBox(height: 8),
+               SizedBox(height: 8),
               TextFormField(
                 decoration: InputDecoration(
                   hintText: 'example@gmail.com',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8.0),
-                    borderSide: const BorderSide(color: Colors.grey),
+                    borderSide:  BorderSide(color: Colors.grey),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8.0),
-                    borderSide: const BorderSide(color: Colors.blue, width: 2.0),
+                    borderSide:  BorderSide(color: Colors.blue, width: 2.0),
                   ),
-                  contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  contentPadding:  EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                   fillColor: Colors.white,
                   filled: true,
                 ),
                 keyboardType: TextInputType.emailAddress,
               ),
-              const SizedBox(height: 20),
+               SizedBox(height: 20),
 
               Row(spacing: 15,
                 children: [
@@ -86,15 +86,15 @@ class _ForgotPassState extends State<ForgotPass> {
                     backgroundColor: Colors.white,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(16.0),
-                      side: const BorderSide(
+                      side:  BorderSide(
                         color: Color(0xFF1E3A8A),
                         width: 1,
                       ),
                     ),
-                    padding: const EdgeInsets.symmetric(vertical: 16),
-                    minimumSize: const Size(double.infinity, 50),
+                    padding:  EdgeInsets.symmetric(vertical: 16),
+                    minimumSize:  Size(double.infinity, 50),
                   ),
-                  child: const Text(
+                  child:  Text(
                     'Back',
                     style: TextStyle(
                       fontSize: 18,
@@ -112,14 +112,14 @@ class _ForgotPassState extends State<ForgotPass> {
                         Navigator.pushNamed(context, RouteNames.otpScreen);
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFF1E3A8A),
+                        backgroundColor:  Color(0xFF1E3A8A),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(16.0),
                         ),
-                        padding: const EdgeInsets.symmetric(vertical: 16),
-                        minimumSize: const Size(double.infinity, 50),
+                        padding:  EdgeInsets.symmetric(vertical: 16),
+                        minimumSize:  Size(double.infinity, 50),
                       ),
-                      child: const Text(
+                      child:  Text(
                         'Next',
                         style: TextStyle(
                           fontSize: 18,

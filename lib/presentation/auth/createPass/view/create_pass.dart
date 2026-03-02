@@ -1,5 +1,6 @@
 import 'package:dr_oplawrence_bible/core/route/route_name.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CreatePass extends StatefulWidget {
   const CreatePass({super.key});
@@ -16,49 +17,40 @@ class _CreatePassState extends State<CreatePass> {
     return Scaffold(
       body: Center(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.all(32.0),
+          padding:  EdgeInsets.all(32.0.w),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Image.asset('assets/images/create_pass.png',scale: 4,),
-              // const SizedBox(height: 25),
-              // const Text(
-              //   'Hi, Welcome Back!',
-              //   textAlign: TextAlign.center,
-              //   style: TextStyle(
-              //     fontSize: 28,
-              //     fontWeight: FontWeight.w700,
-              //     color: Color(0xff1A1A1A),
-              //   ),
-              // ),
-              const SizedBox(height: 40),
+              
+               SizedBox(height: 40.h),
               Align(
                 alignment: AlignmentGeometry.topLeft,
-                child: const Text(
+                child:  Text(
                   'Password',
                   style: TextStyle(
-                    fontSize: 16,
+                    fontSize: 16.sp,
                     fontWeight: FontWeight.w500,
                     color: Colors.black,
                   ),
                 ),
               ),
-              const SizedBox(height: 8),
+               SizedBox(height: 8.h),
               TextFormField(
                 obscureText: !_isPasswordVisible,
                 decoration: InputDecoration(
                   hintText: 'enter your new password',
-                  hintStyle: TextStyle(fontSize: 15,color: Colors.grey.shade500),
+                  hintStyle: TextStyle(fontSize: 15.sp,color: Colors.grey.shade500),
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8.0),
-                    borderSide: const BorderSide(color: Colors.grey),
+                    borderRadius: BorderRadius.circular(8.0.w),
+                    borderSide:  BorderSide(color: Colors.grey),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8.0),
-                    borderSide: const BorderSide(color: Colors.blue, width: 2.0),
+                    borderRadius: BorderRadius.circular(8.0.r),
+                    borderSide:  BorderSide(color: Colors.blue, width: 2.0.w),
                   ),
-                  contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  contentPadding:  EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
                   fillColor: Colors.white,
                   filled: true,
                   suffixIcon: IconButton(
@@ -74,33 +66,33 @@ class _CreatePassState extends State<CreatePass> {
                   ),
                 ),
               ),
-              const SizedBox(height: 20),
+               SizedBox(height: 20.h),
               Align(
                 alignment: AlignmentGeometry.topLeft,
-                child: const Text(
+                child:  Text(
                   'Confirm Password',
                   style: TextStyle(
-                    fontSize: 16,
+                    fontSize: 16.sp,
                     fontWeight: FontWeight.w500,
                     color: Colors.black,
                   ),
                 ),
               ),
-              const SizedBox(height: 8),
+               SizedBox(height: 8.h),
               TextFormField(
                 obscureText: !_isPasswordVisible,
                 decoration: InputDecoration(
                   hintText: 'enter your password',
-                  hintStyle: TextStyle(fontSize: 15,color: Colors.grey.shade500),
+                  hintStyle: TextStyle(fontSize: 15.sp,color: Colors.grey.shade500),
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8.0),
-                    borderSide: const BorderSide(color: Colors.grey),
+                    borderRadius: BorderRadius.circular(8.0.r),
+                    borderSide:  BorderSide(color: Colors.grey),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8.0),
-                    borderSide: const BorderSide(color: Colors.blue, width: 2.0),
+                    borderRadius: BorderRadius.circular(8.0.r),
+                    borderSide:  BorderSide(color: Colors.blue, width: 2.0.w),
                   ),
-                  contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  contentPadding:  EdgeInsets.symmetric(horizontal: 16.w , vertical: 12.h),
                   fillColor: Colors.white,
                   filled: true,
                   suffixIcon: IconButton(
@@ -118,23 +110,23 @@ class _CreatePassState extends State<CreatePass> {
               ),
 
 
-              const SizedBox(height: 30),
+               SizedBox(height: 30.h),
               ElevatedButton(
                 onPressed: () {
                   Navigator.pushNamed(context, RouteNames.signUpScreen);
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF1E3A8A),
+                  backgroundColor:  Color(0xFF1E3A8A),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8.0),
+                    borderRadius: BorderRadius.circular(8.0.r),
                   ),
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  minimumSize: const Size(double.infinity, 50),
+                  padding:  EdgeInsets.symmetric(vertical: 16.h),
+                  minimumSize:  Size(double.infinity, 50),
                 ),
-                child: const Text(
+                child:  Text(
                   'Sign Up',
                   style: TextStyle(
-                    fontSize: 18,
+                    fontSize: 18.sp,
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
                   ),

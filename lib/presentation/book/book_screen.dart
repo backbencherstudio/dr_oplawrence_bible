@@ -71,14 +71,12 @@ class _BookListScreenState extends State<BookListScreen>
     super.initState();
     tabController = TabController(length: 3, vsync: this);
 
-
     widget.bibleVM.loadBooks().then((value) {
       setState(() {
         books = value;
         filteredBooks = List.from(books);
       });
     });
-
 
     searchController.addListener(_filterBooks);
   }
@@ -112,24 +110,24 @@ class _BookListScreenState extends State<BookListScreen>
 
       appBar: AppBar(
         backgroundColor: const Color(0xffEBEBEB),
-        leading: GestureDetector(
-          onTap: () => Navigator.pop(context),
-          child: Image.asset('assets/icons/back_arrow.png', scale: 4),
-        ),
+        automaticallyImplyLeading: false,
+
         title: Text(
           'Index',
-          style:
-          GoogleFonts.merriweather(color: const Color(0xffB02626), fontSize: 20),
+          style: GoogleFonts.merriweather(
+            color:  Color(0xffB02626),
+            fontSize: 20,
+          ),
         ),
       ),
 
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding:  EdgeInsets.all(16.0),
         child: Column(
           children: [
             buildSearchField(),
 
-            const SizedBox(height: 15),
+             SizedBox(height: 15),
 
             TabBar(
               controller: tabController,
@@ -144,13 +142,12 @@ class _BookListScreenState extends State<BookListScreen>
               ],
             ),
 
-            const SizedBox(height: 10),
+             SizedBox(height: 10),
 
             Expanded(
               child: TabBarView(
                 controller: tabController,
                 children: [
-
                   // Books List
                   ListView.builder(
                     itemCount: filteredBooks.length,
@@ -181,13 +178,15 @@ class _BookListScreenState extends State<BookListScreen>
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              subtitle: Text("${book.chapters.length} Chapters"),
+                              subtitle: Text(
+                                "${book.chapters.length} Chapters",
+                              ),
                               onTap: () {
                                 goToChapterTab(book);
                               },
                             ),
                           ),
-                          const SizedBox(height: 12),
+                           SizedBox(height: 12),
                         ],
                       );
                     },
@@ -197,19 +196,19 @@ class _BookListScreenState extends State<BookListScreen>
                   selectedBook == null
                       ? const Center(child: Text("Select a book"))
                       : ChapterTabView(
-                    book: selectedBook!,
-                    onSelectChapter: (chapter) {
-                      goToVerseTab(chapter, selectedBook!);
-                    },
-                  ),
+                          book: selectedBook!,
+                          onSelectChapter: (chapter) {
+                            goToVerseTab(chapter, selectedBook!);
+                          },
+                        ),
 
                   // Verse tab
                   (selectedBook == null || selectedChapter == null)
                       ? const Center(child: Text("Select a chapter"))
                       : VerseTabView(
-                    chapter: selectedChapter!,
-                    bookName: selectedBook!.name,
-                  ),
+                          chapter: selectedChapter!,
+                          bookName: selectedBook!.name,
+                        ),
                 ],
               ),
             ),
@@ -225,9 +224,12 @@ class _BookListScreenState extends State<BookListScreen>
       decoration: InputDecoration(
         filled: true,
         fillColor: Colors.white,
-        contentPadding: const EdgeInsets.symmetric(vertical: 14, horizontal: 20),
+        contentPadding:  EdgeInsets.symmetric(
+          vertical: 14,
+          horizontal: 20,
+        ),
         hintText: "Search",
-        hintStyle: const TextStyle(fontSize: 16, color: Colors.grey),
+        hintStyle:  TextStyle(fontSize: 16, color: Colors.grey),
         prefixIcon: const Icon(Icons.search, color: Colors.grey),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(30),
