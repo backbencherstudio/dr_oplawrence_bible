@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:dr_oplawrence_bible/core/route/route_name.dart';
 import '../../../../../../core/network/api_clients.dart';
 import '../../../../../../data/sources/remote/auth_api_services.dart';
+import '../../viewmodel/login_riverpod.dart';
 
-class ForgotPass extends StatefulWidget {
+class ForgotPass extends ConsumerStatefulWidget {
   const ForgotPass({super.key});
 
   @override
-  State<ForgotPass> createState() => _ForgotPassState();
+  ConsumerState<ForgotPass> createState() => _ForgotPassState();
 }
 
-class _ForgotPassState extends State<ForgotPass> {
+class _ForgotPassState extends ConsumerState<ForgotPass> {
   final TextEditingController emailController = TextEditingController();
   final AuthApiServices authService = AuthApiServices(apiClient: ApiClient());
-  bool _isLoading = false;
 
   Future<void> sendResetLink() async {
     final email = emailController.text.trim();
@@ -26,7 +27,7 @@ class _ForgotPassState extends State<ForgotPass> {
       return;
     }
 
-    setState(() => _isLoading = true);
+    ref.read(isLoadingProvider.notifier).state = true;
 
     try {
       final res = await authService.forgotPassword(email: email);
@@ -35,10 +36,12 @@ class _ForgotPassState extends State<ForgotPass> {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text("Reset link sent to your email")),
         );
+
         Navigator.pushNamed(
           context,
           RouteNames.otpScreen,
-        ); // move to OTP if needed
+          arguments: {'email': email},
+        );
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text(res['message'] ?? "Failed to send link")),
@@ -49,7 +52,7 @@ class _ForgotPassState extends State<ForgotPass> {
         context,
       ).showSnackBar(SnackBar(content: Text("Error: $e")));
     } finally {
-      setState(() => _isLoading = false);
+      ref.read(isLoadingProvider.notifier).state = false;
     }
   }
 
@@ -61,6 +64,8 @@ class _ForgotPassState extends State<ForgotPass> {
 
   @override
   Widget build(BuildContext context) {
+    final _isLoading = ref.watch(isLoadingProvider);
+
     return Scaffold(
       body: Center(
         child: SingleChildScrollView(
@@ -137,7 +142,7 @@ class _ForgotPassState extends State<ForgotPass> {
                     width: 155,
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.pop(context); // simply go back
+                        Navigator.pop(context);
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.white,
@@ -176,7 +181,14 @@ class _ForgotPassState extends State<ForgotPass> {
                         minimumSize: const Size(double.infinity, 50),
                       ),
                       child: _isLoading
-                          ? const CircularProgressIndicator(color: Colors.white)
+                          ? const SizedBox(
+                              width: 24,
+                              height: 24,
+                              child: CircularProgressIndicator(
+                                color: Colors.white,
+                                strokeWidth: 2.5,
+                              ),
+                            )
                           : const Text(
                               'Next',
                               style: TextStyle(

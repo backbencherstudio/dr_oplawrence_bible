@@ -1,21 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:dr_oplawrence_bible/core/route/route_name.dart';
 import '../../../../../data/sources/local/shared_preference/shared_preference.dart';
 import '../../../../../data/sources/remote/auth_api_services.dart';
 import '../../../../../core/network/api_clients.dart';
+import '../viewmodel/login_riverpod.dart';
 
-class LoginScreen extends StatefulWidget {
+class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  ConsumerState<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
-  bool _obscureText = true;
-  bool _rememberMe = true;
-  bool _isLoading = false;
-
+class _LoginScreenState extends ConsumerState<LoginScreen> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
@@ -39,18 +37,16 @@ class _LoginScreenState extends State<LoginScreen> {
       return;
     }
 
-    setState(() => _isLoading = true);
+    ref.read(isLoadingProvider.notifier).state = false;
 
     try {
       final res = await authService.login(email: email, password: password);
 
       if (res != null && res['success'] == true) {
-        // Save token and email
         final token = res['token'];
         await SharedPreferenceData().setToken(token);
         await SharedPreferenceData().setEmailId(email);
 
-        // Navigate to home screen
         if (!mounted) return;
         Navigator.pushNamedAndRemoveUntil(
           context,
@@ -67,12 +63,15 @@ class _LoginScreenState extends State<LoginScreen> {
         context,
       ).showSnackBar(SnackBar(content: Text("Error: $e")));
     } finally {
-      setState(() => _isLoading = false);
+      ref.read(isLoadingProvider.notifier).state = false;
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    final _obscureText = ref.watch(obscureTextProvider);
+    final _isLoading = ref.watch(isLoadingProvider);
+
     return Scaffold(
       backgroundColor: const Color(0xFFF8F7F2),
       body: SafeArea(
@@ -107,7 +106,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 const SizedBox(height: 40),
-
                 const Text(
                   "Email",
                   style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
@@ -135,7 +133,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 const SizedBox(height: 20),
-
                 const Text(
                   "Password",
                   style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
@@ -152,11 +149,13 @@ class _LoginScreenState extends State<LoginScreen> {
                     suffixIcon: IconButton(
                       icon: Icon(
                         _obscureText
-                            ? Icons.visibility_outlined
-                            : Icons.visibility_off_outlined,
+                            ? Icons.visibility_off_outlined
+                            : Icons.visibility_outlined,
                       ),
-                      onPressed: () =>
-                          setState(() => _obscureText = !_obscureText),
+                      onPressed: () {
+                        ref.read(obscureTextProvider.notifier).state =
+                            !_obscureText;
+                      },
                     ),
                     contentPadding: const EdgeInsets.symmetric(
                       horizontal: 16,
@@ -173,7 +172,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 const SizedBox(height: 16),
-
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -183,10 +181,16 @@ class _LoginScreenState extends State<LoginScreen> {
                           height: 24,
                           width: 24,
                           child: Checkbox(
-                            value: _rememberMe,
+                            // Watch the current value of the checkbox
+                            value: ref.watch(rememberMeProvider),
                             activeColor: const Color(0xFF1E3A8A),
-                            onChanged: (value) =>
-                                setState(() => _rememberMe = value!),
+                            onChanged: (value) {
+                              if (value != null) {
+                                // Update the provider state when tapped
+                                ref.read(rememberMeProvider.notifier).state =
+                                    value;
+                              }
+                            },
                           ),
                         ),
                         const SizedBox(width: 8),
@@ -210,7 +214,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   ],
                 ),
                 const SizedBox(height: 30),
-
                 ElevatedButton(
                   onPressed: _isLoading ? null : login,
                   style: ElevatedButton.styleFrom(
@@ -233,7 +236,6 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                 ),
                 const SizedBox(height: 100),
-
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

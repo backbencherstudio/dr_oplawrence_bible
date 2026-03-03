@@ -1,23 +1,29 @@
 import 'dart:async';
-import 'package:dr_oplawrence_bible/core/route/route_name.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class OtpScreen extends StatefulWidget {
-  const OtpScreen({super.key});
+import '../../../../../core/network/api_clients.dart';
+import '../../../../../core/route/route_name.dart';
+import '../../../../../data/sources/remote/auth_api_services.dart'
+    show AuthApiServices;
+import '../viewmodel/forget_otp_riverpod.dart';
+
+class OtpScreen extends ConsumerStatefulWidget {
+  final String email; // receive email from previous page
+  const OtpScreen({super.key, required this.email});
 
   @override
-  State<OtpScreen> createState() => _OtpScreenState();
+  ConsumerState<OtpScreen> createState() => _OtpScreenState();
 }
 
-class _OtpScreenState extends State<OtpScreen> {
+class _OtpScreenState extends ConsumerState<OtpScreen> {
   late List<TextEditingController> controllers;
   late List<FocusNode> focusNodes;
 
   Timer? _timer;
-  int secondsRemaining = 59;
-  bool canResend = false;
+
+  final AuthApiServices authService = AuthApiServices(apiClient: ApiClient());
 
   @override
   void initState() {
@@ -28,29 +34,27 @@ class _OtpScreenState extends State<OtpScreen> {
   }
 
   void startTimer() {
-    canResend = false;
-    secondsRemaining = 59;
+    ref.read(canResendProvider.notifier).state = false;
+    ref.read(secondsRemainingProvider.notifier).state = 59;
+
     _timer?.cancel();
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      if (secondsRemaining > 0) {
-        setState(() => secondsRemaining--);
+      final seconds = ref.read(secondsRemainingProvider);
+      if (seconds > 0) {
+        ref.read(secondsRemainingProvider.notifier).state = seconds - 1;
       } else {
-        setState(() => canResend = true);
+        ref.read(canResendProvider.notifier).state = true;
         timer.cancel();
       }
     });
   }
 
-  String getOtp() {
-    return controllers.map((c) => c.text).join();
-  }
+  String getOtp() => controllers.map((c) => c.text).join();
 
-  bool isOtpComplete() {
-    return controllers.every((c) => c.text.trim().isNotEmpty);
-  }
+  bool isOtpComplete() => controllers.every((c) => c.text.trim().isNotEmpty);
 
   void resendCode() {
-    if (canResend) {
+    if (ref.read(canResendProvider)) {
       ScaffoldMessenger.of(
         context,
       ).showSnackBar(const SnackBar(content: Text("New OTP sent!")));
@@ -58,17 +62,40 @@ class _OtpScreenState extends State<OtpScreen> {
     }
   }
 
-  void submitOtp() {
-    if (isOtpComplete()) {
-      String otp = getOtp();
-      if (kDebugMode) {
-        print("Submitted OTP: $otp");
-      }
-      Navigator.pushNamed(context, RouteNames.createPass);
-    } else {
+  Future<void> submitOtp() async {
+    if (!isOtpComplete()) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text("Please enter complete OTP")),
       );
+      return;
+    }
+
+    final otp = getOtp();
+    ref.read(isLoadingProvider.notifier).state = true;
+
+    try {
+      final res = await authService.verifyOtp(email: widget.email, token: otp);
+
+      if (res != null && res['success'] == true) {
+        Navigator.pushNamed(
+          context,
+          RouteNames.createPass,
+          arguments: {
+            "email": widget.email,
+            "token": getOtp(), // pass the OTP as token
+          },
+        );
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(res?['message'] ?? 'OTP verification failed')),
+        );
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text("Error: $e")));
+    } finally {
+      ref.read(isLoadingProvider.notifier).state = false;
     }
   }
 
@@ -107,6 +134,7 @@ class _OtpScreenState extends State<OtpScreen> {
           } else if (value.isEmpty && index > 0) {
             focusNodes[index - 1].requestFocus();
           }
+          // no UI state, but can force rebuild if needed
           setState(() {});
         },
       ),
@@ -127,6 +155,10 @@ class _OtpScreenState extends State<OtpScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final secondsRemaining = ref.watch(secondsRemainingProvider);
+    final canResend = ref.watch(canResendProvider);
+    final isLoading = ref.watch(isLoadingProvider);
+
     double screenWidth = MediaQuery.of(context).size.width;
     double horizontalPadding = 30;
     double spacingBetweenBoxes = 10;
@@ -153,7 +185,7 @@ class _OtpScreenState extends State<OtpScreen> {
             ),
             const SizedBox(height: 10),
             const Text(
-              'Enter the verification code we just\nsent on your Phone Number.',
+              'Enter the verification code we just\nsent to your Email.',
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 14,
@@ -162,14 +194,11 @@ class _OtpScreenState extends State<OtpScreen> {
               ),
             ),
             const SizedBox(height: 30),
-
-            // OTP Boxes Row
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: List.generate(6, (index) => otpBox(index, boxWidth)),
             ),
             const SizedBox(height: 20),
-
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -204,10 +233,8 @@ class _OtpScreenState extends State<OtpScreen> {
               ),
             ),
             const SizedBox(height: 20),
-
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 SizedBox(
                   width: 150,
@@ -236,7 +263,7 @@ class _OtpScreenState extends State<OtpScreen> {
                   width: 150,
                   height: 50,
                   child: ElevatedButton(
-                    onPressed: isOtpComplete() ? submitOtp : null,
+                    onPressed: isLoading ? null : submitOtp,
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blue.shade900,
                       disabledBackgroundColor: Colors.grey.shade400,
@@ -244,10 +271,12 @@ class _OtpScreenState extends State<OtpScreen> {
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
-                    child: const Text(
-                      "Submit",
-                      style: TextStyle(color: Colors.white, fontSize: 16),
-                    ),
+                    child: isLoading
+                        ? const CircularProgressIndicator(color: Colors.white)
+                        : const Text(
+                            "Submit",
+                            style: TextStyle(color: Colors.white, fontSize: 16),
+                          ),
                   ),
                 ),
               ],
