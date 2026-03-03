@@ -29,7 +29,7 @@ import 'package:flutter/material.dart';
 import '../../presentation/auth/logIn/createPass/view/create_pass.dart';
 import '../../presentation/auth/logIn/forgotPass/view/forgot_pass.dart';
 import '../../presentation/auth/logIn/view/login_screen.dart';
-import '../../presentation/auth/logIn/forgotPass/otp/view/otp_screen.dart';
+import '../../presentation/auth/logIn/otp/view/otp_screen.dart';
 import '../../presentation/auth/signup/otp/view/otp_signup_screen.dart';
 import '../../presentation/auth/signup/view/sign_up_screen.dart';
 import '../../presentation/book/book_screen.dart';
@@ -64,9 +64,20 @@ class AppRoutes {
     RouteNames.secondOnboarding: (context) => const SecondOnboarding(),
     RouteNames.loginScreen: (context) => const LoginScreen(),
     RouteNames.signUpScreen: (context) => const SignUpScreen(),
-    RouteNames.createPass: (context) => const CreatePass(),
+    RouteNames.createPass: (context) {
+      final args =
+          ModalRoute.of(context)!.settings.arguments as Map<String, String>;
+      final email = args['email']!;
+      final token = args['token']!;
+      return CreatePass(email: email, token: token);
+    },
     RouteNames.forgotPass: (context) => const ForgotPass(),
-    RouteNames.otpScreen: (context) => const OtpScreen(),
+    RouteNames.otpScreen: (context) {
+      final args =
+          ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>?;
+      final email = args != null ? args['email'] as String : '';
+      return OtpScreen(email: email);
+    },
     RouteNames.homeScreen: (context) => const HomeScreen(),
     RouteNames.parentScreen: (context) => const ParentScreen(),
     RouteNames.morningPrayerScreen: (context) => const MorningPrayerScreen(),

@@ -1,4 +1,3 @@
-import 'package:dr_oplawrence_bible/core/constansts/color_manager.dart';
 import 'package:dr_oplawrence_bible/core/route/route_name.dart';
 import 'package:dr_oplawrence_bible/presentation/menu/screens/saved_data/bookmarks_screen.dart';
 import 'package:dr_oplawrence_bible/presentation/menu/screens/saved_data/highlight_screen.dart';
