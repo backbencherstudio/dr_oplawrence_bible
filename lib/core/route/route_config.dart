@@ -32,7 +32,7 @@ import '../../presentation/auth/logIn/view/login_screen.dart';
 import '../../presentation/auth/logIn/otp/view/otp_screen.dart';
 import '../../presentation/auth/signup/otp/view/otp_signup_screen.dart';
 import '../../presentation/auth/signup/view/sign_up_screen.dart';
-import '../../presentation/book/book_screen.dart';
+import '../../presentation/book/view/book_screen.dart';
 import '../../presentation/book/screens/glossary/glossary_screen.dart';
 import '../../presentation/bottom_nav/view/bottom_nav.dart';
 import '../../presentation/home/view/home_screen.dart';
