@@ -1,4 +1,3 @@
-
 import 'package:dr_oplawrence_bible/presentation/book/screens/verse_image_downloader/verse_image_downloader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -6,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../book_screen.dart';
+import '../../view/book_screen.dart';
 
 class VerseTabView extends StatefulWidget {
   final Chapter chapter;

@@ -1,5 +1,6 @@
 class ApiEndpoints {
   static const String baseUrl = "https://bible.pixelstack.cloud/";
+  // ================== Auth Part =======================
   static const String users = 'api/auth/register';
   static const String verifyemail = 'api/auth/verify-email';
   static const String login = 'api/auth/login';
@@ -9,6 +10,11 @@ class ApiEndpoints {
   static const String verifyMail = 'api/auth/verify-email';
   static const String resendOtp = 'api/auth/resend-verification-email';
   static const String loadUser = 'api/auth/me';
+  // ================== Bible Part ======================
+  static const String bibleBooks = 'api/application/bible/books';
+  static const String bibleChapters = 'api/application/bible/chapters';
+  static const String bibleVerse = 'api/application/bible/verses';
+
   static const String updateProfile = 'api/auth/update-profile';
 
   static const String createAndagetJob = 'api/jobs';
