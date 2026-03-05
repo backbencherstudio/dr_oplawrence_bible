@@ -33,6 +33,14 @@ final bibleChapterProvider =
 });
 
 final selectedChapterIndexProvider = StateProvider<int?>((ref)=>null);
+final bookChapterCountProvider =
+    FutureProvider.family<int, String>((ref, bookId) async {
+  final repo = ref.watch(bibleRepositoryProvider);
+  final chapters = await repo.getBibleChapter(bookId);
+  return (chapters as List).length;
+});
+final completedChaptersProvider =
+    StateProvider<Map<String, Set<String>>>((ref) => {});
 // ============== bible verse ==============
 final bibleVerseProvider =
     FutureProvider.family<List<BibleVerse>, String>((ref, chapterId) async {

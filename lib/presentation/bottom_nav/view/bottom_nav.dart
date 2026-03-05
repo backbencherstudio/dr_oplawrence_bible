@@ -31,12 +31,13 @@ class ParentScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final navParentProvider = ref.watch(parentScreenProvider);
-    final bibleVM = BibleViewModel();
+    // final bibleVM = BibleViewModel();
 
     final List<Widget> pages = [
       HomeScreen(),
       // LottieScreen(),
-      BookListScreen(bibleVM: bibleVM),
+      BookListScreen(),
+      // BookListScreen(bibleVM: bibleVM),
       VideoStoriesScreen(),
       //GlossaryScreen(),
       MyNotesScreen(),
