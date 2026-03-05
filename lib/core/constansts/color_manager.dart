@@ -24,6 +24,7 @@ class ColorsManager {
   static const Color orangeTextColor = Color(0xFFA47D06);
   static const Color lightOrange = Color(0xFFFFEDB9);
   static const Color purpleTextColor = Color(0xFF6366F1);
+  static const Color deepAmber = Color(0xFFCDA434);
 
   // ⚠️ Status Colors
   static const Color errorColor = Color(0xFFEF4444);

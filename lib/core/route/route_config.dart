@@ -55,7 +55,7 @@ import '../../presentation/splash/view/splash_screen.dart';
 // contains BibleViewModel
 
 class AppRoutes {
-  static final BibleViewModel bibleVM = BibleViewModel();
+  // static final BibleViewModel bibleVM = BibleViewModel();
   static final String initialRoute = RouteNames.splashScreen;
 
   static final Map<String, WidgetBuilder> routes = {
@@ -100,6 +100,6 @@ class AppRoutes {
       return OtpSignupScreen(email: email);
     },
 
-    RouteNames.bookListScreen: (context) => BookListScreen(bibleVM: bibleVM),
+    RouteNames.bookListScreen: (context) => BookListScreen(),
   };
 }
