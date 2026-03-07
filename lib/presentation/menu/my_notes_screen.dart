@@ -3,21 +3,23 @@ import 'package:dr_oplawrence_bible/presentation/menu/screens/saved_data/bookmar
 import 'package:dr_oplawrence_bible/presentation/menu/screens/saved_data/highlight_screen.dart';
 import 'package:dr_oplawrence_bible/presentation/menu/screens/saved_data/notes_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../data/sources/local/shared_preference/shared_preference.dart';
+import '../bottom_nav/viewmodel/bottom_nav_bar_viewmodel.dart';
 
-class MyNotesScreen extends StatefulWidget {
+class MyNotesScreen extends ConsumerStatefulWidget {
   const MyNotesScreen({super.key});
 
   @override
-  State<MyNotesScreen> createState() => _MyNotesScreenState();
+  ConsumerState<MyNotesScreen> createState() => _MyNotesScreenState();
 }
 
-class _MyNotesScreenState extends State<MyNotesScreen> {
+class _MyNotesScreenState extends ConsumerState<MyNotesScreen> {
   List<String> bookmarks = [];
   Map<String, String> notes = {};
   Map<String, String> highlights = {};
@@ -107,6 +109,7 @@ class _MyNotesScreenState extends State<MyNotesScreen> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      // ================ Save Notes =================
                       GestureDetector(
                         onTap: _openNotesScreen,
                         child: Container(
@@ -134,8 +137,8 @@ class _MyNotesScreenState extends State<MyNotesScreen> {
                           ),
                         ),
                       ),
-                      const SizedBox(width: 10),
-
+                       SizedBox(width: 10.w),
+                      // ================ Save Book mark =============
                       GestureDetector(
                         onTap: _openBookmarksScreen,
                         child: Container(
@@ -164,8 +167,8 @@ class _MyNotesScreenState extends State<MyNotesScreen> {
                           ),
                         ),
                       ),
-                      const SizedBox(width: 10),
-
+                       SizedBox(width: 10.w),
+                      // ============= Save Highlight ================
                       GestureDetector(
                         onTap: _openHighlightsScreen,
                         child: Container(
@@ -246,6 +249,7 @@ class _MyNotesScreenState extends State<MyNotesScreen> {
                     height: 50, // button height
                     child: ElevatedButton(
                       onPressed: () async {
+                          ref.read(bottomNavBarProvider.notifier).onItemTapped(0);
                         // Clear saved data
                         await SharedPreferenceData.removeToken();
                         await SharedPreferenceData.removeRole();

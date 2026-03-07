@@ -14,7 +14,10 @@ class QuizScreen extends StatelessWidget {
         backgroundColor: const Color(0xffEBEBEB),
         elevation: 0,
         leading: GestureDetector(
-          onTap: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ParentScreen())),
+          onTap: () => Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => ParentScreen()),
+          ),
           child: Image.asset('assets/icons/back_arrow.png', scale: 4),
         ),
         title: Text(
@@ -75,32 +78,28 @@ class QuizScreen extends StatelessWidget {
   Widget _buildPuzzlePiece(int index) {
     bool isLocked = index != 0;
     return Container(
-      decoration: BoxDecoration(
-        color: Colors.grey.shade300,
-      ),
+      decoration: BoxDecoration(color: Colors.grey.shade300),
       child: Stack(
         fit: StackFit.expand,
         children: [
           if (index == 0)
-            Image.asset(
-              'assets/images/quiz_background.png',
-              fit: BoxFit.cover,
-            ),
+            Image.asset('assets/images/quiz_background.png', fit: BoxFit.cover),
           if (isLocked)
             Container(
               color: Colors.black.withOpacity(0.5),
               alignment: Alignment.center,
-              child:Stack(
+              child: Stack(
                 children: [
-                  Positioned.fill(child: Image.asset('assets/images/quiz_background.png',fit: BoxFit.cover,)),
-                  Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white38
+                  Positioned.fill(
+                    child: Image.asset(
+                      'assets/images/quiz_background.png',
+                      fit: BoxFit.cover,
                     ),
                   ),
-                  Center(child: Image.asset('assets/icons/lock.png',scale: 3,))
+                  Container(decoration: BoxDecoration(color: Colors.white38)),
+                  Center(child: Image.asset('assets/icons/lock.png', scale: 3)),
                 ],
-              )
+              ),
             ),
         ],
       ),
@@ -121,25 +120,22 @@ class QuizScreen extends StatelessWidget {
           children: [
             const Text(
               'Morning and Night Challenges',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 8),
             const Text(
               'Pass morning and night Bible quiz challenge to unlock the jigsaw',
-              style: TextStyle(
-                fontSize: 14,
-                color: Colors.grey,
-              ),
+              style: TextStyle(fontSize: 14, color: Colors.grey),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => StudyMoreScreen()));
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => StudyMoreScreen()),
+                );
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xFFCDA434),
