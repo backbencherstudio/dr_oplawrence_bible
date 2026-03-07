@@ -1,16 +1,24 @@
+import 'package:dr_oplawrence_bible/core/constansts/color_manager.dart';
+import 'package:dr_oplawrence_bible/core/resource/style_manager.dart';
 import 'package:dr_oplawrence_bible/core/resource/utils.dart';
 import 'package:dr_oplawrence_bible/core/route/route_name.dart';
+import 'package:dr_oplawrence_bible/presentation/home/view/widgets/prayer_shimmer.dart';
+import 'package:dr_oplawrence_bible/presentation/home/view/widgets/reference_shimmer.dart';
+import 'package:dr_oplawrence_bible/presentation/home/viewmodel/home_riverpod.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart'
+    show AsyncValueExtensions, ConsumerWidget, WidgetRef;
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final dailyVerse = ref.watch(dailyVerseProvider);
     return Scaffold(
       backgroundColor: Color(0xffEBEBEB),
       body: SizedBox(
@@ -36,10 +44,10 @@ class HomeScreen extends StatelessWidget {
                   ),
                   Positioned(
                     bottom: 30.h,
-                    left: 5,
-                    right: 5,
+                    left: 5.w,
+                    right: 5.w,
                     child: Padding(
-                      padding: const EdgeInsets.all(15.0),
+                      padding: EdgeInsets.all(15.0.r),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -50,25 +58,36 @@ class HomeScreen extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             spacing: 15,
                             children: [
-                              Text(
-                                textAlign: TextAlign.center,
-                                'Now these are the names of the children\nof YisraEL, which came into Egypt;\nevery man and his household\ncame with Ya’aqob.',
-                                style: GoogleFonts.merriweather(
-                                  fontSize: 17,
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.white,
-                                ),
+                              dailyVerse.when(
+                                data: (data) {
+                                  return Text(
+                                    data.verse?.text ?? "",
+                                    textAlign: TextAlign.center,
+                                    style: getRegularStyle(
+                                      fontSize: 18.sp,
+                                      color: ColorsManager.whiteColor,
+                                    ),
+                                  );
+                                },
+                                error: (e, _) => Text(e.toString()),
+                                loading: () => PrayerShimmer(),
                               ),
                               Align(
                                 alignment: AlignmentGeometry.center,
-                                child: Text(
-                                  textAlign: TextAlign.end,
-                                  "Exodus-1-1",
-                                  style: GoogleFonts.merriweather(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w500,
-                                    color: Colors.white,
-                                  ),
+                                child: dailyVerse.when(
+                                  data: (data) {
+                                    return Text(
+                                      textAlign: TextAlign.end,
+                                      data.verse?.reference ?? "",
+                                      style: GoogleFonts.merriweather(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w500,
+                                        color: Colors.white,
+                                      ),
+                                    );
+                                  },
+                                  error: (e, _) => Text(e.toString()),
+                                  loading: () => ReferenceShimmer(),
                                 ),
                               ),
                               // GestureDetector(
@@ -151,7 +170,7 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
               Padding(
-                padding:  EdgeInsets.all(16.0.w),
+                padding: EdgeInsets.all(16.0.w),
                 child: Column(
                   spacing: 20,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -164,15 +183,69 @@ class HomeScreen extends StatelessWidget {
                         color: Color(0xff1A1A1A),
                       ),
                     ),
-                    Image.asset('assets/images/prayer_day.png'),
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(16.r),
+                      child: Stack(
+                        alignment: Alignment.bottomCenter,
+                        children: [
+                          // 1. The Background Image
+                          Image.asset(
+                            'assets/images/prayer_day.png',
+                            fit: BoxFit.cover,
+                            width:
+                                double.infinity, // Ensures it fills the width
+                            height: 200.h, // Adjust height as needed
+                          ),
+
+                          // 2. The Black Shadow (Gradient)
+                          Positioned.fill(
+                            child: Container(
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  begin: Alignment.bottomCenter,
+                                  end: Alignment.topCenter,
+                                  stops: const [
+                                    0.0,
+                                    0.8,
+                                  ], // Shadow stays in the bottom half
+                                  colors: [
+                                    Colors.black,
+                                    Colors.transparent, // Fades to nothing
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+
+                          // 3. The Text
+                          dailyVerse.when(
+                            data: (data) {
+                              return Padding(
+                                padding: EdgeInsets.all(10.0.r),
+                                child: Text(
+                                  data.prayer ?? "",
+                                  textAlign: TextAlign.center,
+                                  style: GoogleFonts.merriweather(
+                                    fontSize: 15.sp,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              );
+                            },
+                            error: (e, _) => Text(e.toString()),
+                            loading: () => PrayerShimmer(),
+                          ),
+                        ],
+                      ),
+                    ),
 
                     Container(
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: ColorsManager.whiteColor,
                         borderRadius: BorderRadius.circular(16.r),
                       ),
                       child: Padding(
-                        padding:  EdgeInsets.all(16.0.w),
+                        padding: EdgeInsets.all(16.0.w),
                         child: Column(
                           spacing: 15,
                           children: [
@@ -228,7 +301,7 @@ class HomeScreen extends StatelessWidget {
                         borderRadius: BorderRadius.circular(16.r),
                       ),
                       child: Padding(
-                        padding:  EdgeInsets.all(16.0.w),
+                        padding: EdgeInsets.all(16.0.w),
                         child: Column(
                           spacing: 15,
                           children: [
@@ -295,7 +368,7 @@ class HomeScreen extends StatelessWidget {
                               borderRadius: BorderRadius.circular(10.r),
                             ),
                             child: Padding(
-                              padding:  EdgeInsets.all(12.0.w),
+                              padding: EdgeInsets.all(12.0.w),
                               child: Column(
                                 spacing: 9,
                                 children: [
@@ -331,7 +404,7 @@ class HomeScreen extends StatelessWidget {
                               borderRadius: BorderRadius.circular(10.r),
                             ),
                             child: Padding(
-                              padding:  EdgeInsets.all(12.0.w),
+                              padding: EdgeInsets.all(12.0.w),
                               child: Column(
                                 spacing: 5,
                                 children: [
@@ -369,7 +442,7 @@ class HomeScreen extends StatelessWidget {
                               borderRadius: BorderRadius.circular(10.r),
                             ),
                             child: Padding(
-                              padding:  EdgeInsets.all(12.0.w),
+                              padding: EdgeInsets.all(12.0.w),
                               child: Column(
                                 spacing: 5,
                                 children: [
@@ -409,7 +482,7 @@ class HomeScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10.r),
                         ),
                         child: Padding(
-                          padding:  EdgeInsets.all(16.0.w),
+                          padding: EdgeInsets.all(16.0.w),
                           child: Row(
                             spacing: 10,
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -449,7 +522,7 @@ class HomeScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(30.r),
                           ),
                           child: Padding(
-                            padding:  EdgeInsets.all(12.0.w),
+                            padding: EdgeInsets.all(12.0.w),
                             child: Row(
                               spacing: 10,
                               crossAxisAlignment: CrossAxisAlignment.center,
@@ -474,7 +547,7 @@ class HomeScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(30.r),
                           ),
                           child: Padding(
-                            padding:  EdgeInsets.all(12.0.w),
+                            padding: EdgeInsets.all(12.0.w),
                             child: Row(
                               spacing: 10,
                               crossAxisAlignment: CrossAxisAlignment.center,
@@ -505,7 +578,7 @@ class HomeScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(30.r),
                           ),
                           child: Padding(
-                            padding:  EdgeInsets.all(12.0.w),
+                            padding: EdgeInsets.all(12.0.w),
                             child: Row(
                               children: [
                                 SvgPicture.asset('assets/icons/love.svg'),
@@ -527,7 +600,7 @@ class HomeScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(30.r),
                           ),
                           child: Padding(
-                            padding:  EdgeInsets.all(12.0.w),
+                            padding: EdgeInsets.all(12.0.w),
                             child: Row(
                               spacing: 10,
                               crossAxisAlignment: CrossAxisAlignment.center,
@@ -552,7 +625,7 @@ class HomeScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(30.r),
                           ),
                           child: Padding(
-                            padding:  EdgeInsets.all(12.0.w),
+                            padding: EdgeInsets.all(12.0.w),
                             child: Row(
                               spacing: 10,
                               crossAxisAlignment: CrossAxisAlignment.center,

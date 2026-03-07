@@ -1,36 +1,21 @@
 import 'package:dr_oplawrence_bible/presentation/plan/plan_Screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_riverpod/legacy.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../book/view/book_screen.dart';
 import '../../home/view/home_screen.dart';
 import '../../menu/my_notes_screen.dart';
+import '../viewmodel/bottom_nav_bar_viewmodel.dart';
 
-final parentScreenProvider = ChangeNotifierProvider<ParentScreenProvider>((
-  ref,
-) {
-  return ParentScreenProvider();
-});
 
-class ParentScreenProvider extends ChangeNotifier {
-  int _selectedIndex = 0;
-
-  int get selectedIndex => _selectedIndex;
-
-  void changeIndex(int index) {
-    _selectedIndex = index;
-    notifyListeners();
-  }
-}
 
 class ParentScreen extends ConsumerWidget {
   const ParentScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final navParentProvider = ref.watch(parentScreenProvider);
+    final navParentProvider = ref.watch(bottomNavBarProvider);
     // final bibleVM = BibleViewModel();
 
     final List<Widget> pages = [
@@ -56,7 +41,7 @@ class ParentScreen extends ConsumerWidget {
               children: [
                 Expanded(
                   child: IndexedStack(
-                    index: navParentProvider.selectedIndex,
+                    index: navParentProvider,
                     children: pages,
                   ),
                 ),
@@ -141,8 +126,8 @@ class ParentScreen extends ConsumerWidget {
     required double baseSize,
     required Color selectedIconColor,
   }) {
-    final navProvider = ref.watch(parentScreenProvider);
-    final isSelected = navProvider.selectedIndex == index;
+    final navProvider = ref.watch(bottomNavBarProvider);
+    final isSelected = navProvider == index;
 
     final double iconSize = isSelected ? (baseSize + 4).w : baseSize.w;
 
@@ -155,7 +140,7 @@ class ParentScreen extends ConsumerWidget {
           children: [
             GestureDetector(
               onTap: () =>
-                  ref.read(parentScreenProvider.notifier).changeIndex(index),
+                  ref.read(bottomNavBarProvider.notifier).onItemTapped(index),
               child: AnimatedContainer(
                 duration: const Duration(milliseconds: 220),
                 curve: Curves.easeOut,

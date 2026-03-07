@@ -7,7 +7,7 @@ import '../../../data/models/bible_model.dart';
 import '../../../data/repository/bible_repository.dart';
 import '../../../data/sources/remote/bible_api_services.dart';
 
-final bibleRepositoryProvider = Provider<BibleRepository>((ref) {
+final bibleRepositoryProvider = Provider.autoDispose<BibleRepository>((ref) {
   return BibleRepository(apiService: BibleApiServices(apiClient: ApiClient()));
 });
 

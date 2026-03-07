@@ -19,5 +19,6 @@ class BibleRepository {
     return await apiService.getBibleVerse(chapterId);
     
   }
+  
 
 }
