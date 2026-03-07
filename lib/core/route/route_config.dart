@@ -50,7 +50,7 @@ import '../../presentation/plan/plan_screen.dart';
 import '../../presentation/quiz/quiz_screen.dart';
 import '../../presentation/quiz/screens/quiz_test_start.dart';
 import '../../presentation/quiz/screens/study_more.dart';
-import '../../presentation/search/search_screen.dart';
+import '../../presentation/search/view/search_screen.dart';
 import '../../presentation/splash/view/splash_screen.dart';
 // contains BibleViewModel
 
