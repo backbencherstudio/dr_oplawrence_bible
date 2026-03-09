@@ -55,6 +55,7 @@ dependencies:
   loading_animation_widget: ^1.3.0
   lottie: ^3.3.2
   shimmer: ^3.0.0
+  audioplayers: ^6.6.0
 
 dev_dependencies:
   flutter_test:

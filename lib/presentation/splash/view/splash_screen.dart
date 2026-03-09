@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import '../../../core/network/api_clients.dart';
 import '../../../core/route/route_name.dart';
 import '../../../data/sources/local/shared_preference/shared_preference.dart';
 
@@ -26,8 +27,8 @@ class _SplashScreenState extends State<SplashScreen> {
 
     if (!mounted) return;
 
-    if (token != null && token.isNotEmpty) {
-      // User is logged in → Go to home screen
+    if (token != null && token.isNotEmpty&&token!='null') {
+      ApiClient.headerSet(token);
       Navigator.pushReplacementNamed(context, RouteNames.parentScreen);
     } else {
       // User not logged in → Go to onboarding/login screen

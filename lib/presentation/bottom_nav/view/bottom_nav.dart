@@ -1,4 +1,3 @@
-import 'package:dr_oplawrence_bible/presentation/plan/plan_Screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -6,6 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import '../../book/view/book_screen.dart';
 import '../../home/view/home_screen.dart';
 import '../../menu/my_notes_screen.dart';
+import '../../plan/view/plan_Screen.dart';
 import '../viewmodel/bottom_nav_bar_viewmodel.dart';
 
 
@@ -23,6 +23,7 @@ class ParentScreen extends ConsumerWidget {
       // LottieScreen(),
       BookListScreen(),
       // BookListScreen(bibleVM: bibleVM),
+     
       VideoStoriesScreen(),
       //GlossaryScreen(),
       MyNotesScreen(),

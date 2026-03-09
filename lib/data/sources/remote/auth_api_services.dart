@@ -1,6 +1,9 @@
 import 'package:dr_oplawrence_bible/core/network/api_clients.dart';
 import 'package:dr_oplawrence_bible/core/network/api_endpoints.dart';
 
+import '../../models/response_model.dart';
+import '../local/shared_preference/shared_preference.dart';
+
 class AuthApiServices {
   final ApiClient apiClient;
   AuthApiServices({required this.apiClient});
@@ -37,15 +40,25 @@ class AuthApiServices {
   }
 
   // ================= Login =================
-  Future<dynamic> login({
+  Future<ResponseModel> login({
     required String email,
     required String password,
   }) async {
     final body = {"email": email, "password": password};
-    return await ApiClient.postRequest(
+    var response = await ApiClient.postRequest(
       endpoints: ApiEndpoints.login,
       body: body,
     );
+    if (response['success']) {
+      var token = response['authorization']['access_token'];
+
+      await SharedPreferenceData().setToken(token);
+      ApiClient.headerSet(token);
+      return ResponseModel(isSuccess: true, message:response['message'] );
+    }else{
+       return ResponseModel(isSuccess: false, message:response['message'] );
+
+    }
   }
 
   // ================= Forgot Password =================

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:dr_oplawrence_bible/core/route/route_name.dart';
-import '../../../../../data/sources/local/shared_preference/shared_preference.dart';
 import '../../../../../data/sources/remote/auth_api_services.dart';
 import '../../../../../core/network/api_clients.dart';
 import '../viewmodel/login_riverpod.dart';
@@ -41,23 +40,19 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
 
     try {
       final res = await authService.login(email: email, password: password);
-
-      if (res != null && res['success'] == true) {
-        final token = res['token'];
-        await SharedPreferenceData().setToken(token);
-        await SharedPreferenceData().setEmailId(email);
-
-        if (!mounted) return;
-        Navigator.pushNamedAndRemoveUntil(
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(res.message)),
+        );
+        if(res.isSuccess){
+           Navigator.pushNamedAndRemoveUntil(
           context,
           RouteNames.parentScreen,
           (route) => false,
         );
-      } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(res['message'] ?? "Login failed")),
-        );
-      }
+
+        }
+
+    
     } catch (e) {
       ScaffoldMessenger.of(
         context,
