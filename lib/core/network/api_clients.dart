@@ -22,6 +22,8 @@ class ApiClient {
     final tokn = await SharedPreferenceData.getToken();
     log(token ?? 'token');
     log(tokn ?? 'tokn');
+    log("Hello token"+token.toString());
+    log("Hello tokn"+tokn.toString());
     headers = {
       'Content-Type': 'application/json',
       if (token != null) 'Authorization': 'Bearer $token',
@@ -37,6 +39,7 @@ class ApiClient {
    
     try {
       log("\n\n\n\nurl :${ApiEndpoints.baseUrl}/$endpoints \n\n\n\n");
+      log("\n\n\n\nurl :$headers.toString\n\n\n\n");
       final response = await _dio.get(
         '/$endpoints',
         options: Options(

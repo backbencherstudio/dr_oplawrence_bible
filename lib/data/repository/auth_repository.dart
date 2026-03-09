@@ -1,4 +1,4 @@
-import 'package:dr_oplawrence_bible/data/sources/local/shared_preference/shared_preference.dart';
+import '../models/response_model.dart';
 import '../sources/remote/auth_api_services.dart';
 
 class AuthRepository {
@@ -29,21 +29,16 @@ class AuthRepository {
   }
 
   // ================= Login =================
-  Future<dynamic> login({
+ Future<ResponseModel> login({
     required String email,
     required String password,
-    bool rememberMe = false,
   }) async {
-    final res = await apiService.login(email: email, password: password);
+ return await apiService.login(email: email, password: password);
 
     // Only save token/email if rememberMe is true
-    if (res != null && res['success'] == true && rememberMe) {
-      final token = res['token'];
-      await SharedPreferenceData().setToken(token);
-      await SharedPreferenceData().setEmailId(email);
-    }
+    
 
-    return res;
+  
   }
 
   // ================= Forgot Password =================

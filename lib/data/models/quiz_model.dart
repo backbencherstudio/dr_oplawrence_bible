@@ -1,50 +1,60 @@
 class QuizModel {
-  final String id;
-  final String title;
-  final String description;
-  final int level;
-  final List<QuestionModel> questions;
+  String? id;
+  String? title;
+  String? description;
+  int? level;
+  List<Questions>? questions;
 
-  QuizModel({
-    required this.id,
-    required this.title,
-    required this.description,
-    required this.level,
-    required this.questions,
-  });
+  QuizModel(
+      {this.id, this.title, this.description, this.level, this.questions});
 
-  factory QuizModel.fromJson(Map<String, dynamic> json) {
-    return QuizModel(
-      id: json['id'],
-      title: json['title'],
-      description: json['description'],
-      level: json['level'],
-      questions: (json['questions'] as List)
-          .map((e) => QuestionModel.fromJson(e))
-          .toList(),
-    );
+  QuizModel.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    title = json['title'];
+    description = json['description'];
+    level = json['level'];
+    if (json['questions'] != null) {
+      questions = <Questions>[];
+      json['questions'].forEach((v) {
+        questions!.add(new Questions.fromJson(v));
+      });
+    }
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = {};
+    data['id'] = id;
+    data['title'] = title;
+    data['description'] =description;
+    data['level'] = level;
+    if (questions != null) {
+      data['questions'] = questions!.map((v) => v.toJson()).toList();
+    }
+    return data;
   }
 }
 
-class QuestionModel {
-  final String id;
-  final String question;
-  final List<String> options;
-  final String explaination;
+class Questions {
+  String? id;
+  String? question;
+  List<String>? options;
+  String? explanation;
 
-  QuestionModel({
-    required this.id,
-    required this.question,
-    required this.options,
-    required this.explaination,
-  });
+  Questions({this.id, this.question, this.options, this.explanation});
 
-  factory QuestionModel.fromJson(Map<String, dynamic> json) {
-    return QuestionModel(
-      id: json['id'],
-      question: json['question'],
-      options: List<String>.from(json['options']),
-      explaination: json['explanation'],
-    );
+  Questions.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    question = json['question'];
+    options = json['options'].cast<String>();
+    explanation = json['explanation'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data ={};
+    data['id'] = id;
+    data['question'] = question;
+    data['options'] = options;
+    data['explanation'] = explanation;
+    return data;
   }
 }

@@ -18,7 +18,7 @@ class ApiEndpoints {
   static const String bibleNotes = 'api/application/bible/notes';
   // ============== Quiz Api Service ====================
   static String quizQuestion(int level) =>
-      'api/application/quiz?level=$level';
+      'api/application/quiz?level=$level&page=1&limit=10';
 
 
   static const String updateProfile = 'api/auth/update-profile';
@@ -30,4 +30,6 @@ class ApiEndpoints {
   static const String bibleDaily = 'api/application/bible/daily';
   static const String bibleMaditation = 'api/application/bible/meditation';
   static const String bibleSearch = 'api/application/bible/search';
+  // ================== plan Audio ======================
+  static const String plainAudio = 'api/application/bible/audio';
 }
