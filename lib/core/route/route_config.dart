@@ -46,6 +46,7 @@ import '../../presentation/menu/screens/donate_money_system.dart';
 import '../../presentation/menu/screens/saved_data/highlight_screen.dart';
 import '../../presentation/onboarding/onboarding_screen.dart';
 import '../../presentation/onboarding/second_onboarding.dart';
+import '../../presentation/quiz/quizQuestion/view/quiz_question_screen.dart';
 import '../../presentation/quiz/view/quiz_screen.dart';
 import '../../presentation/search/view/search_screen.dart';
 import '../../presentation/splash/view/splash_screen.dart';
@@ -85,7 +86,8 @@ class AppRoutes {
     //RouteNames.videoStoriesScreen: (context) => const VideoStoriesScreen(),
     RouteNames.quizScreen: (context) => const QuizScreen(),
     //RouteNames.studyMoreScreen: (context) => const StudyMoreScreen(),
-    RouteNames.quizQuestionScreen: (context) => const QuizQuestionScreen(),
+    RouteNames.quizQuestionScreen: (context) =>
+        const QuizQuestionScreen(level: 1),
     RouteNames.myNotesScreen: (context) => const MyNotesScreen(),
     RouteNames.donateMoneySystem: (context) => const DonateMoneySystem(),
     RouteNames.donationScreen: (context) => const DonationScreen(),

@@ -19,11 +19,10 @@ class ApiEndpoints {
   // ============== Quiz Api Service ====================
   static String quizQuestion(int level) =>
       'api/application/quiz?level=$level&page=1&limit=10';
-
-
   static const String updateProfile = 'api/auth/update-profile';
-
   static const String createAndagetJob = 'api/jobs';
+  static const String quizStart = 'api/application/quiz/attempt/start';
+  static const String quizAttemAnswer = 'api/application/quiz/attempt/answer';
 
 
   // ================= Home Api Services ================
