@@ -66,15 +66,20 @@ class Questions {
 }
 
 // ============ Start Quiz Model =============
-class QuizStart {
+class QuizStartModel {
   String? attemptId;
   String? quizId;
   int? totalQuestions;
   String? title;
 
-  QuizStart({this.attemptId, this.quizId, this.totalQuestions, this.title});
+  QuizStartModel({
+    this.attemptId,
+    this.quizId,
+    this.totalQuestions,
+    this.title,
+  });
 
-  QuizStart.fromJson(Map<String, dynamic> json) {
+  QuizStartModel.fromJson(Map<String, dynamic> json) {
     attemptId = json['attemptId'];
     quizId = json['quizId'];
     totalQuestions = json['totalQuestions'];
@@ -82,7 +87,7 @@ class QuizStart {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = {};
     data['attemptId'] = this.attemptId;
     data['quizId'] = this.quizId;
     data['totalQuestions'] = this.totalQuestions;
@@ -91,25 +96,103 @@ class QuizStart {
   }
 }
 
-// ============== Quiz Attamped ============
-// class QuizAttamped {
-//   String? attemptId;
-//   String? questionId;
-//   int? selectedAnswer;
+// ============== Quiz get Attamped ============
+class QuizGetAttamped {
+  String? id;
+  String? quizId;
+  String? userId;
+  int? totalQuestions;
+  int? correctAnswers;
+  int? score;
+  String? completedAt;
+  List<Answers>? answers;
 
-//   QuizAttamped({this.attemptId, this.questionId, this.selectedAnswer});
+  QuizGetAttamped.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    quizId = json['quizId'];
+    userId = json['userId'];
+    totalQuestions = json['totalQuestions'];
+    correctAnswers = json['correctAnswers'];
+    score = json['score'];
+    completedAt = json['completedAt'];
+    if (json['answers'] != null) {
+      answers = <Answers>[];
+      json['answers'].forEach((v) {
+        answers!.add(Answers.fromJson(v));
+      });
+    }
+  }
+}
 
-//   QuizAttamped.fromJson(Map<String, dynamic> json) {
-//     attemptId = json['attemptId'];
-//     questionId = json['questionId'];
-//     selectedAnswer = json['selectedAnswer'];
-//   }
+class Answers {
+  String? questionId;
+  String? question;
+  int? selectedAnswer;
+  bool? isCorrect;
+  int? correctAnswer;
+  List<String>? options;
+  String? explanation;
 
-//   Map<String, dynamic> toJson() {
-//     final Map<String, dynamic> data = new Map<String, dynamic>();
-//     data['attemptId'] = this.attemptId;
-//     data['questionId'] = this.questionId;
-//     data['selectedAnswer'] = this.selectedAnswer;
-//     return data;
-//   }
-// }
+  Answers({
+    this.questionId,
+    this.question,
+    this.selectedAnswer,
+    this.isCorrect,
+    this.correctAnswer,
+    this.options,
+    this.explanation,
+  });
+
+  Answers.fromJson(Map<String, dynamic> json) {
+    questionId = json['questionId'];
+    question = json['question'];
+    selectedAnswer = json['selectedAnswer'];
+    isCorrect = json['isCorrect'];
+    correctAnswer = json['correctAnswer'];
+    options = json['options'].cast<String>();
+    explanation = json['explanation'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['questionId'] = this.questionId;
+    data['question'] = this.question;
+    data['selectedAnswer'] = this.selectedAnswer;
+    data['isCorrect'] = this.isCorrect;
+    data['correctAnswer'] = this.correctAnswer;
+    data['options'] = this.options;
+    data['explanation'] = this.explanation;
+    return data;
+  }
+}
+
+// ============= Quiz Attempted Answer ==============
+class QuizAnsModel {
+  String? questionId;
+  bool? isCorrect;
+  int? correctAnswer;
+  String? explanation;
+
+  QuizAnsModel({
+    this.questionId,
+    this.isCorrect,
+    this.correctAnswer,
+    this.explanation,
+  });
+
+  QuizAnsModel.fromJson(Map<String, dynamic> json) {
+    questionId = json['questionId'];
+    isCorrect = json['isCorrect'];
+    correctAnswer = json['correctAnswer'];
+    explanation = json['explanation'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = {};
+    data['questionId'] = questionId;
+    data['isCorrect'] = isCorrect;
+    data['correctAnswer'] = correctAnswer;
+    data['explanation'] = explanation;
+    return data;
+  }
+}

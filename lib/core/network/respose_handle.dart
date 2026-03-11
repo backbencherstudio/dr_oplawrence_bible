@@ -1,12 +1,12 @@
 import 'dart:developer';
 import 'package:dio/dio.dart';
-class ResposeHandle {
 
-   static dynamic handleResponse(Response response) {
+class ResposeHandle {
+  static dynamic handleResponse(Response response) {
     try {
       if (response.statusCode == 200 || response.statusCode == 201) {
-       // log("Success: ${jsonDecode(response.data.toString())}");
-      log("Success: ${response.data}");
+        // log("Success: ${jsonDecode(response.data.toString())}");
+        log("Success: ${response.data}");
         return response.data;
       } else {
         log("Error Response: ${response.statusCode} - ${response.data}");

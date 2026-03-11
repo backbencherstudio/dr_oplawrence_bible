@@ -1,3 +1,4 @@
+import '../models/bible_model.dart';
 import '../sources/remote/bible_api_services.dart';
 
 class BibleRepository {
@@ -19,6 +20,19 @@ class BibleRepository {
     return await apiService.getBibleVerse(chapterId);
     
   }
+
+  // ================= Bible Explanation =================
+  Future<BibleAiExplanationModel> getBibleExplanation({
+  required String bookName,
+  required int chapter,
+  required int verseNumber,
+}) async {
+  return await apiService.getBibleExplanation(
+    bookName: bookName,
+    chapter: chapter,
+    verseNumber: verseNumber,
+  );
+}
   
 
 }

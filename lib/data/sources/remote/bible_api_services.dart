@@ -1,4 +1,3 @@
-
 import 'package:dr_oplawrence_bible/data/models/bible_model.dart';
 
 import '../../../core/network/api_clients.dart';
@@ -42,4 +41,24 @@ class BibleApiServices {
     return BibleNote.fromJson(response);
   }
 
+  // ================= Bible AI Explanation =================
+  Future<BibleAiExplanationModel> getBibleExplanation({
+  required String bookName,
+  required int chapter,
+  required int verseNumber,
+}) async {
+
+  final body = {
+    "bookName": bookName,
+    "chapter": chapter,
+    "verseNumber": verseNumber
+  };
+
+  final response = await ApiClient.postRequest(
+    endpoints: ApiEndpoints.bibleExplain,
+    body: body,
+  );
+
+  return BibleAiExplanationModel.fromJson(response);
+}
 }

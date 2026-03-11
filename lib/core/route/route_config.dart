@@ -87,7 +87,7 @@ class AppRoutes {
     RouteNames.quizScreen: (context) => const QuizScreen(),
     //RouteNames.studyMoreScreen: (context) => const StudyMoreScreen(),
     RouteNames.quizQuestionScreen: (context) =>
-        const QuizQuestionScreen(level: 1),
+        const QuizQuestionScreen(),
     RouteNames.myNotesScreen: (context) => const MyNotesScreen(),
     RouteNames.donateMoneySystem: (context) => const DonateMoneySystem(),
     RouteNames.donationScreen: (context) => const DonationScreen(),
