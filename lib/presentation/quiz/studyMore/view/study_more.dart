@@ -1,9 +1,9 @@
+import 'package:dr_oplawrence_bible/presentation/quiz/quizQuestion/viewmodel/quiz_question_riverpod.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import '../../quizQuestion/view/quiz_question_screen.dart';
-import '../viewModel/study_more_riverpod.dart';
 
 
 
@@ -13,7 +13,7 @@ class StudyMoreScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final levels = ref.watch(levelsProvider); // <-- read from provider
+    final levels = ref.watch(quizProvider); // <-- read from provider
 
     return Scaffold(
       backgroundColor: Colors.grey.shade200,
@@ -44,15 +44,15 @@ class StudyMoreScreen extends ConsumerWidget {
               const SizedBox(height: 40),
               Expanded(
                 child: ListView.separated(
-                  itemCount: levels.length,
+                  itemCount: levels.levelList!.length,
                   separatorBuilder: (_, __) => const SizedBox(height: 12),
                   itemBuilder: (context, index) {
-                    final levelData = levels[index];
+                    final levelData = levels.levelList?[index];
                     return _buildLevelCard(
                       context,
-                      levelData['name'],
-                      levelData['level'],
-                      levelData['isUnlocked'],
+                      levelData?.name??'',
+                     levelData?.level??0,
+                      levelData?.isUnlocked??false,
                     );
                   },
                 ),
@@ -82,7 +82,7 @@ class StudyMoreScreen extends ConsumerWidget {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => QuizQuestionScreen(level: levelNumber),
+            builder: (context) => QuizQuestionScreen(),
           ),
         );
       },
@@ -124,7 +124,7 @@ class StudyMoreScreen extends ConsumerWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) =>
-                        QuizQuestionScreen(level: levelNumber),
+                        QuizQuestionScreen(),
                   ),
                 );
               },
@@ -137,11 +137,11 @@ class StudyMoreScreen extends ConsumerWidget {
                   color: isUnlocked ? const Color(0xffCDA434) : Colors.grey,
                 ),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8.0),
+                  borderRadius: BorderRadius.circular(8.0.r),
                 ),
               ),
               child: Text(
-                'Reply',
+                'Start',
                 style: TextStyle(
                   color: isUnlocked ? const Color(0xffCDA434) : Colors.grey,
                   fontSize: 16,

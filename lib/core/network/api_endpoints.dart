@@ -16,6 +16,7 @@ class ApiEndpoints {
   static const String bibleChapters = 'api/application/bible/chapters';
   static const String bibleVerse = 'api/application/bible/verses';
   static const String bibleNotes = 'api/application/bible/notes';
+  static const String bibleExplain = "api/application/bible/explain";
   // ============== Quiz Api Service ====================
   static String quizQuestion(int level) =>
       'api/application/quiz?level=$level&page=1&limit=10';
@@ -23,6 +24,11 @@ class ApiEndpoints {
   static const String createAndagetJob = 'api/jobs';
   static const String quizStart = 'api/application/quiz/attempt/start';
   static const String quizAttemAnswer = 'api/application/quiz/attempt/answer';
+  static String quizAttempt(String attemptId) {
+  return "api/application/quiz/attempt/$attemptId";
+}
+
+
 
 
   // ================= Home Api Services ================

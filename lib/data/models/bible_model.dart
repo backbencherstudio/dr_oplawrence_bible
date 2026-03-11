@@ -1,3 +1,4 @@
+// ============ BibleBook =============
 class BibleBook {
   final String id;
   final String name;
@@ -8,7 +9,7 @@ class BibleBook {
     return BibleBook(id: json['id'], name: json['name']);
   }
 }
-
+ // ============== Bible Chapter ===============
 class BibleChapter {
   final String id;
   final int number;
@@ -17,7 +18,7 @@ class BibleChapter {
     return BibleChapter(id: json['id'], number: json['number'] as int);
   }
 }
-
+ // ================ Bible Verse ================
 class BibleVerse {
   final String id;
   final int number;
@@ -31,7 +32,7 @@ class BibleVerse {
     );
   }
 }
-
+ // =============== Bible Note ================
 class BibleNote {
   final String id;
   final String verseId;
@@ -65,6 +66,44 @@ class BibleNote {
       "verseId": verseId,
       "note": note,
       "reference": reference,
+    };
+  }
+}
+
+ // ============= Bible Explanaton =============
+ class BibleAiExplanationModel {
+  String? bookName;
+  int? chapter;
+  int? verseNumber;
+  String? reference;
+  String? verseText;
+  String? explanation;
+
+  BibleAiExplanationModel(
+      {this.bookName,
+      this.chapter,
+      this.verseNumber,
+      this.reference,
+      this.verseText,
+      this.explanation});
+
+  BibleAiExplanationModel.fromJson(Map<String, dynamic> json) {
+    bookName = json['bookName'];
+    chapter = json['chapter'];
+    verseNumber = json['verseNumber'];
+    reference = json['reference'];
+    verseText = json['verseText'];
+    explanation = json['explanation'];
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      "bookName": bookName,
+      "chapter": chapter,
+      "verseNumber": verseNumber,
+      "reference": reference,
+      "verseText": verseText,
+      "explanation": explanation,
     };
   }
 }

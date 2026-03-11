@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -9,6 +10,7 @@ import '../../../../data/models/bible_model.dart';
 import '../../../../data/repository/bible_repository.dart';
 import '../../screens/verse_image_downloader/verse_image_downloader.dart';
 import '../../viewmodel/bible_books_riverpod.dart';
+import '../viewmodel/verse_riverpod.dart';
 
 class VerseScreen extends ConsumerStatefulWidget {
   final String chapterId;
@@ -42,6 +44,7 @@ class _VerseScreenState extends ConsumerState<VerseScreen> {
     _loadData();
   }
 
+  // ============ Load Data ================
   Future<void> _loadData() async {
     prefs = await SharedPreferences.getInstance();
 
@@ -60,6 +63,7 @@ class _VerseScreenState extends ConsumerState<VerseScreen> {
     });
   }
 
+  // ================ Save HighLight ====================
   Future<void> _saveHighlights() async {
     await prefs.setStringList(
       _highlightKey,
@@ -67,6 +71,7 @@ class _VerseScreenState extends ConsumerState<VerseScreen> {
     );
   }
 
+  // =================== Save Note Part ==================
   Future<void> _saveNotes() async {
     final list = notes.entries.map((e) => '${e.key}|${e.value}').toList();
     await prefs.setStringList(_noteKey, list);
@@ -81,6 +86,7 @@ class _VerseScreenState extends ConsumerState<VerseScreen> {
     _saveHighlights();
   }
 
+  // ================= Note Editing =====================
   void _openNoteEditor(int index, String verseText) async {
     final bookName = ref.read(selectedBookNameProvider) ?? '';
     final chapterNumber = ref.read(selectedChapterNumberProvider) ?? 0;
@@ -109,6 +115,7 @@ class _VerseScreenState extends ConsumerState<VerseScreen> {
     }
   }
 
+  // ================ Show Note Using POP ================
   void _showNotePopup(int index) {
     showDialog(
       context: context,
@@ -131,6 +138,7 @@ class _VerseScreenState extends ConsumerState<VerseScreen> {
     );
   }
 
+  // =========== open the dialog and show option ==============
   void _showOptions(BuildContext context, int index, String verseText) {
     final width = MediaQuery.of(context).size.width;
     final bookName = ref.read(selectedBookNameProvider) ?? '';
@@ -199,10 +207,25 @@ class _VerseScreenState extends ConsumerState<VerseScreen> {
                     _openNoteEditor(index, verseText);
                   },
                 ),
+                // _optionTile(
+                //   icon: "assets/icons/explore.svg",
+                //   title: 'Explore',
+                //   onTap: () => Navigator.pop(context),
+                // ),
                 _optionTile(
                   icon: "assets/icons/explore.svg",
                   title: 'Explore',
-                  onTap: () => Navigator.pop(context),
+                  onTap: () {
+                    Navigator.pop(context);
+
+                    ref
+                        .read(bibleExplanationProvider.notifier)
+                        .fetchExplanation(
+                          bookName: bookName,
+                          chapter: chapterNumber,
+                          verseNumber: index + 1,
+                        );
+                  },
                 ),
               ],
             ),
@@ -235,6 +258,7 @@ class _VerseScreenState extends ConsumerState<VerseScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final explanation = ref.watch(bibleExplanationProvider);
     final bookName = ref.watch(selectedBookNameProvider) ?? '';
     final chapterNumber = ref.watch(selectedChapterNumberProvider) ?? 0;
 
@@ -254,10 +278,15 @@ class _VerseScreenState extends ConsumerState<VerseScreen> {
                     shape: BoxShape.circle,
                     border: Border.all(color: Colors.black, width: 1.5),
                   ),
-                  child: const Icon(Icons.arrow_back_ios_new, size: 20),
+                  child: const Icon(
+                    Icons.arrow_back_ios_new,
+                    size: 20,
+                    color: Colors.black,
+                  ),
                 ),
               ),
             ),
+            // =============== book name & chapter number ===========
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
               child: Text(
@@ -270,6 +299,77 @@ class _VerseScreenState extends ConsumerState<VerseScreen> {
                 ),
               ),
             ),
+            // =================== Ai Verse Added ============
+            if (explanation != null)
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 15,
+                  vertical: 3,
+                ),
+                child: Stack(
+                  children: [
+                    Container(
+                      width: double.infinity,
+                      padding: EdgeInsets.all(13.r),
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: const Color.fromARGB(255, 22, 94, 24),
+                          width: 1,
+                        ),
+                        borderRadius: BorderRadius.circular(5),
+                        color: Colors.white,
+                      ),
+
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+
+                        children: [
+                          SizedBox(height: 20),
+                          Text(
+                            'Explanation:',
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontFamily: 'Georgia',
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          SizedBox(height: 10.h),
+                          Text(
+                            explanation.explanation ?? "",
+                            style: const TextStyle(
+                              color: Color.fromARGB(255, 22, 94, 24),
+                              fontSize: 16,
+                              fontFamily: 'Georgia',
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    // ===== Close Button =====
+                    Positioned(
+                      top: 10,
+                      right: 10,
+                      child: GestureDetector(
+                        onTap: () {
+                          // Clear the explanation
+                          ref.read(bibleExplanationProvider.notifier).state =
+                              null;
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.all(4),
+
+                          child: const Icon(
+                            Icons.cancel_rounded,
+                            size: 25,
+                            color: Colors.grey,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            // =============== ListView and details of the verse ==========
             Expanded(
               child: FutureBuilder<dynamic>(
                 future: widget.bibleRepository.getBibleVerse(widget.chapterId),
@@ -329,7 +429,7 @@ class _VerseScreenState extends ConsumerState<VerseScreen> {
   }
 }
 
-/// --- UPDATED NOTE EDIT SCREEN (ACCURATE DESIGN) ---
+/// ======== UPDATED NOTE EDIT SCREEN (ACCURATE DESIGN) =========
 class NoteEditScreen extends StatelessWidget {
   final String title;
   final String verseNumber;
@@ -359,7 +459,7 @@ class NoteEditScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 10),
-              // Back Button
+              // ========= Back Button ============
               InkWell(
                 onTap: () => Navigator.pop(context),
                 child: Container(
@@ -476,6 +576,7 @@ class NoteEditScreen extends StatelessWidget {
   }
 }
 
+// ================= Verse Card ================
 class VerseCard extends StatelessWidget {
   final String number;
   final String text;

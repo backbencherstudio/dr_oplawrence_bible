@@ -1,20 +1,21 @@
+import 'package:dr_oplawrence_bible/core/route/route_name.dart';
+import 'package:dr_oplawrence_bible/presentation/bottom_nav/view/bottom_nav.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../data/models/quiz_model.dart';
 import '../../view/quiz_screen.dart';
 import '../viewmodel/quiz_question_riverpod.dart';
 
 class QuizQuestionScreen extends ConsumerWidget {
-  final int level;
-  const QuizQuestionScreen({super.key, required this.level});
+  const QuizQuestionScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final quizState = ref.watch(quizProvider(level));
-    final quizNotifier = ref.read(quizProvider(level).notifier);
+    final quizState = ref.watch(quizProvider);
+    final quizNotifier = ref.read(quizProvider.notifier);
 
-    // Show loading spinner
+    /// Loading
     if (quizState.isLoading) {
       return const Scaffold(
         body: Center(child: CircularProgressIndicator()),
@@ -22,30 +23,71 @@ class QuizQuestionScreen extends ConsumerWidget {
     }
 
     final questions = quizState.quizModel?.questions ?? [];
+
     if (questions.isEmpty) {
-      return Scaffold(
-        body: Center(child: Text('No questions available for this level.')),
+      return const Scaffold(
+        body: Center(child: Text("No questions available")),
       );
     }
 
-    final currentQuestion = questions[quizState.currentQuestionIndex];
+    final currentQuestion =
+        questions.elementAt(quizState.currentQuestionIndex);
 
+    /// Success Dialog
     void showSuccessDialog() {
       showDialog(
         context: context,
         barrierDismissible: false,
         builder: (context) => AlertDialog(
-          actions: [
-            GestureDetector(
-              onTap: () {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => QuizScreen()),
-                );
-              },
-              child: Image.asset('assets/images/successfull.png'),
-            )
-          ],
+          contentPadding: EdgeInsets.zero,
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Stack(
+                children: [
+                  Image.asset('assets/images/successfull.png'),
+                  Positioned(
+                    bottom: 140,
+                    left: 0,
+                    right: 0,
+                    child: Text(
+                      "Score: ${quizState.score}%",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 25.sp,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 10),
+              ElevatedButton(
+                onPressed: () {
+                  ref.read(quizProvider.notifier).levelChange();
+
+                  if (ref.read(quizProvider).quizLavel == 4) {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => ParentScreen(),
+                      ),
+                    );
+                  } else {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => QuizScreen(),
+                      ),
+                    );
+                  }
+                },
+                child: const Text("Continue"),
+              ),
+              const SizedBox(height: 10),
+            ],
+          ),
         ),
       );
     }
@@ -54,14 +96,18 @@ class QuizQuestionScreen extends ConsumerWidget {
       backgroundColor: Colors.grey.shade200,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              _buildAppBar(quizState),
+              _buildAppBar(quizState, context),
+
               const SizedBox(height: 16),
+
               _buildQuestionCard(currentQuestion, quizState),
+
               const SizedBox(height: 24),
+
               ...List.generate(
                 currentQuestion.options?.length ?? 0,
                 (index) => Padding(
@@ -70,7 +116,11 @@ class QuizQuestionScreen extends ConsumerWidget {
                     currentQuestion.options![index],
                     index,
                     quizState,
-                    () => quizNotifier.selectOption(index, showSuccessDialog),
+                    () => quizNotifier.selectOption(
+                      index,
+                      currentQuestion.id ?? '',
+                      showSuccessDialog,
+                    ),
                   ),
                 ),
               ),
@@ -81,32 +131,47 @@ class QuizQuestionScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildAppBar(QuizState quizState) {
+  /// ================= APP BAR =================
+  Widget _buildAppBar(QuizState quizState, BuildContext context) {
+    final total = quizState.quizModel?.questions?.length ?? 1;
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         GestureDetector(
-          onTap: () {},
-          child: Image.asset('assets/icons/back_arrow.png', scale: 4),
+          onTap: () {
+            Navigator.pushNamedAndRemoveUntil(
+              context,
+              RouteNames.parentScreen,
+              (route) => false,
+            );
+          },
+          child: Image.asset(
+            'assets/icons/back_arrow.png',
+            scale: 4,
+          ),
         ),
         const SizedBox(width: 16),
+
         Expanded(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                '${quizState.currentQuestionIndex + 1}/${quizState.quizModel?.questions?.length ?? 0}',
+                "${quizState.currentQuestionIndex + 1}/$total",
                 style: TextStyle(
                   fontSize: 14,
                   color: Colors.grey.shade700,
                   fontWeight: FontWeight.w500,
                 ),
               ),
+
               const SizedBox(height: 6),
+
               ClipRRect(
                 borderRadius: BorderRadius.circular(4),
                 child: LinearProgressIndicator(
-                  value: quizState.progress,
+                  value:
+                      (quizState.currentQuestionIndex + 1) / total,
                   minHeight: 8,
                   backgroundColor: Colors.grey.shade300,
                   color: Colors.green,
@@ -115,37 +180,48 @@ class QuizQuestionScreen extends ConsumerWidget {
             ],
           ),
         ),
+
         const SizedBox(width: 16),
-        Image.asset('assets/icons/slider.png', scale: 3),
+
+        Image.asset(
+          'assets/icons/slider.png',
+          scale: 3,
+        ),
       ],
     );
   }
 
-  Widget _buildQuestionCard(Questions question, QuizState quizState) {
+  /// ================= QUESTION CARD =================
+  Widget _buildQuestionCard(
+      Questions question, QuizState quizState) {
+    final total = quizState.quizModel?.questions?.length ?? 0;
+
     return Container(
-      padding: const EdgeInsets.all(20.0),
+      padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(12.0),
+        borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.2),
-            spreadRadius: 1,
+            color: Colors.grey.withOpacity(.2),
             blurRadius: 5,
             offset: const Offset(0, 3),
-          ),
+          )
         ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Question ${quizState.currentQuestionIndex + 1}/${quizState.quizModel?.questions?.length ?? 0}',
-            style: TextStyle(fontSize: 16, color: Colors.grey),
+            "Question ${quizState.currentQuestionIndex + 1}/$total",
+            style: const TextStyle(
+              fontSize: 16,
+              color: Colors.grey,
+            ),
           ),
           const SizedBox(height: 10),
           Text(
-            question.question ?? '',
+            question.question ?? "",
             style: const TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
@@ -157,6 +233,7 @@ class QuizQuestionScreen extends ConsumerWidget {
     );
   }
 
+  /// ================= OPTION BUTTON =================
   Widget _buildOptionButton(
     String text,
     int index,
@@ -166,8 +243,14 @@ class QuizQuestionScreen extends ConsumerWidget {
     Color bgColor = Colors.white;
     Color textColor = Colors.black87;
 
-    if (quizState.isOptionSelected && quizState.selectedOptionIndex == index) {
-      bgColor = Colors.green;
+    if (quizState.isOptionSelected &&
+        quizState.selectedOptionIndex == index) {
+      if (quizState.isCorrectAns) {
+        bgColor = Colors.green;
+      } else {
+        bgColor = Colors.red;
+      }
+
       textColor = Colors.white;
     }
 
@@ -175,21 +258,22 @@ class QuizQuestionScreen extends ConsumerWidget {
       onTap: onTap,
       child: Container(
         width: double.infinity,
-        padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
+        padding: const EdgeInsets.symmetric(
+          vertical: 16,
+          horizontal: 16,
+        ),
         decoration: BoxDecoration(
           color: bgColor,
-          borderRadius: BorderRadius.circular(8.0),
+          borderRadius: BorderRadius.circular(8),
           border: Border.all(
             color: Colors.grey.shade300,
-            width: 1,
           ),
           boxShadow: [
             BoxShadow(
-              color: Colors.grey.withOpacity(0.1),
-              spreadRadius: 1,
+              color: Colors.grey.withOpacity(.1),
               blurRadius: 3,
               offset: const Offset(0, 2),
-            ),
+            )
           ],
         ),
         child: Text(
