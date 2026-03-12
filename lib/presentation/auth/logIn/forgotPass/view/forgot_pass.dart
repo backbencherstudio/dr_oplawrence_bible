@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:dr_oplawrence_bible/core/route/route_name.dart';
 import '../../../../../../core/network/api_clients.dart';
@@ -69,77 +70,77 @@ class _ForgotPassState extends ConsumerState<ForgotPass> {
     return Scaffold(
       body: Center(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.all(32.0),
+          padding:  EdgeInsets.all(32.0.w),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Image.asset('assets/icons/login_icons.png', scale: 3),
-              const SizedBox(height: 25),
+               SizedBox(height: 25.h),
               Text(
                 'Forgot Password',
                 textAlign: TextAlign.center,
                 style: GoogleFonts.merriweather(
-                  fontSize: 28,
+                  fontSize: 28.sp,
                   fontWeight: FontWeight.w700,
                   color: const Color(0xff1A1A1A),
                 ),
               ),
-              const SizedBox(height: 8),
-              const Text(
+               SizedBox(height: 8.h),
+               Text(
                 'Enter your login email details below',
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 14,
+                  fontSize: 14.sp,
                   fontWeight: FontWeight.w400,
                   color: Color(0xff343434),
                 ),
               ),
-              const SizedBox(height: 40),
+               SizedBox(height: 40.h),
               Align(
                 alignment: Alignment.topLeft,
-                child: const Text(
+                child:  Text(
                   'Email',
                   style: TextStyle(
-                    fontSize: 16,
+                    fontSize: 16.sp,
                     fontWeight: FontWeight.w500,
                     color: Colors.black,
                   ),
                 ),
               ),
-              const SizedBox(height: 8),
+               SizedBox(height: 8.h),
               TextFormField(
                 controller: emailController,
                 decoration: InputDecoration(
                   hintText: 'example@gmail.com',
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8.0),
+                    borderRadius: BorderRadius.circular(8.0.r),
                     borderSide: const BorderSide(color: Colors.grey),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8.0),
-                    borderSide: const BorderSide(
+                    borderRadius: BorderRadius.circular(8.0.r),
+                    borderSide:  BorderSide(
                       color: Colors.blue,
-                      width: 2.0,
+                      width: 2.0.w,
                     ),
                   ),
-                  contentPadding: const EdgeInsets.symmetric(
-                    horizontal: 16,
-                    vertical: 12,
+                  contentPadding:  EdgeInsets.symmetric(
+                    horizontal: 16.w,
+                    vertical: 12.h,
                   ),
                   fillColor: Colors.white,
                   filled: true,
                 ),
                 keyboardType: TextInputType.emailAddress,
               ),
-              const SizedBox(height: 20),
+               SizedBox(height: 20.h),
 
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   // Back Button
                   SizedBox(
-                    width: 155,
+                    width: 155.w,
                     child: ElevatedButton(
                       onPressed: () {
                         Navigator.pop(context);
@@ -147,19 +148,19 @@ class _ForgotPassState extends ConsumerState<ForgotPass> {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.white,
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16.0),
+                          borderRadius: BorderRadius.circular(16.0.r),
                           side: const BorderSide(
                             color: Color(0xFF1E3A8A),
                             width: 1,
                           ),
                         ),
-                        padding: const EdgeInsets.symmetric(vertical: 16),
-                        minimumSize: const Size(double.infinity, 50),
+                        padding:  EdgeInsets.symmetric(vertical: 16.h),
+                        minimumSize:  Size(double.infinity, 50),
                       ),
-                      child: const Text(
+                      child:  Text(
                         'Back',
                         style: TextStyle(
-                          fontSize: 18,
+                          fontSize: 18.sp,
                           color: Color(0xFF1E3A8A),
                           fontWeight: FontWeight.bold,
                         ),
@@ -169,7 +170,7 @@ class _ForgotPassState extends ConsumerState<ForgotPass> {
 
                   // Next Button (Send Reset Link)
                   SizedBox(
-                    width: 155,
+                    width: 155.w,
                     child: ElevatedButton(
                       onPressed: _isLoading ? null : sendResetLink,
                       style: ElevatedButton.styleFrom(
@@ -177,22 +178,22 @@ class _ForgotPassState extends ConsumerState<ForgotPass> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(16.0),
                         ),
-                        padding: const EdgeInsets.symmetric(vertical: 16),
-                        minimumSize: const Size(double.infinity, 50),
+                        padding:  EdgeInsets.symmetric(vertical: 16),
+                        minimumSize:  Size(double.infinity, 50),
                       ),
                       child: _isLoading
-                          ? const SizedBox(
-                              width: 24,
-                              height: 24,
+                          ?  SizedBox(
+                              width: 24.w,
+                              height: 24.h,
                               child: CircularProgressIndicator(
                                 color: Colors.white,
                                 strokeWidth: 2.5,
                               ),
                             )
-                          : const Text(
+                          :  Text(
                               'Next',
                               style: TextStyle(
-                                fontSize: 18,
+                                fontSize: 18.sp,
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
                               ),

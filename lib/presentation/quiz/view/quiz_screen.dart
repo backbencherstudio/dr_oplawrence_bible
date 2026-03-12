@@ -1,6 +1,7 @@
 import 'package:dr_oplawrence_bible/presentation/bottom_nav/view/bottom_nav.dart';
 import 'package:dr_oplawrence_bible/presentation/quiz/studyMore/view/study_more.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class QuizScreen extends StatelessWidget {
@@ -24,25 +25,25 @@ class QuizScreen extends StatelessWidget {
           'Quiz',
           style: GoogleFonts.merriweather(
             color: Color(0xFFC70039),
-            fontSize: 20,
+            fontSize: 20.sp,
             fontWeight: FontWeight.w400,
           ),
         ),
         centerTitle: true,
-        actions: const [
+        actions:  [
           Padding(
-            padding: EdgeInsets.only(right: 16.0),
+            padding: EdgeInsets.only(right: 16.0.w),
             child: Icon(Icons.school, color: Colors.black),
           ),
         ],
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding:  EdgeInsets.all(16.0.w),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             _buildJigsawPuzzleGrid(),
-            const SizedBox(height: 30),
+             SizedBox(height: 30.h),
             _buildChallengesCard(context),
           ],
         ),
@@ -56,7 +57,7 @@ class QuizScreen extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           color: Colors.grey.shade100,
-          borderRadius: BorderRadius.circular(8.0),
+          borderRadius: BorderRadius.circular(8.0.r),
         ),
         clipBehavior: Clip.antiAlias,
         child: GridView.builder(
@@ -110,26 +111,26 @@ class QuizScreen extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(12.0),
+        borderRadius: BorderRadius.circular(12.0.r),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(24.0),
+        padding:  EdgeInsets.all(24.0.w),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Text(
+             Text(
               'Morning and Night Challenges',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
               textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 8),
-            const Text(
+             SizedBox(height: 8.h),
+             Text(
               'Pass morning and night Bible quiz challenge to unlock the jigsaw',
-              style: TextStyle(fontSize: 14, color: Colors.grey),
+              style: TextStyle(fontSize: 14.sp, color: Colors.grey),
               textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 20),
+             SizedBox(height: 20.h),
             ElevatedButton(
               onPressed: () {
                 Navigator.pushReplacement(
@@ -139,14 +140,14 @@ class QuizScreen extends StatelessWidget {
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xFFCDA434),
-                padding: const EdgeInsets.symmetric(vertical: 16.0),
+                padding:  EdgeInsets.symmetric(vertical: 16.0.h),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8.0),
+                  borderRadius: BorderRadius.circular(8.0.r),
                 ),
               ),
-              child: const Text(
+              child:  Text(
                 'Start',
-                style: TextStyle(color: Colors.white, fontSize: 16),
+                style: TextStyle(color: Colors.white, fontSize: 16.sp),
               ),
             ),
           ],

@@ -5,6 +5,7 @@ import 'package:dr_oplawrence_bible/core/resource/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/legacy.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 
 // 🔹 Provider to hold the selected time
@@ -60,7 +61,7 @@ class TimeTextfield extends ConsumerWidget {
     final screenHeight = Utils.fullHeight(context);
 
     return SizedBox(
-      height: screenHeight * 0.1,
+      height: screenHeight * 0.1.h,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -81,7 +82,7 @@ class TimeTextfield extends ConsumerWidget {
             ),
           ),
           SizedBox(
-            height: screenHeight * 0.06,
+            height: screenHeight * 0.06.h,
             child: TextFormField(
               controller: controller,
               readOnly: true,

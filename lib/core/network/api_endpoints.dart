@@ -37,4 +37,7 @@ class ApiEndpoints {
   static const String bibleSearch = 'api/application/bible/search';
   // ================== plan Audio ======================
   static const String plainAudio = 'api/application/bible/audio';
+
+  // ================ Donate part ============
+  static const String  donateMoney = 'api/payment/stripe/donate';
 }

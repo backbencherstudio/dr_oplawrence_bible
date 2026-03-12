@@ -3,6 +3,7 @@ import 'package:dr_oplawrence_bible/core/resource/style_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/legacy.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 final tabProvider = StateProvider.autoDispose<int>((ref)=> 0);
 
@@ -23,11 +24,11 @@ class ScrollableTabView extends ConsumerWidget {
               ref.read(tabProvider.notifier).state = index;
             },
             child: Container(
-              margin: EdgeInsets.symmetric(horizontal: 8),
-              padding: EdgeInsets.all(16),
+              margin: EdgeInsets.symmetric(horizontal: 8.w),
+              padding: EdgeInsets.all(16.w),
               decoration: BoxDecoration(
                 color: (tabStatus == index) ? ColorsManager.primaryColor : ColorsManager.whiteColor,
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(8.r),
                 border: (tabStatus != index) ? Border.all(width: 1, color: ColorsManager.primaryColor) : null,
               ),
               child: Text(tabs[index], style: getSmallStyle(color: (tabStatus == index) ? ColorsManager.whiteColor : ColorsManager.primaryTextColor),),

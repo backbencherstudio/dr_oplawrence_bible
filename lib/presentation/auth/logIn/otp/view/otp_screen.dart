@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/network/api_clients.dart';
 import '../../../../../core/route/route_name.dart';
@@ -110,8 +111,8 @@ class _OtpScreenState extends ConsumerState<OtpScreen> {
         keyboardType: TextInputType.number,
         inputFormatters: [FilteringTextInputFormatter.digitsOnly],
         maxLength: 1,
-        style: const TextStyle(
-          fontSize: 28,
+        style: TextStyle(
+          fontSize: 28.sp,
           fontWeight: FontWeight.bold,
           color: Colors.white,
         ),
@@ -160,8 +161,8 @@ class _OtpScreenState extends ConsumerState<OtpScreen> {
     final isLoading = ref.watch(isLoadingProvider);
 
     double screenWidth = MediaQuery.of(context).size.width;
-    double horizontalPadding = 30;
-    double spacingBetweenBoxes = 10;
+    double horizontalPadding = 30.w;
+    double spacingBetweenBoxes = 10.w;
     double boxWidth =
         (screenWidth - horizontalPadding * 2 - (5 * spacingBetweenBoxes)) / 6;
 
@@ -173,72 +174,72 @@ class _OtpScreenState extends ConsumerState<OtpScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset('assets/icons/login_icons.png', scale: 3),
-            const SizedBox(height: 25),
-            const Text(
+            SizedBox(height: 25.h),
+            Text(
               'OTP Verification',
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontSize: 28,
+                fontSize: 28.sp,
                 fontWeight: FontWeight.w700,
                 color: Color(0xff1A1A1A),
               ),
             ),
-            const SizedBox(height: 10),
-            const Text(
+            SizedBox(height: 10.h),
+            Text(
               'Enter the verification code we just\nsent to your Email.',
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontSize: 14,
+                fontSize: 14.sp,
                 fontWeight: FontWeight.w400,
                 color: Color(0xff343434),
               ),
             ),
-            const SizedBox(height: 30),
+            SizedBox(height: 30.h),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: List.generate(6, (index) => otpBox(index, boxWidth)),
             ),
-            const SizedBox(height: 20),
+            SizedBox(height: 20.h),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text(
+                Text(
                   "Resend code in",
                   style: TextStyle(
                     color: Colors.grey,
-                    fontSize: 15,
+                    fontSize: 15.sp,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
                 Text(
                   " 00:${secondsRemaining.toString().padLeft(2, '0')}",
-                  style: const TextStyle(
+                  style: TextStyle(
                     color: Color(0xffB02626),
-                    fontSize: 15,
+                    fontSize: 15.sp,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
               ],
             ),
-            const SizedBox(height: 8),
+            SizedBox(height: 8.h),
             GestureDetector(
               onTap: canResend ? resendCode : null,
               child: Text(
                 "or Receive code via call",
                 style: TextStyle(
                   color: canResend ? const Color(0xffB02626) : Colors.grey,
-                  fontSize: 15,
+                  fontSize: 15.sp,
                   fontWeight: FontWeight.w500,
                 ),
               ),
             ),
-            const SizedBox(height: 20),
+            SizedBox(height: 20.h),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(
-                  width: 150,
-                  height: 50,
+                  width: 150.w,
+                  height: 50.h,
                   child: OutlinedButton(
                     onPressed: () {
                       Navigator.pop(context);
@@ -246,36 +247,39 @@ class _OtpScreenState extends ConsumerState<OtpScreen> {
                     style: OutlinedButton.styleFrom(
                       side: BorderSide(color: Colors.blue.shade900, width: 1.5),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(10.r),
                       ),
                     ),
                     child: Text(
                       "Back",
                       style: TextStyle(
                         color: Colors.blue.shade900,
-                        fontSize: 16,
+                        fontSize: 16.sp,
                       ),
                     ),
                   ),
                 ),
-                const SizedBox(width: 20),
+                Spacer(),
                 SizedBox(
-                  width: 150,
-                  height: 50,
+                  width: 150.w,
+                  height: 50.h,
                   child: ElevatedButton(
                     onPressed: isLoading ? null : submitOtp,
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blue.shade900,
                       disabledBackgroundColor: Colors.grey.shade400,
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(10.r),
                       ),
                     ),
                     child: isLoading
                         ? const CircularProgressIndicator(color: Colors.white)
-                        : const Text(
+                        : Text(
                             "Submit",
-                            style: TextStyle(color: Colors.white, fontSize: 16),
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16.sp,
+                            ),
                           ),
                   ),
                 ),

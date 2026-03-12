@@ -109,7 +109,7 @@ class _MorningPrayerScreenState extends ConsumerState<MorningPrayerScreen> {
             ),
             SizedBox(height: 20.h),
             Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding:  EdgeInsets.all(16.0.w),
               child: Container(
                 decoration: BoxDecoration(
                   color: Colors.white,

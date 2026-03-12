@@ -78,17 +78,17 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
         ),
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
+        padding:  EdgeInsets.all(16.w),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             _buildSearchBar(),
-            const SizedBox(height: 30),
+             SizedBox(height: 30.h),
 
             /// ================= Topics =================
             _buildSectionTitle('Topics'),
             _buildTopicChips(),
-            const SizedBox(height: 30),
+             SizedBox(height: 30.h),
 
             /// ================= History =================
             _buildSectionTitle('History'),
@@ -117,47 +117,47 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
 
                           return Card(
                             elevation: 2,
-                            margin: const EdgeInsets.symmetric(
-                              horizontal: 12,
-                              vertical: 6,
+                            margin:  EdgeInsets.symmetric(
+                              horizontal: 12.w,
+                              vertical: 6.h,
                             ),
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
+                              borderRadius: BorderRadius.circular(12.r),
                             ),
                             child: Padding(
-                              padding: const EdgeInsets.all(14),
+                              padding:  EdgeInsets.all(14.w),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   /// Verse Text
                                   Text(
                                     verse.text ?? "",
-                                    style: const TextStyle(
-                                      fontSize: 15,
-                                      height: 1.5,
+                                    style:  TextStyle(
+                                      fontSize: 15.sp,
+                                      height: 1.5.h,
                                       fontWeight: FontWeight.w500,
                                     ),
                                   ),
 
-                                  const SizedBox(height: 10),
+                                   SizedBox(height: 10.h),
 
                                   /// Reference
                                   Align(
                                     alignment: Alignment.centerRight,
                                     child: Container(
-                                      padding: const EdgeInsets.symmetric(
-                                        horizontal: 10,
-                                        vertical: 4,
+                                      padding:  EdgeInsets.symmetric(
+                                        horizontal: 10.w,
+                                        vertical: 4.h,
                                       ),
                                       decoration: BoxDecoration(
                                         color: const Color(0xffB02626),
-                                        borderRadius: BorderRadius.circular(20),
+                                        borderRadius: BorderRadius.circular(20.r),
                                       ),
                                       child: Text(
                                         verse.reference ?? "",
-                                        style: const TextStyle(
+                                        style:  TextStyle(
                                           color: Colors.white,
-                                          fontSize: 12,
+                                          fontSize: 12.sp,
                                           fontWeight: FontWeight.bold,
                                         ),
                                       ),
@@ -191,20 +191,20 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
       decoration: InputDecoration(
         filled: true,
         fillColor: Colors.white,
-        contentPadding: const EdgeInsets.symmetric(
-          vertical: 14,
-          horizontal: 20,
+        contentPadding:  EdgeInsets.symmetric(
+          vertical: 14.h,
+          horizontal: 20.w,
         ),
         hintText: "Search",
-        hintStyle: const TextStyle(fontSize: 16, color: Colors.grey),
+        hintStyle:  TextStyle(fontSize: 16.sp, color: Colors.grey),
         prefixIcon: const Icon(Icons.search, color: Colors.black),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(30),
+          borderRadius: BorderRadius.circular(30.r),
           borderSide: BorderSide.none,
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(30),
-          borderSide: const BorderSide(color: Colors.black54),
+          borderRadius: BorderRadius.circular(30.r),
+          borderSide:  BorderSide(color: Colors.black54),
         ),
       ),
     );
@@ -213,11 +213,11 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
   /// ================= Section Title =================
   Widget _buildSectionTitle(String title) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 12),
+      padding:  EdgeInsets.only(bottom: 12.h),
       child: Text(
         title,
-        style: const TextStyle(
-          fontSize: 20,
+        style:  TextStyle(
+          fontSize: 20.sp,
           fontWeight: FontWeight.bold,
           color: Colors.black,
         ),
@@ -238,7 +238,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
         return GestureDetector(
           onTap: () => _performSearch(item),
           child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+            padding:  EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(30.r),
@@ -248,12 +248,12 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
               children: [
                 Text(
                   item,
-                  style: const TextStyle(
-                    fontSize: 18,
+                  style:  TextStyle(
+                    fontSize: 18.sp,
                     color: Color(0xff1A1A1A),
                   ),
                 ),
-                const SizedBox(width: 8),
+                 SizedBox(width: 8.w),
                 GestureDetector(
                   onTap: () => _removeHistoryItem(item),
                   child: const Icon(
@@ -278,18 +278,18 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             _iconChip('Barakat', 'assets/icons/barakat.svg'),
-            const SizedBox(width: 10),
+             SizedBox(width: 10.w),
             _iconChip('Peace', 'assets/icons/peace.svg'),
           ],
         ),
-        const SizedBox(height: 15),
+         SizedBox(height: 15.h),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             _iconChip('Love', 'assets/icons/love.svg'),
-            const SizedBox(width: 10),
+             SizedBox(width: 10.w),
             _iconChip('Salvation', 'assets/icons/Salvation.svg'),
-            const SizedBox(width: 10),
+             SizedBox(width: 10.w),
             _iconChip('Faith', 'assets/icons/Faith.svg'),
           ],
         ),
@@ -309,7 +309,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
         child: Row(
           children: [
             SvgPicture.asset(iconPath),
-            const SizedBox(width: 8),
+             SizedBox(width: 8.w),
             Text(
               label,
               style: TextStyle(fontSize: 18.sp, color: const Color(0xff1A1A1A)),

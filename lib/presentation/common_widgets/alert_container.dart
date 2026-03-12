@@ -2,6 +2,7 @@ import 'package:dr_oplawrence_bible/core/constansts/color_manager.dart';
 import 'package:dr_oplawrence_bible/core/constansts/icon_manager.dart';
 import 'package:dr_oplawrence_bible/core/resource/theme_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 class AlertContainer extends StatelessWidget {
@@ -25,13 +26,13 @@ class AlertContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     final style = getApplicationTheme().textTheme;
     return Container(
-      padding: EdgeInsets.all(12),
+      padding: EdgeInsets.all(12.w),
       decoration: BoxDecoration(
         color: bgColor ?? ColorsManager.warningColor,
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(8.r),
       ),
       child: Column(
-        spacing: 8,
+        spacing: 8.w,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -40,8 +41,8 @@ class AlertContainer extends StatelessWidget {
               ...[
                 SvgPicture.asset(
                   svgIcon ?? IconManager.alertTriangle,
-                  width: 24,
-                  height: 24,
+                  width: 24.w,
+                  height: 24.h,
                 ),
               ],
               if (title != null) ...[

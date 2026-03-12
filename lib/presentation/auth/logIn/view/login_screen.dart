@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:dr_oplawrence_bible/core/route/route_name.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../data/sources/remote/auth_api_services.dart';
 import '../../../../../core/network/api_clients.dart';
 import '../viewmodel/login_riverpod.dart';
@@ -72,7 +73,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
-            padding: const EdgeInsets.symmetric(horizontal: 24.0),
+            padding:  EdgeInsets.symmetric(horizontal: 24.0.w),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -80,32 +81,32 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 Center(
                   child: Image.asset(
                     'assets/icons/login_icons.png',
-                    height: 120,
-                    errorBuilder: (context, error, stackTrace) => const Icon(
+                    height: 120.h,
+                    errorBuilder: (context, error, stackTrace) =>  Icon(
                       Icons.menu_book,
                       size: 100,
                       color: Colors.orange,
                     ),
                   ),
                 ),
-                const SizedBox(height: 20),
-                const Center(
+                 SizedBox(height: 20.h),
+                 Center(
                   child: Text(
                     'Hi, Welcome Back!',
                     style: TextStyle(
-                      fontSize: 28,
+                      fontSize: 28.sp,
                       fontWeight: FontWeight.bold,
                       fontFamily: 'Serif',
                       color: Color(0xFF1A1A1A),
                     ),
                   ),
                 ),
-                const SizedBox(height: 40),
-                const Text(
+                 SizedBox(height: 40.h),
+                 Text(
                   "Email",
-                  style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
+                  style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16.sp),
                 ),
-                const SizedBox(height: 8),
+                 SizedBox(height: 8.h),
                 TextFormField(
                   controller: emailController,
                   decoration: InputDecoration(
@@ -113,26 +114,26 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     hintStyle: const TextStyle(color: Colors.grey),
                     filled: true,
                     fillColor: Colors.transparent,
-                    contentPadding: const EdgeInsets.symmetric(
-                      horizontal: 16,
-                      vertical: 16,
+                    contentPadding:  EdgeInsets.symmetric(
+                      horizontal: 16.w,
+                      vertical: 16.h,
                     ),
                     border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.circular(12.r),
                       borderSide: const BorderSide(color: Colors.grey),
                     ),
                     enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.circular(12.r),
                       borderSide: const BorderSide(color: Colors.grey),
                     ),
                   ),
                 ),
-                const SizedBox(height: 20),
-                const Text(
+                 SizedBox(height: 20.h),
+                 Text(
                   "Password",
-                  style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
+                  style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16.sp),
                 ),
-                const SizedBox(height: 8),
+                 SizedBox(height: 8.h),
                 TextFormField(
                   controller: passwordController,
                   obscureText: _obscureText,
@@ -152,29 +153,29 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                             !_obscureText;
                       },
                     ),
-                    contentPadding: const EdgeInsets.symmetric(
-                      horizontal: 16,
-                      vertical: 16,
+                    contentPadding:  EdgeInsets.symmetric(
+                      horizontal: 16.w,
+                      vertical: 16.h,
                     ),
                     border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.circular(12.r),
                       borderSide: const BorderSide(color: Colors.grey),
                     ),
                     enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.circular(12.r),
                       borderSide: const BorderSide(color: Colors.grey),
                     ),
                   ),
                 ),
-                const SizedBox(height: 16),
+                 SizedBox(height: 16.h),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Row(
                       children: [
                         SizedBox(
-                          height: 24,
-                          width: 24,
+                          height: 24.h,
+                          width: 24.w,
                           child: Checkbox(
                             // Watch the current value of the checkbox
                             value: ref.watch(rememberMeProvider),
@@ -188,7 +189,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                             },
                           ),
                         ),
-                        const SizedBox(width: 8),
+                         SizedBox(width: 8.w),
                         const Text(
                           "Remember Me",
                           style: TextStyle(fontWeight: FontWeight.w600),
@@ -208,33 +209,33 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     ),
                   ],
                 ),
-                const SizedBox(height: 30),
+                 SizedBox(height: 30.h),
                 ElevatedButton(
                   onPressed: _isLoading ? null : login,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF1E3A8A),
                     foregroundColor: Colors.white,
-                    minimumSize: const Size(double.infinity, 56),
+                    minimumSize:  Size(double.infinity, 56),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.circular(12.r),
                     ),
                     elevation: 0,
                   ),
                   child: _isLoading
                       ? const CircularProgressIndicator(color: Colors.white)
-                      : const Text(
+                      :  Text(
                           'Login',
                           style: TextStyle(
-                            fontSize: 18,
+                            fontSize: 18.sp,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                 ),
-                const SizedBox(height: 100),
+                 SizedBox(height: 100),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text(
+                     Text(
                       "Don’t have an account? ",
                       style: TextStyle(
                         color: Colors.grey,
@@ -257,7 +258,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     ),
                   ],
                 ),
-                const SizedBox(height: 20),
+                 SizedBox(height: 20.h),
               ],
             ),
           ),

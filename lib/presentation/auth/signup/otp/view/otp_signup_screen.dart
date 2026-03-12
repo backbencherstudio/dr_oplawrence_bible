@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:dr_oplawrence_bible/core/route/route_name.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../viewmodel/otp_riverpod.dart';
 
 class OtpSignupScreen extends ConsumerStatefulWidget {
@@ -32,16 +33,16 @@ class _OtpScreenState extends ConsumerState<OtpSignupScreen> {
 
   Widget otpBox(int index, OtpNotifier otpNotifier) {
     return SizedBox(
-      width: 50,
-      height: 50,
+      width: 50.w,
+      height: 50.h,
       child: TextField(
         controller: controllers[index],
         focusNode: focusNodes[index],
         textAlign: TextAlign.center,
         keyboardType: TextInputType.number,
         maxLength: 1,
-        style: const TextStyle(
-          fontSize: 24,
+        style: TextStyle(
+          fontSize: 24.sp,
           fontWeight: FontWeight.bold,
           color: Colors.white,
         ),
@@ -50,11 +51,11 @@ class _OtpScreenState extends ConsumerState<OtpSignupScreen> {
           filled: true,
           fillColor: const Color(0xffB02626),
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(12.r),
             borderSide: BorderSide.none,
           ),
           focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(12.r),
             borderSide: const BorderSide(color: Colors.white, width: 2),
           ),
         ),
@@ -90,32 +91,32 @@ class _OtpScreenState extends ConsumerState<OtpSignupScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 30),
+        padding: EdgeInsets.symmetric(horizontal: 30.h),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset('assets/icons/login_icons.png', scale: 3),
-            const SizedBox(height: 25),
-            const Text(
+            SizedBox(height: 25.h),
+            Text(
               'OTP Verification',
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontSize: 28,
+                fontSize: 28.sp,
                 fontWeight: FontWeight.w700,
                 color: Color(0xff1A1A1A),
               ),
             ),
-            const SizedBox(height: 10),
-            const Text(
+            SizedBox(height: 10.h),
+            Text(
               'Enter the verification code we just\nsent on your Phone Number.',
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontSize: 14,
+                fontSize: 14.sp,
                 fontWeight: FontWeight.w400,
                 color: Color(0xff343434),
               ),
             ),
-            const SizedBox(height: 30),
+            SizedBox(height: 30.h),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: List.generate(
@@ -123,40 +124,49 @@ class _OtpScreenState extends ConsumerState<OtpSignupScreen> {
                 (index) => otpBox(index, otpNotifier),
               ),
             ),
-            const SizedBox(height: 20),
+            SizedBox(height: 20.h),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text(
+                Text(
                   "Resend code in",
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
+                  style: TextStyle(
+                    fontSize: 15.sp,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
                 Text(
                   " 00:${otpState.secondsRemaining.toString().padLeft(2, '0')}",
-                  style: const TextStyle(
-                    fontSize: 15,
+                  style: TextStyle(
+                    fontSize: 15.sp,
                     fontWeight: FontWeight.w500,
                     color: Color(0xffB02626),
                   ),
                 ),
               ],
             ),
-            const SizedBox(height: 30),
+            SizedBox(height: 30.h),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(
-                  width: 150,
-                  height: 50,
+                  width: 150.w,
+                  height: 50.h,
                   child: OutlinedButton(
                     onPressed: () => Navigator.pop(context),
-                    child: const Text("Back"),
+                    child: Text(
+                      "Back",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16.sp,
+                      ),
+                    ),
                   ),
                 ),
-                const SizedBox(width: 20),
+                Spacer(),
                 SizedBox(
-                  width: 150,
-                  height: 50,
+                  width: 150.w,
+                  height: 50.h,
                   child: ElevatedButton(
                     onPressed: (otpState.isOtpComplete && !otpState.isLoading)
                         ? () async {
@@ -183,9 +193,9 @@ class _OtpScreenState extends ConsumerState<OtpSignupScreen> {
                           }
                         : null,
                     child: otpState.isLoading
-                        ? const SizedBox(
-                            height: 20,
-                            width: 20,
+                        ? SizedBox(
+                            height: 20.h,
+                            width: 20.w,
                             child: CircularProgressIndicator(
                               color: Colors.white,
                               strokeWidth: 2,

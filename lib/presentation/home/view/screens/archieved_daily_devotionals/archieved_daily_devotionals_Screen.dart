@@ -27,11 +27,11 @@ class ArchievedDailyDevotionalsScreen extends StatelessWidget {
               labelColor: const Color(0xffB02626),
               unselectedLabelColor: const Color(0xff4A4A4A),
               labelStyle: GoogleFonts.merriweather(
-                fontSize: 18,
+                fontSize: 18.sp,
                 fontWeight: FontWeight.w500,
               ),
               unselectedLabelStyle: GoogleFonts.merriweather(
-                fontSize: 18,
+                fontSize: 18.sp,
                 fontWeight: FontWeight.w500,
               ),
               tabs: const [
@@ -45,7 +45,7 @@ class ArchievedDailyDevotionalsScreen extends StatelessWidget {
           children: [
             // ---------- First Tab: Devotions ----------
             ListView(
-              padding: const EdgeInsets.all(16.0),
+              padding:  EdgeInsets.all(16.0.w),
               children: [
                 _buildDevotionCard(
                   context,
@@ -77,12 +77,12 @@ class ArchievedDailyDevotionalsScreen extends StatelessWidget {
                   'And when Saul’s son heard that Abner was dead in Hebron, his hands were feeble, and all the YisraELites were troubled.',
                   onTap: () {  Navigator.pushNamed(context, RouteNames.morningPrayerScreen);},
                 ),
-                const SizedBox(height: 30),
+                 SizedBox(height: 30.h),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     SvgPicture.asset('assets/images/left_bird.svg'),
-                    const SizedBox(width: 8),
+                     SizedBox(width: 8.w),
                     Text(
                       'End of the List - YAHAWAH ELOHIYM Bless',
                       style: TextStyle(
@@ -91,7 +91,7 @@ class ArchievedDailyDevotionalsScreen extends StatelessWidget {
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    const SizedBox(width: 8),
+                     SizedBox(width: 8.w),
                     SvgPicture.asset('assets/images/right_bird.svg'),
                   ],
                 ),
@@ -100,7 +100,7 @@ class ArchievedDailyDevotionalsScreen extends StatelessWidget {
 
             // ---------- Second Tab: Gospels & Psalms ----------
             ListView(
-              padding: const EdgeInsets.all(16.0),
+              padding:  EdgeInsets.all(16.0.w),
               children: [
                 _buildDevotionCard(
                   context,
@@ -131,12 +131,12 @@ class ArchievedDailyDevotionalsScreen extends StatelessWidget {
                   'And the angels which kept not their first estate, but left their own habitation, he hath reserved in everlasting chains under darkness unto the mishpat of the great day.',
                   onTap: () {  Navigator.pushNamed(context, RouteNames.gospelPsalmScreen);},
                 ),
-                const SizedBox(height: 30),
+                 SizedBox(height: 30.h),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     SvgPicture.asset('assets/images/left_bird.svg'),
-                    const SizedBox(width: 8),
+                     SizedBox(width: 8.w),
                     Text(
                       'End of the List - YAHAWAH ELOHIYM Bless',
                       style: TextStyle(
@@ -145,7 +145,7 @@ class ArchievedDailyDevotionalsScreen extends StatelessWidget {
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    const SizedBox(width: 8),
+                     SizedBox(width: 8.w),
                     SvgPicture.asset('assets/images/right_bird.svg'),
                   ],
                 ),
@@ -165,7 +165,7 @@ class ArchievedDailyDevotionalsScreen extends StatelessWidget {
         required VoidCallback onTap,
       }) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 16.0),
+      padding:  EdgeInsets.only(bottom: 16.0.h),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -177,12 +177,12 @@ class ArchievedDailyDevotionalsScreen extends StatelessWidget {
           //     color: Color(0xff4A4A4A),
           //   ),
           // ),
-          const SizedBox(height: 8),
+           SizedBox(height: 8.h),
            Container(
-              padding: const EdgeInsets.all(16.0),
+              padding:  EdgeInsets.all(16.0.w),
               decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.circular(8.0),
+                borderRadius: BorderRadius.circular(8.0.r),
                 border: const Border(
                   left: BorderSide(
                     color: Color(0xffCDA434),
@@ -205,16 +205,16 @@ class ArchievedDailyDevotionalsScreen extends StatelessWidget {
                   Text(
                     scripture,
                     style: GoogleFonts.merriweather(
-                      fontSize: 18,
+                      fontSize: 18.sp,
                       fontWeight: FontWeight.w700,
                       color: Colors.black,
                     ),
                   ),
-                  const SizedBox(height: 4),
+                   SizedBox(height: 4.h),
                   Text(
                     verseText,
-                    style: const TextStyle(
-                      fontSize: 16,
+                    style:  TextStyle(
+                      fontSize: 16.sp,
                       fontWeight: FontWeight.w400,
                       color: Color(0xff4A4A4A),
                       letterSpacing: 1.0,

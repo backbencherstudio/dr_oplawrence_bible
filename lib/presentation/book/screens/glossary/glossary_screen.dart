@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'glossary_details_screen.dart';
 
@@ -90,7 +91,7 @@ class _GlossaryScreenState extends State<GlossaryScreen>
                     children: [
             
             Padding(
-              padding:  EdgeInsets.all(16),
+              padding:  EdgeInsets.all(16.w),
               child: TextField(
                 controller: _searchController,
                 onChanged: searchGlossary,
@@ -168,7 +169,7 @@ class _GlossaryScreenState extends State<GlossaryScreen>
                           },
                           child: Container(
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(18),
+                              borderRadius: BorderRadius.circular(18.r),
                               gradient: LinearGradient(
                                 colors: [
                                   
@@ -192,7 +193,7 @@ class _GlossaryScreenState extends State<GlossaryScreen>
                               title: Text(
                                 key,
                                 style:  TextStyle(
-                                  fontSize: 18,
+                                  fontSize: 18.sp,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white,
                                   shadows: [

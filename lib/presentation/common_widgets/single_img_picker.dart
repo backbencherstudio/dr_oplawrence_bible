@@ -4,6 +4,7 @@ import 'package:dr_oplawrence_bible/core/constansts/image_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/legacy.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 
 final singleimageProvider = StateNotifierProvider<ImageNotifier, XFile?>((ref) {
@@ -35,26 +36,26 @@ class SingleImgPicker extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final fileState = ref.watch(singleimageProvider);
     return SizedBox(
-      height: 100,
+      height: 100.h,
       child: Stack(
         children: [
           Positioned(
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: BorderRadius.circular(8.r),
               child: (fileState == null)
                   ? Image.asset(ImageManager.editUser)
                   : Image.file(File(fileState.path), fit: BoxFit.cover),
             ),
           ),
           Positioned(
-            bottom: 0,
-            right: 0,
+            bottom: 0.h,
+            right: 0.w,
             child: InkWell(
               onTap: ()=>ref.read(singleimageProvider.notifier).addImage(),
               child: Container(
-                height: 25,
+                height: 25.h,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(50),
+                  borderRadius: BorderRadius.circular(50.r),
                   color: ColorsManager.primaryColor,
                 ),
                 child: Icon(Icons.edit, color: ColorsManager.whiteColor),

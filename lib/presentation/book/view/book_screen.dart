@@ -3,6 +3,7 @@ import 'package:dr_oplawrence_bible/data/repository/bible_repository.dart';
 import 'package:dr_oplawrence_bible/presentation/book/verse/view/verse_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../core/network/api_clients.dart';
@@ -54,17 +55,17 @@ class _BookListScreenState extends ConsumerState<BookListScreen>
           'Index',
           style: GoogleFonts.merriweather(
             color: const Color(0xffB02626),
-            fontSize: 20,
+            fontSize: 20.sp,
           ),
         ),
       ),
 
       body: Padding(
-        padding: const EdgeInsets.all(16),
+        padding:  EdgeInsets.all(16.w),
         child: Column(
           children: [
             buildSearchField(),
-            const SizedBox(height: 15),
+             SizedBox(height: 15.h),
 
             /// ================= TAB BAR =================
             TabBar(
@@ -80,7 +81,7 @@ class _BookListScreenState extends ConsumerState<BookListScreen>
               ],
             ),
 
-            const SizedBox(height: 10),
+             SizedBox(height: 10.h),
 
             Expanded(
               child: TabBarView(
@@ -128,8 +129,8 @@ class _BookListScreenState extends ConsumerState<BookListScreen>
                                   tabController.animateTo(1);
                                 },
                                 child: Container(
-                                  margin: const EdgeInsets.symmetric(
-                                    vertical: 4,
+                                  margin:  EdgeInsets.symmetric(
+                                    vertical: 4.h,
                                   ),
                                   decoration: BoxDecoration(
                                     color: isSelected
@@ -171,7 +172,7 @@ class _BookListScreenState extends ConsumerState<BookListScreen>
                                         trailing: Text(
                                           "${percent.toStringAsFixed(0)}%",
                                           style: TextStyle(
-                                            fontSize: 16,
+                                            fontSize: 16.sp,
                                             fontWeight: FontWeight.bold,
                                             color: isSelected
                                                 ? ColorsManager.whiteColor
@@ -286,7 +287,7 @@ class _BookListScreenState extends ConsumerState<BookListScreen>
                                         color: isSelected
                                             ? ColorsManager.deepAmber
                                             : ColorsManager.whiteColor,
-                                        borderRadius: BorderRadius.circular(8),
+                                        borderRadius: BorderRadius.circular(8.r),
                                       ),
                                       child: Text(
                                         chapter.number.toString(),
@@ -429,16 +430,16 @@ class _BookListScreenState extends ConsumerState<BookListScreen>
         fillColor: Colors.white,
         hintText: "Search",
         prefixIcon: const Icon(Icons.search),
-        contentPadding: const EdgeInsets.symmetric(
-          vertical: 14,
-          horizontal: 20,
+        contentPadding:  EdgeInsets.symmetric(
+          vertical: 14.h,
+          horizontal: 20.w,
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(30),
+          borderRadius: BorderRadius.circular(30.r),
           borderSide: BorderSide.none,
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(30),
+          borderRadius: BorderRadius.circular(30.r),
           borderSide: const BorderSide(color: Colors.black54),
         ),
       ),

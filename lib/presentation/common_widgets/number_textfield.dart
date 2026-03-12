@@ -3,6 +3,7 @@ import 'package:dr_oplawrence_bible/core/constansts/icon_manager.dart';
 import 'package:dr_oplawrence_bible/core/resource/theme_manager.dart';
 import 'package:dr_oplawrence_bible/core/resource/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 class NumberTextfield extends StatelessWidget {
@@ -21,7 +22,7 @@ class NumberTextfield extends StatelessWidget {
     final style = getApplicationTheme().textTheme;
     final screenHeight = Utils.fullHeight(context);
     return SizedBox(
-      height: screenHeight * 0.1,
+      height: screenHeight * 0.1.h,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -41,13 +42,13 @@ class NumberTextfield extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: screenHeight * 0.06,
+            height: screenHeight * 0.06.h,
             child: TextFormField(
               controller: controller,
               decoration: InputDecoration(
                 prefix: Text("+44 |  "),
                 prefixIcon: Padding(
-                  padding: EdgeInsets.all(8),
+                  padding: EdgeInsets.all(8.w),
                   child: SvgPicture.asset(IconManager.ukFlag),
                 ),
                 prefixStyle: style.bodyMedium

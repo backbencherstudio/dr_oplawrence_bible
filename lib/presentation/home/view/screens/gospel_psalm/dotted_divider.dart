@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DottedDivider extends StatefulWidget {
   final double height;
@@ -29,8 +30,8 @@ class _DottedDividerState extends State<DottedDivider> {
           children: List.generate(
             dots,
                 (_) => Container(
-              width: widget.dotWidth,
-              height: widget.height,
+              width: widget.dotWidth.w,
+              height: widget.height.h,
               color: widget.color,
             ),
           ),

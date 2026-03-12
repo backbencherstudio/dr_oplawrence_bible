@@ -50,7 +50,7 @@ class QuizState {
     this.isLoading = true,
     this.isCorrectAns = false,
     this.levelList,
-    this.score = 0
+    this.score = 0,
   });
 
   QuizState copyWith({
@@ -77,7 +77,7 @@ class QuizState {
       quizLavel: quizLavel ?? this.quizLavel,
       isCorrectAns: isCorrectAns ?? this.isCorrectAns,
       levelList: levelList ?? this.levelList,
-      score: score?? this.score
+      score: score ?? this.score,
     );
   }
 }
@@ -144,24 +144,23 @@ class QuizNotifier extends StateNotifier<QuizState> {
       return false;
     }
   }
+
   // ================== Quiz Get Attempted Total Question Mark =============
   Future<void> getQuizAttempt() async {
-  if (state.quizStartModel == null) return;
+    if (state.quizStartModel == null) return;
 
-  final attemptId = state.quizStartModel!.attemptId!;
+    final attemptId = state.quizStartModel!.attemptId!;
 
-  try {
-    final result = await apiService.getQuizAttempt(attemptId);
+    try {
+      final result = await apiService.getQuizAttempt(attemptId);
 
-    state = state.copyWith(
-      score: result.score ?? 0,
-    );
+      state = state.copyWith(score: result.score ?? 0);
 
-    print("Final Score: ${result.score}");
-  } catch (e) {
-    print("Error getting result: $e");
+      print("Final Score: ${result.score}");
+    } catch (e) {
+      print("Error getting result: $e");
+    }
   }
-}
 
   Future<void> selectOption(
     int index,
@@ -174,7 +173,7 @@ class QuizNotifier extends StateNotifier<QuizState> {
 
     await quizAnswerAttemp(index + 1, questionId);
 
-    Timer(const Duration(seconds: 3), () async{
+    Timer(const Duration(seconds: 1), () async {
       final totalQuestions = state.quizModel?.questions?.length ?? 1;
       final nextIndex = state.currentQuestionIndex + 1;
 
@@ -186,7 +185,7 @@ class QuizNotifier extends StateNotifier<QuizState> {
           progress: nextIndex / totalQuestions,
         );
       } else {
-        await getQuizAttempt(); 
+        await getQuizAttempt();
         showSuccessDialog();
       }
     });
@@ -239,10 +238,13 @@ final quizProvider = StateNotifierProvider<QuizNotifier, QuizState>(
 //   return await repository.getQuizAttempt(attemptId: attemptId);
 // });
 
-final quizRepositoryAns = Provider((ref){
+final quizRepositoryAns = Provider((ref) {
   return QuizRepository(apiService: QuizApiService(remote: ApiClient()));
 });
-final quizFinalScopre = FutureProvider.family<QuizGetAttamped,String>((ref,attemptId) async{
+final quizFinalScopre = FutureProvider.family<QuizGetAttamped, String>((
+  ref,
+  attemptId,
+) async {
   final repo = ref.read(quizRepositoryAns);
   return repo.getQuizAttempt(attemptId: attemptId);
 });

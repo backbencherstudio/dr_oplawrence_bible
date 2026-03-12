@@ -44,6 +44,36 @@ class _VerseScreenState extends ConsumerState<VerseScreen> {
     _loadData();
   }
 
+  // =================== Save Bookmark ==================
+  Future<void> _addBookmark(int index, String verseText) async {
+    final prefs = await SharedPreferences.getInstance();
+
+    final bookName = ref.read(selectedBookNameProvider) ?? '';
+    final chapterNumber = ref.read(selectedChapterNumberProvider) ?? 0;
+
+    List<String> bookmarks = prefs.getStringList('bookmarks_list') ?? [];
+
+    String bookmark = "$bookName|$chapterNumber|$index|$verseText";
+
+    // Prevent duplicate bookmarks
+    if (!bookmarks.contains(bookmark)) {
+      bookmarks.add(bookmark);
+      await prefs.setStringList('bookmarks_list', bookmarks);
+
+      if (mounted) {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(const SnackBar(content: Text("Bookmark added")));
+      }
+    } else {
+      if (mounted) {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(const SnackBar(content: Text("Already bookmarked")));
+      }
+    }
+  }
+
   // ============ Load Data ================
   Future<void> _loadData() async {
     prefs = await SharedPreferences.getInstance();
@@ -123,11 +153,11 @@ class _VerseScreenState extends ConsumerState<VerseScreen> {
       builder: (_) => Align(
         alignment: Alignment.topCenter,
         child: Material(
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(16.r),
           child: Container(
             width: MediaQuery.of(context).size.width - 32,
-            margin: const EdgeInsets.only(top: 40),
-            padding: const EdgeInsets.all(16),
+            margin: EdgeInsets.only(top: 40.h),
+            padding: EdgeInsets.all(16.w),
             child: Text(
               notes[index] ?? '',
               style: GoogleFonts.merriweather(fontSize: 14),
@@ -151,15 +181,15 @@ class _VerseScreenState extends ConsumerState<VerseScreen> {
         alignment: Alignment.topCenter,
         child: Material(
           color: Colors.transparent,
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(12.r),
           child: Container(
-            height: width * 0.14,
-            width: width - 32,
-            margin: const EdgeInsets.only(top: 100),
-            padding: const EdgeInsets.symmetric(horizontal: 16),
+            height: width * 0.14.h,
+            width: width - 32.w,
+            margin: EdgeInsets.only(top: 100.h),
+            padding: EdgeInsets.symmetric(horizontal: 16.w),
             decoration: BoxDecoration(
               color: Colors.black87,
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: BorderRadius.circular(12.r),
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -197,6 +227,14 @@ class _VerseScreenState extends ConsumerState<VerseScreen> {
                   onTap: () {
                     _toggleHighlight(index);
                     Navigator.pop(context);
+                  },
+                ),
+                _optionTile(
+                  icon: "assets/icons/multiple.svg",
+                  title: 'Bookmark',
+                  onTap: () async {
+                    Navigator.pop(context);
+                    await _addBookmark(index, verseText);
                   },
                 ),
                 _optionTile(
@@ -246,10 +284,10 @@ class _VerseScreenState extends ConsumerState<VerseScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SvgPicture.asset(icon, color: Colors.white),
-          const SizedBox(height: 6),
+          SizedBox(height: 6.h),
           Text(
             title,
-            style: const TextStyle(fontSize: 12, color: Colors.white),
+            style: TextStyle(fontSize: 12.sp, color: Colors.white),
           ),
         ],
       ),
@@ -269,16 +307,16 @@ class _VerseScreenState extends ConsumerState<VerseScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: const EdgeInsets.only(left: 16, top: 10),
+              padding: EdgeInsets.only(left: 16.w, top: 10.h),
               child: InkWell(
                 onTap: () => Navigator.pop(context),
                 child: Container(
-                  padding: const EdgeInsets.all(8),
+                  padding: EdgeInsets.all(8.w),
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     border: Border.all(color: Colors.black, width: 1.5),
                   ),
-                  child: const Icon(
+                  child: Icon(
                     Icons.arrow_back_ios_new,
                     size: 20,
                     color: Colors.black,
@@ -288,12 +326,12 @@ class _VerseScreenState extends ConsumerState<VerseScreen> {
             ),
             // =============== book name & chapter number ===========
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+              padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 20.h),
               child: Text(
                 "$bookName $chapterNumber",
-                style: const TextStyle(
+                style: TextStyle(
                   color: Color(0xFFB71C1C),
-                  fontSize: 26,
+                  fontSize: 26.sp,
                   fontWeight: FontWeight.bold,
                   fontFamily: 'Georgia',
                 ),
@@ -302,21 +340,18 @@ class _VerseScreenState extends ConsumerState<VerseScreen> {
             // =================== Ai Verse Added ============
             if (explanation != null)
               Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 15,
-                  vertical: 3,
-                ),
+                padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 3.h),
                 child: Stack(
                   children: [
                     Container(
-                      width: double.infinity,
+                      width: double.infinity.w,
                       padding: EdgeInsets.all(13.r),
                       decoration: BoxDecoration(
                         border: Border.all(
                           color: const Color.fromARGB(255, 22, 94, 24),
                           width: 1,
                         ),
-                        borderRadius: BorderRadius.circular(5),
+                        borderRadius: BorderRadius.circular(5.r),
                         color: Colors.white,
                       ),
 
@@ -324,11 +359,11 @@ class _VerseScreenState extends ConsumerState<VerseScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
 
                         children: [
-                          SizedBox(height: 20),
+                          SizedBox(height: 20.h),
                           Text(
                             'Explanation:',
                             style: TextStyle(
-                              fontSize: 18,
+                              fontSize: 18.sp,
                               fontFamily: 'Georgia',
                               fontWeight: FontWeight.bold,
                             ),
@@ -336,9 +371,9 @@ class _VerseScreenState extends ConsumerState<VerseScreen> {
                           SizedBox(height: 10.h),
                           Text(
                             explanation.explanation ?? "",
-                            style: const TextStyle(
+                            style: TextStyle(
                               color: Color.fromARGB(255, 22, 94, 24),
-                              fontSize: 16,
+                              fontSize: 16.sp,
                               fontFamily: 'Georgia',
                             ),
                           ),
@@ -347,8 +382,8 @@ class _VerseScreenState extends ConsumerState<VerseScreen> {
                     ),
                     // ===== Close Button =====
                     Positioned(
-                      top: 10,
-                      right: 10,
+                      top: 10.h,
+                      right: 10.w,
                       child: GestureDetector(
                         onTap: () {
                           // Clear the explanation
@@ -356,7 +391,7 @@ class _VerseScreenState extends ConsumerState<VerseScreen> {
                               null;
                         },
                         child: Container(
-                          padding: const EdgeInsets.all(4),
+                          padding: EdgeInsets.all(4.w),
 
                           child: const Icon(
                             Icons.cancel_rounded,
@@ -385,7 +420,7 @@ class _VerseScreenState extends ConsumerState<VerseScreen> {
                       .toList();
 
                   return ListView.builder(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    padding: EdgeInsets.symmetric(horizontal: 16.w),
                     itemCount: verses.length,
                     itemBuilder: (context, index) {
                       final verse = verses[index];
@@ -404,8 +439,8 @@ class _VerseScreenState extends ConsumerState<VerseScreen> {
                             ),
                             if (hasNote)
                               Positioned(
-                                top: 8,
-                                right: 8,
+                                top: 8.h,
+                                right: 8.w,
                                 child: GestureDetector(
                                   onTap: () => _showNotePopup(index),
                                   child: SvgPicture.asset(
@@ -454,60 +489,60 @@ class NoteEditScreen extends StatelessWidget {
       backgroundColor: const Color(0xFFF1F1F1),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          padding: EdgeInsets.symmetric(horizontal: 20.0.w),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 10),
+              SizedBox(height: 10.h),
               // ========= Back Button ============
               InkWell(
                 onTap: () => Navigator.pop(context),
                 child: Container(
-                  padding: const EdgeInsets.all(8),
+                  padding: EdgeInsets.all(8.w),
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     border: Border.all(color: Colors.black, width: 1.5),
                   ),
-                  child: const Icon(Icons.arrow_back_ios_new, size: 20),
+                  child: Icon(Icons.arrow_back_ios_new, size: 20.w),
                 ),
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: 20),
               // Title
               Text(
                 title,
-                style: const TextStyle(
+                style: TextStyle(
                   color: Color(0xFFB71C1C),
-                  fontSize: 26,
+                  fontSize: 26.sp,
                   fontWeight: FontWeight.bold,
                   fontFamily: 'Georgia',
                 ),
               ),
-              const SizedBox(height: 25),
+              SizedBox(height: 25.h),
               // Verse Box (Grey Background)
               Container(
                 width: double.infinity,
-                padding: const EdgeInsets.all(16),
+                padding: EdgeInsets.all(16.w),
                 decoration: BoxDecoration(
                   color: const Color(0xFFD9D9D9), // Softer light grey
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(10.r),
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       verseNumber,
-                      style: const TextStyle(
-                        fontSize: 18,
+                      style: TextStyle(
+                        fontSize: 18.sp,
                         fontWeight: FontWeight.bold,
                         fontFamily: 'Georgia',
                       ),
                     ),
-                    const SizedBox(height: 8),
+                    SizedBox(height: 8.h),
                     Text(
                       verseText,
-                      style: const TextStyle(
-                        fontSize: 16,
-                        height: 1.4,
+                      style: TextStyle(
+                        fontSize: 16.sp,
+                        height: 1.4.h,
                         color: Color(0xFF424242),
                         fontFamily: 'Georgia',
                       ),
@@ -515,14 +550,14 @@ class NoteEditScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              const SizedBox(height: 12),
+              SizedBox(height: 12.h),
               // --- UPDATED EDITING FIELD ---
               Container(
-                height: 220, // Increased height to match image proportions
-                width: double.infinity,
+                height: 220.h, // Increased height to match image proportions
+                width: double.infinity.w,
                 decoration: BoxDecoration(
                   color: const Color(0xFFD9D9D9), // Matching grey
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(10.r),
                 ),
                 child: TextField(
                   controller: controller,
@@ -530,22 +565,22 @@ class NoteEditScreen extends StatelessWidget {
                   expands: true, // Allows field to fill the container
                   textAlignVertical:
                       TextAlignVertical.top, // Text starts at top
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     hintText: "I love this reading...",
                     hintStyle: TextStyle(color: Color(0xFF757575)),
                     border: InputBorder.none,
                     contentPadding: EdgeInsets.all(
-                      16,
+                      16.w,
                     ), // Padding inside the box
                   ),
-                  style: const TextStyle(fontSize: 16, color: Colors.black87),
+                  style: TextStyle(fontSize: 16.sp, color: Colors.black87),
                 ),
               ),
               const Spacer(),
               // Save Button
               SizedBox(
-                width: double.infinity,
-                height: 55,
+                width: double.infinity.w,
+                height: 55.h,
                 child: ElevatedButton(
                   onPressed: () {
                     Navigator.pop(context, controller.text);
@@ -554,20 +589,20 @@ class NoteEditScreen extends StatelessWidget {
                     backgroundColor: const Color(0xFF1F3B96),
                     elevation: 0,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.circular(12.r),
                     ),
                   ),
-                  child: const Text(
+                  child: Text(
                     "Save",
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 18,
+                      fontSize: 18.sp,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),
               ),
-              const SizedBox(height: 30),
+              SizedBox(height: 30.h),
             ],
           ),
         ),
@@ -592,10 +627,10 @@ class VerseCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 12),
+      margin: EdgeInsets.only(bottom: 12.h),
       decoration: BoxDecoration(
         color: isHighlighted ? const Color(0xffDFF5E7) : Colors.white,
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(8.r),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.05),
@@ -609,35 +644,35 @@ class VerseCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Container(
-              width: 5,
-              decoration: const BoxDecoration(
+              width: 5.w,
+              decoration: BoxDecoration(
                 color: Color(0xFFD4AF37),
                 borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(8),
-                  bottomLeft: Radius.circular(8),
+                  topLeft: Radius.circular(8.r),
+                  bottomLeft: Radius.circular(8.r),
                 ),
               ),
             ),
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: EdgeInsets.all(16.0.w),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       number,
-                      style: const TextStyle(
-                        fontSize: 18,
+                      style: TextStyle(
+                        fontSize: 18.sp,
                         fontWeight: FontWeight.bold,
                         fontFamily: 'Georgia',
                       ),
                     ),
-                    const SizedBox(height: 8),
+                    SizedBox(height: 8.h),
                     Text(
                       text,
-                      style: const TextStyle(
-                        fontSize: 16,
-                        height: 1.4,
+                      style: TextStyle(
+                        fontSize: 16.sp,
+                        height: 1.4.h,
                         color: Color(0xFF424242),
                         fontFamily: 'Georgia',
                       ),

@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/legacy.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 final starProvider = StateProvider<int>((ref)=>0);
 
@@ -13,7 +14,7 @@ class StarField extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final selectedStar = ref.watch(starProvider);
     return Row(
-      spacing: 10,
+      spacing: 10.w,
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: List.generate(5, (index) {
