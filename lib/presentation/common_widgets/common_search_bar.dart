@@ -4,6 +4,7 @@ import 'package:dr_oplawrence_bible/core/resource/style_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/legacy.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 final StateProvider<String> searchQueryProvider = StateProvider<String>((ref) => '');
@@ -26,10 +27,10 @@ class CommonSearchBar extends ConsumerWidget {
           alignLabelWithHint: false,
           hintStyle: getExtraMediumStyle(color: ColorsManager.secondaryTextColor),
           prefixIcon: Padding(
-            padding: EdgeInsets.all(15),
+            padding: EdgeInsets.all(15.w),
             child: SvgPicture.asset(
               IconManager.search,
-              height: 24,
+              height: 24.h,
             ),
           ),
           // suffixIcon: Padding(
@@ -63,10 +64,10 @@ class CommonSearchBar extends ConsumerWidget {
           alignLabelWithHint: false,
           hintStyle: getExtraMediumStyle(color: ColorsManager.secondaryTextColor),
           prefixIcon: Padding(
-            padding: EdgeInsets.all(15),
+            padding: EdgeInsets.all(15.w),
             child: SvgPicture.asset(
               IconManager.search,
-              height: 24,
+              height: 24.h,
             ),
           ),
           // suffixIcon: Padding(

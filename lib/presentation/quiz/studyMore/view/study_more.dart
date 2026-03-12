@@ -36,16 +36,16 @@ class StudyMoreScreen extends ConsumerWidget {
       ),
       body: Center(
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding:  EdgeInsets.all(16.0.w),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const SizedBox(height: 40),
+               SizedBox(height: 40.h),
               Expanded(
                 child: ListView.separated(
                   itemCount: levels.levelList!.length,
-                  separatorBuilder: (_, __) => const SizedBox(height: 12),
+                  separatorBuilder: (_, __) =>  SizedBox(height: 12.h),
                   itemBuilder: (context, index) {
                     final levelData = levels.levelList?[index];
                     return _buildLevelCard(
@@ -57,12 +57,12 @@ class StudyMoreScreen extends ConsumerWidget {
                   },
                 ),
               ),
-              const SizedBox(height: 16),
+               SizedBox(height: 16.h),
               Text(
                 'Keep playing to unlock more levels',
-                style: TextStyle(fontSize: 14, color: Colors.grey.shade600),
+                style: TextStyle(fontSize: 14.sp, color: Colors.grey.shade600),
               ),
-              const SizedBox(height: 20),
+               SizedBox(height: 20.h),
             ],
           ),
         ),
@@ -87,10 +87,10 @@ class StudyMoreScreen extends ConsumerWidget {
         );
       },
       child: Container(
-        padding: const EdgeInsets.all(16.0),
+        padding:  EdgeInsets.all(16.0.w),
         decoration: BoxDecoration(
           color: isUnlocked ? Colors.white : Colors.grey.shade300,
-          borderRadius: BorderRadius.circular(12.0),
+          borderRadius: BorderRadius.circular(12.0.r),
           border: Border(
             left: BorderSide(
               color: isUnlocked ? const Color(0xffCDA434) : Colors.grey,
@@ -112,7 +112,7 @@ class StudyMoreScreen extends ConsumerWidget {
             Text(
               levelName,
               style: TextStyle(
-                fontSize: 18,
+                fontSize: 18.sp,
                 fontWeight: FontWeight.bold,
                 color: isUnlocked ? Colors.black : Colors.grey.shade600,
               ),
@@ -129,9 +129,9 @@ class StudyMoreScreen extends ConsumerWidget {
                 );
               },
               style: OutlinedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 20,
-                  vertical: 10,
+                padding:  EdgeInsets.symmetric(
+                  horizontal: 20.w,
+                  vertical: 10.h,
                 ),
                 side: BorderSide(
                   color: isUnlocked ? const Color(0xffCDA434) : Colors.grey,
@@ -144,7 +144,7 @@ class StudyMoreScreen extends ConsumerWidget {
                 'Start',
                 style: TextStyle(
                   color: isUnlocked ? const Color(0xffCDA434) : Colors.grey,
-                  fontSize: 16,
+                  fontSize: 16.sp,
                 ),
               ),
             ),

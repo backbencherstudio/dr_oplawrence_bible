@@ -6,6 +6,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/legacy.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 final singleFileProvider =
@@ -42,7 +43,7 @@ class UploadSingleFile extends ConsumerWidget {
     final fileState = ref.watch(singleFileProvider(label));
     return (fileState == null)
         ? Container(
-            padding: EdgeInsets.all(8),
+            padding: EdgeInsets.all(8.w),
             decoration: BoxDecoration(
               border: Border.all(
                 color: ColorsManager.textFormBorderColor.withValues(alpha: 0.5),
@@ -53,7 +54,7 @@ class UploadSingleFile extends ConsumerWidget {
             child: Row(
               children: [
                 SvgPicture.asset(IconManager.doc03),
-                SizedBox(width: 8),
+                SizedBox(width: 8.w),
                 SizedBox(width: Utils.fullWidth(context) * 0.55, child: Text(label, maxLines: null)),
                 Spacer(),
                 InkWell(
@@ -79,13 +80,13 @@ class UploadSingleFile extends ConsumerWidget {
             ),
           )
         : Container(
-            margin: EdgeInsets.symmetric(vertical: 8),
+            margin: EdgeInsets.symmetric(vertical: 8.h),
             decoration: BoxDecoration(
               border: Border.all(
                 color: ColorsManager.primaryColor,
                 width: 0.1,
               ),
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: BorderRadius.circular(8.r),
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

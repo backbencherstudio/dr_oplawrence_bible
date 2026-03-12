@@ -23,9 +23,9 @@ class _PrayerScreenState extends State<PrayerScreen> {
             ),
           ),
           Positioned(
-            bottom: 520,
-            left: 20,
-            right: 20,
+            bottom: 520.h,
+            left: 20.w,
+            right: 20.w,
             child: Center(
               child: Column(
                 children: [
@@ -50,14 +50,14 @@ class _PrayerScreenState extends State<PrayerScreen> {
           ),
           SizedBox(height: 15.h),
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding:  EdgeInsets.all(8.0.w),
             child: Center(
               child: Text(
                 "In Yeshua' name\nThank you, Adonai\nBarakat us, O Adonai",
                 textAlign: TextAlign.center,
                 style: GoogleFonts.merriweather(
                   color: Colors.white,
-                  fontSize: 20,
+                  fontSize: 20.sp,
                   fontWeight: FontWeight.w400,
                   height: 1.6,
                 ),

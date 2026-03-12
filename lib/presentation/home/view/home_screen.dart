@@ -80,7 +80,7 @@ class HomeScreen extends ConsumerWidget {
                                       textAlign: TextAlign.end,
                                       data.verse?.reference ?? "",
                                       style: GoogleFonts.merriweather(
-                                        fontSize: 14,
+                                        fontSize: 14.sp,
                                         fontWeight: FontWeight.w500,
                                         color: Colors.white,
                                       ),

@@ -190,10 +190,10 @@ class _CreatePassState extends ConsumerState<CreatePass> {
                   ),
                   child: _isLoading
                       ? const CircularProgressIndicator(color: Colors.white)
-                      : const Text(
+                      :  Text(
                           'Reset Password',
                           style: TextStyle(
-                            fontSize: 18,
+                            fontSize: 18.sp,
                             fontWeight: FontWeight.bold,
                           ),
                         ),

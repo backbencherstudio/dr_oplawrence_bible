@@ -1,4 +1,5 @@
-import 'package:dr_oplawrence_bible/core/route/route_name.dart';
+
+import 'package:dr_oplawrence_bible/presentation/menu/screens/donation_stripe_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -24,7 +25,7 @@ class _DonateMoneySystemState extends State<DonateMoneySystem> {
       ),
       backgroundColor: Color(0xffEBEBEB),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: EdgeInsets.all(16.0.w),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -47,57 +48,84 @@ class _DonateMoneySystemState extends State<DonateMoneySystem> {
                 fontWeight: FontWeight.w400,
               ),
             ),
-            SizedBox(height: 20.h),
-            SizedBox(
-              width:double.infinity,
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, RouteNames.donationScreen);
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Color(0xffEBEBEB),
-                  side: BorderSide(    color: Color(0xff4A4C56),),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(spacing: 10,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                       SvgPicture.asset('assets/images/Card 2.svg'),
-                    //  SvgPicture.asset('assets/icons/alert_triangle.svg'),
-                      Text(
-                        'Card',
-                        style: TextStyle(color: Colors.black),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
+            // SizedBox(height: 20.h),
+            // SizedBox(
+            //   width: double.infinity,
+            //   child: ElevatedButton(
+            //     onPressed: () {
+            //       Navigator.pushNamed(context, RouteNames.donationScreen);
+            //     },
+            //     style: ElevatedButton.styleFrom(
+            //       backgroundColor: Color(0xffEBEBEB),
+            //       side: BorderSide(color: Color(0xff4A4C56)),
+            //     ),
+            //     child: Padding(
+            //       padding: EdgeInsets.all(8.0.w),
+            //       child: Row(
+            //         spacing: 10,
+            //         crossAxisAlignment: CrossAxisAlignment.start,
+            //         mainAxisAlignment: MainAxisAlignment.start,
+            //         children: [
+            //           SvgPicture.asset('assets/images/Card 2.svg'),
+            //           //  SvgPicture.asset('assets/icons/alert_triangle.svg'),
+            //           Text('Card', style: TextStyle(color: Colors.black)),
+            //         ],
+            //       ),
+            //     ),
+            //   ),
+            // ),
+            // SizedBox(height: 10.h),
+            // SizedBox(
+            //   width: double.infinity,
+            //   child: ElevatedButton(
+            //     onPressed: () {
+            //       Navigator.pushNamed(context, RouteNames.donationScreen);
+            //     },
+            //     style: ElevatedButton.styleFrom(
+            //       backgroundColor: Color(0xffEBEBEB),
+            //       side: BorderSide(color: Color(0xff4A4C56)),
+            //     ),
+            //     child: Padding(
+            //       padding: EdgeInsets.all(8.0.w),
+            //       child: Row(
+            //         spacing: 10,
+            //         crossAxisAlignment: CrossAxisAlignment.start,
+            //         mainAxisAlignment: MainAxisAlignment.start,
+            //         children: [
+            //           //SvgPicture.asset('assets/icons/alert_triangle.svg'),
+            //           SvgPicture.asset('assets/images/Card 2.svg'),
+            //           Text('Klarna', style: TextStyle(color: Colors.black)),
+            //         ],
+            //       ),
+            //     ),
+            //   ),
+            // ),
             SizedBox(height: 10.h),
             SizedBox(
-              width:double.infinity,
+              width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, RouteNames.donationScreen);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => DonationStripeScreen(),
+                    ),
+                  );
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Color(0xffEBEBEB),
-                  side: BorderSide(    color: Color(0xff4A4C56),),
+                  side: BorderSide(color: Color(0xff4A4C56)),
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Row(spacing: 10,
+                  child: Row(
+                    spacing: 10,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       //SvgPicture.asset('assets/icons/alert_triangle.svg'),
                       SvgPicture.asset('assets/images/Card 2.svg'),
-                      Text(
-                        'Klarna',
-                        style: TextStyle(color: Colors.black),
-                      ),
+                      Text('Stripe', style: TextStyle(color: Colors.black)),
                     ],
                   ),
                 ),

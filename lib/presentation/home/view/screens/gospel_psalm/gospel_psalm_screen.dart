@@ -51,7 +51,7 @@ class _GospelPsalmScreenState extends State<GospelPsalmScreen> {
                 Text(
                   'Gospel of the Day',
                   style: GoogleFonts.merriweather(
-                    fontSize: 20,
+                    fontSize: 20.sp,
                     fontWeight: FontWeight.w400,
                     color: const Color(0xff1A1A1A),
                   ),
@@ -67,7 +67,7 @@ class _GospelPsalmScreenState extends State<GospelPsalmScreen> {
                     Text(
                       'Matthew 2:1',
                       style: GoogleFonts.merriweather(
-                        fontSize: 16,
+                        fontSize: 16.sp,
                         fontWeight: FontWeight.w400,
                         color: const Color(0xff4A4A4A),
                       ),
@@ -83,9 +83,9 @@ class _GospelPsalmScreenState extends State<GospelPsalmScreen> {
                   '“Now when YAH’USHUA HAMASHIACH was born in Bethlehem of Yehudaea in the days of Herod the king, behold, there came wise men from the east to Yerushalayim.”',
                   textAlign: TextAlign.center,
                   style: GoogleFonts.merriweather(
-                    fontSize: 20,
+                    fontSize: 20.sp,
                     fontWeight: FontWeight.w400,
-                    height: 1.6,
+                    height: 1.6.h,
                     color: const Color(0xffF7F5EF),
                   ),
                 ),
@@ -173,9 +173,9 @@ class _GospelPsalmScreenState extends State<GospelPsalmScreen> {
                   '“Barakat is the man that walketh not in the  counsel of the rasha, nor standeth in the way  of sinners, nor sitteth in the seat of the scornful.”',
                   textAlign: TextAlign.center,
                   style: GoogleFonts.merriweather(
-                    fontSize: 20,
+                    fontSize: 20.sp,
                     fontWeight: FontWeight.w400,
-                    height: 1.6,
+                    height: 1.6.h,
                     color: const Color(0xffF7F5EF),
                   ),
                 ),

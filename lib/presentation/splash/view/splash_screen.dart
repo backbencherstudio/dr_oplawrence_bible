@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../core/network/api_clients.dart';
 import '../../../core/route/route_name.dart';
 import '../../../data/sources/local/shared_preference/shared_preference.dart';
@@ -48,9 +49,9 @@ class _SplashScreenState extends State<SplashScreen> {
             height: double.infinity,
           ),
           Positioned(
-            top: 250,
-            left: 30,
-            right: 30,
+            top: 250.h,
+            left: 30.w,
+            right: 30.w,
             child: Image.asset('assets/icons/splash_icon.png', scale: 5),
           ),
         ],

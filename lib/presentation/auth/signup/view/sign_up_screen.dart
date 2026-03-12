@@ -34,13 +34,13 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
     return Scaffold(
       body: Center(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.all(32.0),
+          padding:  EdgeInsets.all(32.0.w),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const SizedBox(height: 60),
+               SizedBox(height: 60.h),
               Image.asset('assets/images/sign_up_icon.png', scale: 4),
-              const SizedBox(height: 25),
+               SizedBox(height: 25.h),
 
               /// NAME
               TextFormField(
@@ -49,7 +49,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                 keyboardType: TextInputType.name,
               ),
 
-              const SizedBox(height: 12),
+               SizedBox(height: 12.h),
 
               /// EMAIL
               TextFormField(
@@ -58,7 +58,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                 keyboardType: TextInputType.emailAddress,
               ),
 
-              const SizedBox(height: 12),
+               SizedBox(height: 12.h),
 
               /// PHONE
               TextFormField(
@@ -67,7 +67,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                 keyboardType: TextInputType.phone,
               ),
 
-              const SizedBox(height: 12),
+               SizedBox(height: 12.h),
 
               /// PASSWORD
               TextFormField(
@@ -92,7 +92,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                 ),
               ),
 
-              const SizedBox(height: 30),
+               SizedBox(height: 30.h),
 
               /// SIGN UP BUTTON
               ElevatedButton(
@@ -114,7 +114,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
 
                           print("Signup result: $result"); // for debugging
 
-                          // ✅ Check 'success' key instead of 'statusCode'
+                          //  Check 'success' key instead of 'statusCode'
                           if (result['success'] == true) {
                             if (!context.mounted) return;
 
@@ -146,17 +146,17 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF1E3A8A),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8.0),
+                    borderRadius: BorderRadius.circular(8.0.r),
                   ),
-                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  padding:  EdgeInsets.symmetric(vertical: 16.h),
                   minimumSize: const Size(double.infinity, 50),
                 ),
                 child: signUpState.isLoading
                     ? const CircularProgressIndicator(color: Colors.white)
-                    : const Text(
+                    :  Text(
                         'Sign Up',
                         style: TextStyle(
-                          fontSize: 18,
+                          fontSize: 18.sp,
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
                         ),
@@ -198,16 +198,16 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
   InputDecoration _inputDecoration(String hint, {Widget? suffixIcon}) {
     return InputDecoration(
       hintText: hint,
-      hintStyle: TextStyle(fontSize: 15, color: Colors.grey.shade500),
+      hintStyle: TextStyle(fontSize: 15.sp, color: Colors.grey.shade500),
       border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(8.0),
+        borderRadius: BorderRadius.circular(8.0.r),
         borderSide: const BorderSide(color: Colors.grey),
       ),
       focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(8.0),
+        borderRadius: BorderRadius.circular(8.0.r),
         borderSide: const BorderSide(color: Colors.blue, width: 2.0),
       ),
-      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      contentPadding:  EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
       fillColor: Colors.white,
       filled: true,
       suffixIcon: suffixIcon,

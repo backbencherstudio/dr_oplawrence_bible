@@ -58,11 +58,11 @@ class ParentScreen extends ConsumerWidget {
                         vertical: 10.h,
                       ),
                       padding: EdgeInsets.symmetric(horizontal: 12.w),
-                      decoration: const BoxDecoration(
+                      decoration:  BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(30),
-                          topLeft: Radius.circular(30),
+                          topRight: Radius.circular(30.r),
+                          topLeft: Radius.circular(30.r),
                         ),
                       ),
                       child: Row(

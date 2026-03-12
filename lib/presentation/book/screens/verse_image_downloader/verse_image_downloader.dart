@@ -3,6 +3,7 @@ import 'dart:io';
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gallery_saver_plus/gallery_saver.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:path_provider/path_provider.dart';
@@ -116,14 +117,14 @@ class _FullScreenVerseImageState extends State<FullScreenVerseImage> {
                 left: 0,
                 right: 0,
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding:  EdgeInsets.all(8.0.w),
                   child: Column(
                     children: [
                       Text(
                         widget.verseText,
                         textAlign: TextAlign.center,
                         style: GoogleFonts.merriweather(
-                          fontSize: 22,
+                          fontSize: 22.sp,
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
                           shadows: const [
@@ -140,7 +141,7 @@ class _FullScreenVerseImageState extends State<FullScreenVerseImage> {
                         child: Text(
                           "~ ${widget.title}",
                           style: GoogleFonts.merriweather(
-                            fontSize: 20,
+                            fontSize: 20.sp,
                             color: Colors.white,
                             fontWeight: FontWeight.w600,
                           ),

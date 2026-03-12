@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class GlossaryDetailScreen extends StatefulWidget {
   final String title;
@@ -75,7 +76,7 @@ class _GlossaryDetailScreenState extends State<GlossaryDetailScreen>
       ),
       body: SafeArea(
         child: Padding(
-          padding:  EdgeInsets.all(16),
+          padding:  EdgeInsets.all(16.r),
           child: FadeTransition(
             opacity: _fadeAnimation,
             child: SlideTransition(
@@ -85,11 +86,11 @@ class _GlossaryDetailScreenState extends State<GlossaryDetailScreen>
                 child: Card(
                   elevation: 10,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
+                    borderRadius: BorderRadius.circular(20.r),
                   ),
                   child: Container(
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(20.r),
                       gradient: const LinearGradient(
                         colors: [
                           Color(0xFF2193b0),
@@ -100,7 +101,7 @@ class _GlossaryDetailScreenState extends State<GlossaryDetailScreen>
                       ),
                     ),
                     child: Padding(
-                      padding:  EdgeInsets.all(24),
+                      padding:  EdgeInsets.all(24.w),
                       child:
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -110,7 +111,7 @@ class _GlossaryDetailScreenState extends State<GlossaryDetailScreen>
                               widget.title,
                               textAlign: TextAlign.center,
                               style:  TextStyle(
-                                fontSize: 42,
+                                fontSize: 42.sp,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white,
                                 shadows: [
@@ -124,13 +125,13 @@ class _GlossaryDetailScreenState extends State<GlossaryDetailScreen>
                             ),
                           ),
 
-                           SizedBox(height: 20),
+                           SizedBox(height: 20.h),
 
                           Text(
                             widget.description,
                             style:  TextStyle(
-                              fontSize: 25,
-                              height: 1.6,
+                              fontSize: 25.sp,
+                              height: 1.6.h,
                               color: Colors.white,
                               shadows: [
                                 Shadow(

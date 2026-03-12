@@ -13,13 +13,13 @@ class VideoStoriesScreen extends StatelessWidget {
       backgroundColor: const Color(0xffEBEBEB),
       appBar: AppBar(  backgroundColor: const Color(0xffEBEBEB),
         leading:  Padding(
-          padding: const EdgeInsets.all(12.0),
+          padding:  EdgeInsets.all(12.0.w),
           child: SvgPicture.asset('assets/icons/video.svg',width: 15.w,height: 15.h,),
         ),
         title: Text(
           'Video',
           style: GoogleFonts.merriweather(
-            fontSize: 18,
+            fontSize: 18.sp,
             fontWeight: FontWeight.bold,
             color: Color(0xFFC70039),
           ),
@@ -86,7 +86,7 @@ class VideoStoriesScreen extends StatelessWidget {
     final thumbnailUrl = 'https://img.youtube.com/vi/$videoId/hqdefault.jpg';
 
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+      padding:  EdgeInsets.symmetric(vertical: 8.0.h, horizontal: 16.0.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -103,12 +103,12 @@ class VideoStoriesScreen extends StatelessWidget {
               alignment: Alignment.center,
               children: [
                 ClipRRect(
-                  borderRadius: BorderRadius.circular(8),
+                  borderRadius: BorderRadius.circular(8.r),
                   child: Image.network(
                     thumbnailUrl,
                     fit: BoxFit.cover,
                     width: double.infinity,
-                    height: 200,
+                    height: 200.h,
                   ),
                 ),
                 const Icon(
@@ -119,19 +119,19 @@ class VideoStoriesScreen extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(height: 8),
+           SizedBox(height: 8.h),
           Text(
             title,
-            style: const TextStyle(
-              fontSize: 18,
+            style:  TextStyle(
+              fontSize: 18.sp,
               fontWeight: FontWeight.bold,
               color: Colors.black,
             ),
           ),
           Text(
             episode,
-            style: const TextStyle(
-              fontSize: 14,
+            style:  TextStyle(
+              fontSize: 14.sp,
               color: Colors.grey,
             ),
           ),
@@ -144,29 +144,29 @@ class VideoStoriesScreen extends StatelessWidget {
     return SizedBox(
       height: 180.h,
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding:  EdgeInsets.all(16.0.w),
         child: Container(
           decoration: BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(12.r),
           ),
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding:  EdgeInsets.all(16.0.w),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SvgPicture.asset('assets/images/left_bird.svg'),
-                const SizedBox(width: 8),
+                 SizedBox(width: 8.w),
                 Text(
                   'More stories coming soon!\nYour feedback helps us improve.',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Colors.grey.shade600,
-                    fontSize: 15,
+                    fontSize: 15.sp,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
-                const SizedBox(width: 8),
+                 SizedBox(width: 8.w),
                 SvgPicture.asset('assets/images/right_bird.svg'),
               ],
             ),
@@ -226,7 +226,7 @@ class _YoutubePlayerScreenState extends State<YoutubePlayerScreen> {
               onTap: () => Navigator.pop(context),
               child: Image.asset('assets/icons/back_arrow.png', scale: 4,color: Colors.white,),
             ),
-            title:  Text('Video Player',style: GoogleFonts.merriweather(fontSize: 24),),
+            title:  Text('Video Player',style: GoogleFonts.merriweather(fontSize: 24.sp),),
           ),
           body: Center(child: player),
         );

@@ -1,5 +1,6 @@
 import 'package:dr_oplawrence_bible/presentation/onboarding/second_onboarding.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
@@ -16,8 +17,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         children: [
           Image.asset('assets/images/onboarding_screen.png'),
           Positioned(
-              bottom: 60,
-              right: 20,
+              bottom: 60.h,
+              right: 20.w,
               child: GestureDetector(
                   onTap: (){
                     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => SecondOnboarding()));

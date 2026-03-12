@@ -4,6 +4,7 @@ import 'package:dr_oplawrence_bible/core/resource/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/legacy.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 final selectedOption = StateProvider<int?>((ref) => null);
 
@@ -20,7 +21,7 @@ class CustomMultipleChoiceField extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final selected = ref.watch(selectedOption);
     return SizedBox(
-      height: Utils.fullHeight(context) * 0.15,
+      height: Utils.fullHeight(context) * 0.15.h,
       child: GridView.builder(
         itemCount: options.length,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -36,7 +37,7 @@ class CustomMultipleChoiceField extends ConsumerWidget {
               ref.read(selectedOption.notifier).state = index;
             },
             child: Container(
-              padding: EdgeInsets.all(8),
+              padding: EdgeInsets.all(8.w),
               decoration: BoxDecoration(
                 border: Border.all(
                   color: (selected == index) ? ColorsManager.primaryColor : ColorsManager.textFormBorderColor.withValues(
@@ -44,7 +45,7 @@ class CustomMultipleChoiceField extends ConsumerWidget {
                   ),
                   width: 0.5,
                 ),
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(8.r),
                 color: (selected == index) ? ColorsManager.primaryColor : null,
               ),
               child: Row(

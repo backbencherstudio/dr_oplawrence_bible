@@ -100,7 +100,7 @@ class _MyNotesScreenState extends ConsumerState<MyNotesScreen> {
       body: isLoading
           ? const Center(child: CircularProgressIndicator())
           : Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding:  EdgeInsets.all(16.0.w),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
@@ -131,7 +131,7 @@ class _MyNotesScreenState extends ConsumerState<MyNotesScreen> {
                                   height: 28.h,
                                 ),
                               ),
-                              const SizedBox(height: 6),
+                               SizedBox(height: 6.h),
                               const Text('Notes'),
                             ],
                           ),
@@ -161,7 +161,7 @@ class _MyNotesScreenState extends ConsumerState<MyNotesScreen> {
                                   size: 40,
                                 ),
                               ),
-                              const SizedBox(height: 6),
+                               SizedBox(height: 6.h),
                               const Text('Bookmark'),
                             ],
                           ),
@@ -205,20 +205,20 @@ class _MyNotesScreenState extends ConsumerState<MyNotesScreen> {
                       Image.asset('assets/images/menu_bird.png'),
 
                       Positioned(
-                        top: 100,
-                        left: 10,
-                        right: 10,
+                        top: 100.h,
+                        left: 10.w,
+                        right: 10.w,
                         child: Text(
                           textAlign: TextAlign.center,
                           'Giving is not losing, it is planting hope.\n The smallest gift can spark the\n greatest change.',
                         ),
                       ),
                       Positioned(
-                        bottom: 100,
-                        left: 10,
-                        right: 10,
+                        bottom: 100.h,
+                        left: 10.w,
+                        right: 10.w,
                         child: Padding(
-                          padding: const EdgeInsets.only(left: 60.0, right: 60),
+                          padding:  EdgeInsets.only(left: 60.0.w, right: 60.w),
                           child: SizedBox(
                             width: 100.w,
                             child: ElevatedButton(
@@ -231,8 +231,8 @@ class _MyNotesScreenState extends ConsumerState<MyNotesScreen> {
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: const Color(0xffCDA434),
                               ),
-                              child: const Padding(
-                                padding: EdgeInsets.all(8.0),
+                              child:  Padding(
+                                padding: EdgeInsets.all(8.0.w),
                                 child: Text('Donate Money'),
                               ),
                             ),
@@ -245,8 +245,8 @@ class _MyNotesScreenState extends ConsumerState<MyNotesScreen> {
 
                   // =========== LogOut Button =================
                   SizedBox(
-                    width: 300, // button width
-                    height: 50, // button height
+                    width: 300.w, // button width
+                    height: 50.h, // button height
                     child: ElevatedButton(
                       onPressed: () async {
                           ref.read(bottomNavBarProvider.notifier).onItemTapped(0);
@@ -265,19 +265,19 @@ class _MyNotesScreenState extends ConsumerState<MyNotesScreen> {
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xffB02626),
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 16,
-                          vertical: 12,
+                        padding:  EdgeInsets.symmetric(
+                          horizontal: 16.w,
+                          vertical: 12.h,
                         ),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
                         ),
                       ),
-                      child: const Text(
+                      child:  Text(
                         'Exit',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          fontSize: 16,
+                          fontSize: 16.sp,
                           color: Colors
                               .white, // replace ColorsManager.whiteColor if needed
                         ),
@@ -345,25 +345,25 @@ abstract class BaseListScreenState<T extends BaseListScreen> extends State<T> {
                   ? Center(
                       child: Text(
                         'No ${getTitle().toLowerCase()} yet',
-                        style: const TextStyle(
-                          fontSize: 18,
+                        style:  TextStyle(
+                          fontSize: 18.sp,
                           color: Colors.grey,
                         ),
                       ),
                     )
                   : ListView.builder(
-                      padding: const EdgeInsets.all(16),
+                      padding:  EdgeInsets.all(16.w),
                       itemCount: data.length,
                       itemBuilder: (context, index) {
                         final key = data.keys.elementAt(index);
                         final value = data.values.elementAt(index);
 
                         return Container(
-                          margin: const EdgeInsets.symmetric(
-                            vertical: 10,
-                            horizontal: 8,
+                          margin:  EdgeInsets.symmetric(
+                            vertical: 10.h,
+                            horizontal: 8.w,
                           ),
-                          padding: const EdgeInsets.all(18),
+                          padding:  EdgeInsets.all(18.w),
                           decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(18),
@@ -393,7 +393,7 @@ abstract class BaseListScreenState<T extends BaseListScreen> extends State<T> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Container(
-                                padding: const EdgeInsets.all(10),
+                                padding:  EdgeInsets.all(10.w),
                                 decoration: BoxDecoration(
                                   color: const Color(
                                     0xffB02626,
@@ -407,7 +407,7 @@ abstract class BaseListScreenState<T extends BaseListScreen> extends State<T> {
                                 ),
                               ),
 
-                              const SizedBox(width: 16),
+                               SizedBox(width: 16.w),
 
                               Expanded(
                                 child: Column(
@@ -417,20 +417,20 @@ abstract class BaseListScreenState<T extends BaseListScreen> extends State<T> {
                                       Text(
                                         _cleanKey(key).toUpperCase(),
                                         style: TextStyle(
-                                          fontSize: 15,
+                                          fontSize: 15.sp,
                                           fontWeight: FontWeight.w600,
                                           color: const Color(0xffB02626),
                                           letterSpacing: 0.5,
                                         ),
                                       ),
                                     if (_cleanKey(key).isNotEmpty)
-                                      const SizedBox(height: 8),
+                                       SizedBox(height: 8.h),
 
                                     Text(
                                       value,
-                                      style: const TextStyle(
-                                        fontSize: 16.5,
-                                        height: 1.7,
+                                      style:  TextStyle(
+                                        fontSize: 16.5.sp,
+                                        height: 1.7.h,
                                         color: Colors.black87,
                                         fontWeight: FontWeight.w500,
                                       ),

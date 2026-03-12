@@ -33,85 +33,106 @@ class QuizQuestionScreen extends ConsumerWidget {
     final currentQuestion =
         questions.elementAt(quizState.currentQuestionIndex);
 
-    /// Success Dialog
-    void showSuccessDialog() {
-      showDialog(
-        context: context,
-        barrierDismissible: false,
-        builder: (context) => AlertDialog(
-          contentPadding: EdgeInsets.zero,
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Stack(
-                children: [
-                  Image.asset('assets/images/successfull.png'),
-                  Positioned(
-                    bottom: 140,
-                    left: 0,
-                    right: 0,
-                    child: Text(
-                      "Score: ${quizState.score}%",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 25.sp,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 10),
-              ElevatedButton(
-                onPressed: () {
-                  ref.read(quizProvider.notifier).levelChange();
+    /// =========== Success Dialog =============
+    // void showSuccessDialog() {
+    //   showDialog(
+    //     context: context,
+    //     barrierDismissible: false,
+    //     builder: (context) => AlertDialog(
+    //       contentPadding: EdgeInsets.zero,
+    //       content: Column(
+    //         mainAxisSize: MainAxisSize.min,
+    //         children: [
+    //               Image.asset('assets/images/successfull.png'),
+                 
+    //            SizedBox(height: 10.h),
+    //           ElevatedButton(
+    //             onPressed: () {
+    //               ref.read(quizProvider.notifier).levelChange();
 
-                  if (ref.read(quizProvider).quizLavel == 4) {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => ParentScreen(),
-                      ),
-                    );
-                  } else {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => QuizScreen(),
-                      ),
-                    );
-                  }
-                },
-                child: const Text("Continue"),
-              ),
-              const SizedBox(height: 10),
-            ],
+    //               if (ref.read(quizProvider).quizLavel == 4) {
+    //                 Navigator.pushReplacement(
+    //                   context,
+    //                   MaterialPageRoute(
+    //                     builder: (_) => ParentScreen(),
+    //                   ),
+    //                 );
+    //               } else {
+    //                 Navigator.pushReplacement(
+    //                   context,
+    //                   MaterialPageRoute(
+    //                     builder: (_) => QuizScreen(),
+    //                   ),
+    //                 );
+    //               }
+    //             },
+    //             child: const Text("Continue"),
+    //           ),
+    //            SizedBox(height: 10.h),
+    //         ],
+    //       ),
+    //     ),
+    //   );
+    // }
+    void showSuccessDialog() {
+  showDialog(
+    context: context,
+    barrierDismissible: false,
+    builder: (context) => AlertDialog(
+      contentPadding: EdgeInsets.zero,
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          GestureDetector(
+            onTap: () {
+              ref.read(quizProvider.notifier).levelChange();
+
+              if (ref.read(quizProvider).quizLavel == 4) {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => ParentScreen(),
+                  ),
+                );
+              } else {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => QuizScreen(),
+                  ),
+                );
+              }
+            },
+            child: Image.asset('assets/images/successfull.png'),
           ),
-        ),
-      );
-    }
+
+          SizedBox(height: 10.h),
+        ],
+      ),
+    ),
+  );
+}
 
     return Scaffold(
       backgroundColor: Colors.grey.shade200,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(16),
+          padding:  EdgeInsets.all(16.w),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               _buildAppBar(quizState, context),
 
-              const SizedBox(height: 16),
+               SizedBox(height: 16.h),
 
               _buildQuestionCard(currentQuestion, quizState),
 
-              const SizedBox(height: 24),
+               SizedBox(height: 24.h),
 
               ...List.generate(
                 currentQuestion.options?.length ?? 0,
                 (index) => Padding(
-                  padding: const EdgeInsets.only(bottom: 12),
+                  padding:  EdgeInsets.only(bottom: 12.h),
                   child: _buildOptionButton(
                     currentQuestion.options![index],
                     index,
@@ -151,7 +172,7 @@ class QuizQuestionScreen extends ConsumerWidget {
             scale: 4,
           ),
         ),
-        const SizedBox(width: 16),
+         SizedBox(width: 16.w),
 
         Expanded(
           child: Column(
@@ -159,20 +180,20 @@ class QuizQuestionScreen extends ConsumerWidget {
               Text(
                 "${quizState.currentQuestionIndex + 1}/$total",
                 style: TextStyle(
-                  fontSize: 14,
+                  fontSize: 14.sp,
                   color: Colors.grey.shade700,
                   fontWeight: FontWeight.w500,
                 ),
               ),
 
-              const SizedBox(height: 6),
+               SizedBox(height: 6.h),
 
               ClipRRect(
-                borderRadius: BorderRadius.circular(4),
+                borderRadius: BorderRadius.circular(4.r),
                 child: LinearProgressIndicator(
                   value:
                       (quizState.currentQuestionIndex + 1) / total,
-                  minHeight: 8,
+                  minHeight: 8.h,
                   backgroundColor: Colors.grey.shade300,
                   color: Colors.green,
                 ),
@@ -181,7 +202,7 @@ class QuizQuestionScreen extends ConsumerWidget {
           ),
         ),
 
-        const SizedBox(width: 16),
+         SizedBox(width: 16.w),
 
         Image.asset(
           'assets/icons/slider.png',
@@ -197,7 +218,7 @@ class QuizQuestionScreen extends ConsumerWidget {
     final total = quizState.quizModel?.questions?.length ?? 0;
 
     return Container(
-      padding: const EdgeInsets.all(20),
+      padding:  EdgeInsets.all(20.w),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(12),
@@ -214,16 +235,16 @@ class QuizQuestionScreen extends ConsumerWidget {
         children: [
           Text(
             "Question ${quizState.currentQuestionIndex + 1}/$total",
-            style: const TextStyle(
-              fontSize: 16,
+            style:  TextStyle(
+              fontSize: 16.sp,
               color: Colors.grey,
             ),
           ),
-          const SizedBox(height: 10),
+           SizedBox(height: 10.h),
           Text(
             question.question ?? "",
-            style: const TextStyle(
-              fontSize: 20,
+            style:  TextStyle(
+              fontSize: 20.sp,
               fontWeight: FontWeight.bold,
               color: Colors.black87,
             ),
@@ -258,13 +279,13 @@ class QuizQuestionScreen extends ConsumerWidget {
       onTap: onTap,
       child: Container(
         width: double.infinity,
-        padding: const EdgeInsets.symmetric(
-          vertical: 16,
-          horizontal: 16,
+        padding:  EdgeInsets.symmetric(
+          vertical: 16.h,
+          horizontal: 16.w,
         ),
         decoration: BoxDecoration(
           color: bgColor,
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(8.r),
           border: Border.all(
             color: Colors.grey.shade300,
           ),
@@ -279,7 +300,7 @@ class QuizQuestionScreen extends ConsumerWidget {
         child: Text(
           text,
           style: TextStyle(
-            fontSize: 18,
+            fontSize: 18.sp,
             color: textColor,
             fontWeight: FontWeight.w500,
           ),
