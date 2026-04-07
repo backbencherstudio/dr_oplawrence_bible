@@ -15,6 +15,8 @@ class _SecondOnboardingState extends State<SecondOnboarding> {
     return Scaffold(
       body: Stack(
         children: [
+
+          /// Background Image
           Positioned.fill(
             child: Image.asset(
               'assets/images/second_on_back.png',
@@ -22,45 +24,68 @@ class _SecondOnboardingState extends State<SecondOnboarding> {
             ),
           ),
 
+          /// Login Button
           Positioned(
             left: 20.w,
             right: 20.w,
             bottom: 160.h,
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFF1E3A8A),
-              ),
-              onPressed: () {
-                Navigator.pushNamedAndRemoveUntil(
-                  context,
-                  RouteNames.loginScreen,
-                  (route) => false,
-                );
-              },
-              child:  Text(
-                'Login',
-                style: TextStyle(color: Colors.white, fontSize: 20.sp),
+            child: SizedBox(
+              height: 55.h,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFF1E3A8A),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12.r),
+                  ),
+                ),
+                onPressed: () {
+                  Navigator.pushNamedAndRemoveUntil(
+                    context,
+                    RouteNames.loginScreen,
+                    (route) => false,
+                  );
+                },
+                child: Text(
+                  'Login',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18.sp,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
               ),
             ),
           ),
+
+          /// Continue as Guest
           Positioned(
             left: 20.w,
             right: 20.w,
-            bottom: 100.h,
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xffCDA434),
-              ),
-              onPressed: () {
-                Navigator.pushNamedAndRemoveUntil(
-                  context,
-                  RouteNames.parentScreen,
-                  (route) => false,
-                );
-              },
-              child:  Text(
-                'Continue as Guest',
-                style: TextStyle(color: Colors.black54, fontSize: 20),
+            bottom: 90.h,
+            child: SizedBox(
+              height: 55.h,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xffCDA434),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12.r),
+                  ),
+                ),
+                onPressed: () {
+                  Navigator.pushNamedAndRemoveUntil(
+                    context,
+                    RouteNames.parentScreen,
+                    (route) => false,
+                  );
+                },
+                child: Text(
+                  'Continue as Guest',
+                  style: TextStyle(
+                    color: Colors.black87,
+                    fontSize: 18.sp,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
               ),
             ),
           ),

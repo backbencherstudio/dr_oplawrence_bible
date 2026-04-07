@@ -2,15 +2,14 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:intl/intl.dart';
 
 class Utils {
-  static String formatDateTime(DateTime date) {
-    final DateFormat formatter = DateFormat(
-      'yyyy-MM-dd',
-    ); // Customize your format here
-    return formatter.format(date);
-  }
+  // static String formatDateTime(DateTime date) {
+  //   final DateFormat formatter = DateFormat(
+  //     'yyyy-MM-dd',
+  //   ); // Customize your format here
+  //   return formatter.format(date);
+  // }
 
   static Future<bool> isOnline() async {
     try {
