@@ -2,10 +2,9 @@ import 'package:flutter_riverpod/legacy.dart';
 
 import '../../../../data/models/bible_model.dart';
 import '../../../../data/repository/bible_repository.dart';
-import '../../viewmodel/bible_books_riverpod.dart';
+import '../../book/viewmodel/bible_books_riverpod.dart';
 
-class BibleExplanationNotifier
-    extends StateNotifier<BibleAiExplanationModel?> {
+class BibleExplanationNotifier extends StateNotifier<BibleAiExplanationModel?> {
   final BibleRepository repository;
 
   BibleExplanationNotifier(this.repository) : super(null);
@@ -27,10 +26,13 @@ class BibleExplanationNotifier
       print(e);
     }
   }
-} 
+}
+
 final bibleExplanationProvider =
-    StateNotifierProvider<BibleExplanationNotifier, BibleAiExplanationModel?>(
-        (ref) {
-  final repo = ref.read(bibleRepositoryProvider);
-  return BibleExplanationNotifier(repo);
-});
+    StateNotifierProvider<BibleExplanationNotifier, BibleAiExplanationModel?>((
+      ref,
+    ) {
+      final repo = ref.read(bibleRepositoryProvider);
+      return BibleExplanationNotifier(repo);
+    });
+

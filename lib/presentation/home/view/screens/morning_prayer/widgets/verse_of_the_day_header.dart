@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart'
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../../../../common/widgets/error_message_text.dart';
+import '../../../../../common_widgets/error_message_text.dart';
 import '../../../widgets/morningshimmer.dart';
 import 'verse_reference_row.dart';
 

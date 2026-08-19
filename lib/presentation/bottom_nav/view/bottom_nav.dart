@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import '../../book/view/book_screen.dart';
+import '../../home/book/view/book_screen.dart';
 import '../../home/view/screens/home_screen.dart';
 import '../../menu/my_notes_screen.dart';
 import '../../plan/view/plan_Screen.dart';
