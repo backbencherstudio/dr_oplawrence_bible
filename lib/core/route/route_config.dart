@@ -48,7 +48,7 @@ import '../../presentation/onboarding/onboarding_screen.dart';
 import '../../presentation/onboarding/second_onboarding.dart';
 import '../../presentation/home/quiz/quizQuestion/view/quiz_question_screen.dart';
 import '../../presentation/home/quiz/view/quiz_screen.dart';
-import '../../presentation/search/view/search_screen.dart';
+import '../../presentation/home/search/view/search_screen.dart';
 import '../../presentation/splash/view/splash_screen.dart';
 // contains BibleViewModel
 
