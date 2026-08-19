@@ -35,7 +35,7 @@ import '../../presentation/auth/signup/view/sign_up_screen.dart';
 import '../../presentation/book/view/book_screen.dart';
 import '../../presentation/book/screens/glossary/glossary_screen.dart';
 import '../../presentation/bottom_nav/view/bottom_nav.dart';
-import '../../presentation/home/view/home_screen.dart';
+import '../../presentation/home/view/screens/home_screen.dart';
 import '../../presentation/home/view/screens/archieved_daily_devotionals/archieved_daily_devotionals_screen.dart';
 import '../../presentation/home/view/screens/gospel_psalm/gospel_psalm_screen.dart';
 import '../../presentation/home/view/screens/morning_prayer/view/morning_prayer_screen.dart';
@@ -86,8 +86,7 @@ class AppRoutes {
     //RouteNames.videoStoriesScreen: (context) => const VideoStoriesScreen(),
     RouteNames.quizScreen: (context) => const QuizScreen(),
     //RouteNames.studyMoreScreen: (context) => const StudyMoreScreen(),
-    RouteNames.quizQuestionScreen: (context) =>
-        const QuizQuestionScreen(),
+    RouteNames.quizQuestionScreen: (context) => const QuizQuestionScreen(),
     RouteNames.myNotesScreen: (context) => const MyNotesScreen(),
     RouteNames.donateMoneySystem: (context) => const DonateMoneySystem(),
     RouteNames.donationScreen: (context) => const DonationScreen(),

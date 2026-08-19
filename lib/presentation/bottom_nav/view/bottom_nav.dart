@@ -3,12 +3,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../book/view/book_screen.dart';
-import '../../home/view/home_screen.dart';
+import '../../home/view/screens/home_screen.dart';
 import '../../menu/my_notes_screen.dart';
 import '../../plan/view/plan_Screen.dart';
 import '../viewmodel/bottom_nav_bar_viewmodel.dart';
-
-
 
 class ParentScreen extends ConsumerWidget {
   const ParentScreen({super.key});
@@ -22,8 +20,8 @@ class ParentScreen extends ConsumerWidget {
       HomeScreen(),
       // LottieScreen(),
       BookListScreen(),
+
       // BookListScreen(bibleVM: bibleVM),
-     
       VideoStoriesScreen(),
       //GlossaryScreen(),
       MyNotesScreen(),
@@ -58,7 +56,7 @@ class ParentScreen extends ConsumerWidget {
                         vertical: 10.h,
                       ),
                       padding: EdgeInsets.symmetric(horizontal: 12.w),
-                      decoration:  BoxDecoration(
+                      decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.only(
                           topRight: Radius.circular(30.r),
