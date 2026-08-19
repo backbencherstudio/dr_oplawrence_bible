@@ -2,9 +2,10 @@ import 'dart:async';
 import 'package:dr_oplawrence_bible/data/repository/quiz_repository.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/legacy.dart';
-import '../../../../core/network/api_clients.dart';
-import '../../../../data/models/quiz_model.dart';
-import '../../../../data/sources/remote/quiz_api_services.dart';
+
+import '../../../../../core/network/api_clients.dart';
+import '../../../../../data/models/quiz_model.dart';
+import '../../../../../data/sources/remote/quiz_api_services.dart';
 
 class LevelModel {
   final String name;

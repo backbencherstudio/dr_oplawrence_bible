@@ -1,5 +1,5 @@
 import 'package:dr_oplawrence_bible/presentation/bottom_nav/view/bottom_nav.dart';
-import 'package:dr_oplawrence_bible/presentation/quiz/studyMore/view/study_more.dart';
+import 'package:dr_oplawrence_bible/presentation/home/quiz/studyMore/view/study_more.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';

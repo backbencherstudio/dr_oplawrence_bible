@@ -4,10 +4,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/constansts/color_manager.dart';
 import '../../../../../data/models/bible_model.dart';
-import '../../../../book/viewmodel/bible_books_riverpod.dart';
+import '../../viewmodel/bible_books_riverpod.dart';
 
 class BookListTile extends ConsumerWidget {
   const BookListTile({
+    super.key,
     required this.book,
     required this.isSelected,
     required this.progressMap,

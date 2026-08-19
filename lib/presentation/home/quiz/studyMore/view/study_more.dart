@@ -1,4 +1,4 @@
-import 'package:dr_oplawrence_bible/presentation/quiz/quizQuestion/viewmodel/quiz_question_riverpod.dart';
+import 'package:dr_oplawrence_bible/presentation/home/quiz/quizQuestion/viewmodel/quiz_question_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
