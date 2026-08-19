@@ -2,9 +2,9 @@ import 'package:dr_oplawrence_bible/data/sources/remote/bible_api_services.dart'
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/legacy.dart';
 
-import '../../../../core/network/api_clients.dart';
-import '../../../../data/models/bible_model.dart';
-import '../../../../data/repository/bible_repository.dart';
+import '../../../core/network/api_clients.dart';
+import '../../../data/models/bible_model.dart';
+import '../../../data/repository/bible_repository.dart';
 
 final bibleRepositoryProvider = Provider.autoDispose<BibleRepository>((ref) {
   return BibleRepository(apiService: BibleApiServices(apiClient: ApiClient()));

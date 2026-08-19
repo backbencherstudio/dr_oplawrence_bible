@@ -1,7 +1,7 @@
 class RouteNames {
   static const String splashScreen = "splashScreen";
   static const String navbar = "/NavBar";
-  static const String bookListScreen = "/bookListScreen";
+  static const String bibleScreen = "/bibleScreen";
   static const String onboardingScreen = "/onboardingScreen";
   static const String secondOnboarding = "/secondOnboarding";
   static const String loginScreen = "/loginScreen";
@@ -14,7 +14,8 @@ class RouteNames {
   static const String morningPrayerScreen = "/morningPrayerScreen";
   static const String gospelPsalmScreen = "/gospelPsalmScreen";
   static const String dottedDivider = "/dottedDivider";
-  static const String archievedDailyDevotionalsScreen = "/archievedDailyDevotionalsScreen";
+  static const String archievedDailyDevotionalsScreen =
+      "/archievedDailyDevotionalsScreen";
   static const String searchScreen = "/searchScreen";
   static const String videoStoriesScreen = "/videoStoriesScreen";
   static const String quizScreen = "/quizScreen";

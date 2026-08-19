@@ -1,8 +1,8 @@
 import 'package:flutter_riverpod/legacy.dart';
 
-import '../../../../data/models/bible_model.dart';
-import '../../../../data/repository/bible_repository.dart';
-import '../../book/viewmodel/bible_books_riverpod.dart';
+import '../../../data/models/bible_model.dart';
+import '../../../data/repository/bible_repository.dart';
+import 'bible_books_riverpod.dart';
 
 class BibleExplanationNotifier extends StateNotifier<BibleAiExplanationModel?> {
   final BibleRepository repository;

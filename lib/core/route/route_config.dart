@@ -32,8 +32,8 @@ import '../../presentation/auth/logIn/view/login_screen.dart';
 import '../../presentation/auth/logIn/otp/view/otp_screen.dart';
 import '../../presentation/auth/signup/otp/view/otp_signup_screen.dart';
 import '../../presentation/auth/signup/view/sign_up_screen.dart';
-import '../../presentation/home/book/view/book_screen.dart';
-import '../../presentation/home/book/screens/glossary/glossary_screen.dart';
+import '../../presentation/bible/view/bible_screen.dart';
+import '../../presentation/bible/screens/glossary/glossary_screen.dart';
 import '../../presentation/bottom_nav/view/bottom_nav.dart';
 import '../../presentation/home/view/screens/home_screen.dart';
 import '../../presentation/home/view/screens/archieved_daily_devotionals/archieved_daily_devotionals_screen.dart';
@@ -98,6 +98,6 @@ class AppRoutes {
       return OtpSignupScreen(email: email);
     },
 
-    RouteNames.bookListScreen: (context) => BookListScreen(),
+    RouteNames.bibleScreen: (context) => const BibleScreen(),
   };
 }

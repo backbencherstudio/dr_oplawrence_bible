@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../core/constansts/color_manager.dart';
-import '../../../../../data/models/bible_model.dart';
+import '../../../../core/constansts/color_manager.dart';
+import '../../../../data/models/bible_model.dart';
 import '../../viewmodel/bible_books_riverpod.dart';
 
 class BookListTile extends ConsumerWidget {

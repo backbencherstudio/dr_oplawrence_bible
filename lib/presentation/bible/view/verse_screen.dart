@@ -3,10 +3,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../data/models/bible_model.dart';
-import '../../../../data/repository/bible_repository.dart';
-import '../../book/screens/verse_image_downloader/verse_image_downloader.dart';
-import '../../book/viewmodel/bible_books_riverpod.dart';
+import '../../../data/models/bible_model.dart';
+import '../../../data/repository/bible_repository.dart';
+import '../screens/verse_image_downloader/verse_image_downloader.dart';
+import '../viewmodel/bible_books_riverpod.dart';
 import '../viewmodel/verse_riverpod.dart';
 import 'widgets/app_snackbar.dart';
 import 'widgets/chapter_header_title.dart';

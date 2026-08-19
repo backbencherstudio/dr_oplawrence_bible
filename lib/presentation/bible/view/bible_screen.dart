@@ -3,19 +3,19 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'widgets/book_search_field.dart';
+import 'widgets/bible_search_field.dart';
 import 'widgets/books_tab.dart';
-import '../../chapter/view/chapters_tab.dart';
-import '../../verse/view/widgets/verses_tab.dart';
+import 'widgets/chapters_tab.dart';
+import 'widgets/verses_tab.dart';
 
-class BookListScreen extends ConsumerStatefulWidget {
-  const BookListScreen({super.key});
+class BibleScreen extends ConsumerStatefulWidget {
+  const BibleScreen({super.key});
 
   @override
-  ConsumerState<BookListScreen> createState() => _BookListScreenState();
+  ConsumerState<BibleScreen> createState() => _BibleScreenState();
 }
 
-class _BookListScreenState extends ConsumerState<BookListScreen>
+class _BibleScreenState extends ConsumerState<BibleScreen>
     with SingleTickerProviderStateMixin {
   late TabController tabController;
 
@@ -48,7 +48,7 @@ class _BookListScreenState extends ConsumerState<BookListScreen>
         padding: EdgeInsets.all(16.w),
         child: Column(
           children: [
-            BookSearchField(controller: searchController),
+            BibleSearchField(controller: searchController),
             SizedBox(height: 15.h),
 
             /// ================= TAB BAR =================

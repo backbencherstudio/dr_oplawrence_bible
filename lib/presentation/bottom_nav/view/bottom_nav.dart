@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import '../../home/book/view/book_screen.dart';
+import '../../bible/view/bible_screen.dart';
 import '../../home/view/screens/home_screen.dart';
 import '../../menu/my_notes_screen.dart';
 import '../../plan/view/plan_Screen.dart';
@@ -19,7 +19,7 @@ class ParentScreen extends ConsumerWidget {
     final List<Widget> pages = [
       HomeScreen(),
       // LottieScreen(),
-      BookListScreen(),
+      BibleScreen(),
 
       // BookListScreen(bibleVM: bibleVM),
       VideoStoriesScreen(),

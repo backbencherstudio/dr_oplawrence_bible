@@ -1,9 +1,9 @@
-import 'package:dr_oplawrence_bible/presentation/home/verse/view/verse_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../book/view/widgets/number_grid_tab.dart';
-import '../../../book/viewmodel/bible_books_riverpod.dart';
+import '../../viewmodel/bible_books_riverpod.dart';
+import '../verse_screen.dart';
+import 'number_grid_tab.dart';
 
 class VersesTab extends ConsumerWidget {
   const VersesTab({super.key});

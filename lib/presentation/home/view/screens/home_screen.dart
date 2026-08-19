@@ -109,7 +109,7 @@ class HomeScreen extends ConsumerWidget {
                           labelFontSize: 18,
                           onTap: () => Navigator.pushNamed(
                             context,
-                            RouteNames.bookListScreen,
+                            RouteNames.bibleScreen,
                           ),
                         ),
                         QuickActionButton(

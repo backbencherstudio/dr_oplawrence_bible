@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class BookSearchField extends StatelessWidget {
-  const BookSearchField({super.key, required this.controller});
+class BibleSearchField extends StatelessWidget {
+  const BibleSearchField({super.key, required this.controller});
 
   final TextEditingController controller;
 

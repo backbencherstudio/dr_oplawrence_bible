@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../book/view/widgets/number_grid_tab.dart';
-import '../../book/viewmodel/bible_books_riverpod.dart';
+import 'number_grid_tab.dart';
+import '../../viewmodel/bible_books_riverpod.dart';
 
 class ChaptersTab extends ConsumerWidget {
   const ChaptersTab({super.key, required this.onChapterSelected});
