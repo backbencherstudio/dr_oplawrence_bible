@@ -19,6 +19,7 @@ class QuizScreen extends StatelessWidget {
           context,
           MaterialPageRoute(builder: (context) => ParentScreen()),
         ),
+        action: const Icon(Icons.school, color: Colors.black),
       ),
       body: Padding(
         padding: EdgeInsets.all(16.0.w),

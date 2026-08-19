@@ -2,11 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-/// Reusable quiz app bar with back button, title and school action icon.
+/// Reusable quiz app bar with back button, title and optional action icon.
 class QuizAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const QuizAppBar({super.key, this.onBack});
+  const QuizAppBar({
+    super.key,
+    this.title = 'Quiz',
+    this.onBack,
+    this.action,
+  });
 
+  final String title;
   final VoidCallback? onBack;
+  final Widget? action;
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
@@ -21,7 +28,7 @@ class QuizAppBar extends StatelessWidget implements PreferredSizeWidget {
         child: Image.asset('assets/icons/back_arrow.png', scale: 4),
       ),
       title: Text(
-        'Quiz',
+        title,
         style: GoogleFonts.merriweather(
           color: const Color(0xFFC70039),
           fontSize: 20.sp,
@@ -29,12 +36,14 @@ class QuizAppBar extends StatelessWidget implements PreferredSizeWidget {
         ),
       ),
       centerTitle: true,
-      actions: [
-        Padding(
-          padding: EdgeInsets.only(right: 16.0.w),
-          child: Icon(Icons.school, color: Colors.black),
-        ),
-      ],
+      actions: action == null
+          ? null
+          : [
+              Padding(
+                padding: EdgeInsets.only(right: 16.0.w),
+                child: action,
+              ),
+            ],
     );
   }
 }
