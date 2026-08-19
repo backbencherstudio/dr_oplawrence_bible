@@ -18,6 +18,7 @@ class WordChip extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.all(12.0.w),
         child: Row(
+          mainAxisSize: MainAxisSize.min,
           spacing: 10,
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,

@@ -23,7 +23,8 @@ class WordChipWrap extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Wrap(
-      alignment: WrapAlignment.center,
+      // alignment: WrapAlignment.center,
+      // direction: Axis.horizontal,
       spacing: spacing,
       runSpacing: runSpacing,
       children: [
