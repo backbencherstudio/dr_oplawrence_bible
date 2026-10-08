@@ -79,7 +79,7 @@ flutter:
   assets:
      - assets/images/
      - assets/icons/
-     - assets/book/
+     # - assets/book/
      - assets/lottie/
      - assets/lottie/okk.json
      - assets/lottie/bizra_earth.json

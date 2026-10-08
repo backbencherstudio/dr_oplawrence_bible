@@ -99,7 +99,8 @@ class _MyNotesScreenState extends ConsumerState<MyNotesScreen> {
       backgroundColor: const Color(0xffEBEBEB),
       body: isLoading
           ? const Center(child: CircularProgressIndicator())
-          : Padding(
+          : SingleChildScrollView(
+              child: Padding(
               padding:  EdgeInsets.all(16.0.w),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -284,7 +285,9 @@ class _MyNotesScreenState extends ConsumerState<MyNotesScreen> {
                       ),
                     ),
                   ),
+                  SizedBox(height: 16.h),
                 ],
+              ),
               ),
             ),
     );
