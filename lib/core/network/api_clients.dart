@@ -1,20 +1,41 @@
-import 'dart:developer';
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
+import 'package:logger/logger.dart';
 import '../network/api_endpoints.dart';
+import '../network/dio_logger_interceptor.dart';
 import '../network/error_handle.dart';
 import '../network/respose_handle.dart';
 import '../../data/sources/local/shared_preference/shared_preference.dart';
 
 class ApiClient {
-  static final Dio _dio = Dio(
-    BaseOptions(
-      baseUrl: ApiEndpoints.baseUrl,
-      connectTimeout: Duration(seconds: 10),
-      sendTimeout: Duration(seconds: 10),
-      receiveTimeout: Duration(seconds: 10),
-    ),
+  static final Dio _dio = _createDio();
+  static final Logger _logger = Logger(
+    printer: PrettyPrinter(methodCount: 0, colors: true, printEmojis: true),
   );
+
+  static Dio _createDio() {
+    final dio = Dio(
+      BaseOptions(
+        baseUrl: ApiEndpoints.baseUrl,
+        connectTimeout: Duration(seconds: 10),
+        sendTimeout: Duration(seconds: 10),
+        receiveTimeout: Duration(seconds: 10),
+      ),
+    );
+
+    // Global logging — only in debug to keep release logs clean.
+    // NOTE: custom single-call interceptor (not Dio's LogInterceptor),
+    // otherwise PrettyPrinter draws 1 box per line.
+    if (kDebugMode) {
+      dio.interceptors.add(DioLoggerInterceptor(_logger));
+    }
+
+    return dio;
+  }
+
+  /// Exposes the shared Dio instance (already has LogInterceptor).
+  /// Useful if a service needs direct access, e.g. for downloads/uploads.
+  static Dio get dio => _dio;
   static Map<String, String>? headers;
 
   static Future<void> headerSet(String? token) async {
@@ -43,7 +64,7 @@ class ApiClient {
       if (e is DioException) {
         ErrorHandle.handleDioError(e);
       } else {
-        log('Non-Dio error: $e');
+        _logger.e('Non-Dio error: $e');
       }
     }
   }
@@ -69,7 +90,7 @@ class ApiClient {
       if (e is DioException) {
         ErrorHandle.handleDioError(e);
       } else {
-        log('Non-Dio error: $e');
+        _logger.e('Non-Dio error: $e');
       }
     }
   }
@@ -93,7 +114,7 @@ class ApiClient {
       if (e is DioException) {
         ErrorHandle.handleDioError(e);
       } else {
-        log('Non-Dio error: $e');
+        _logger.e('Non-Dio error: $e');
       }
     }
   }
@@ -119,7 +140,7 @@ class ApiClient {
       if (e is DioException) {
         ErrorHandle.handleDioError(e);
       } else {
-        log('Non-Dio error: $e');
+        _logger.e('Non-Dio error: $e');
       }
     }
   }
@@ -143,7 +164,7 @@ class ApiClient {
       if (e is DioException) {
         ErrorHandle.handleDioError(e);
       } else {
-        log('Non-Dio error: $e');
+        _logger.e('Non-Dio error: $e');
       }
     }
   }

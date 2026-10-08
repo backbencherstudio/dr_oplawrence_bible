@@ -52,6 +52,7 @@ dependencies:
   shimmer: ^3.0.0
   audioplayers: ^6.6.0
   flutter_stripe: ^12.4.0
+  logger: ^2.8.0
 
 dev_dependencies:
   flutter_test:
